@@ -37,7 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(255, 255, 51));
         mainPanel.setLayout(new java.awt.CardLayout());
 
-        homePanel.setBackground(new java.awt.Color(102, 102, 255));
+        homePanel.setBackground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
