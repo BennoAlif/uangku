@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uangkuapplication;
+package uangkuapplication.view;
 
 /**
  *
@@ -15,7 +15,8 @@ public class UangkuApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        LoginFrame login = new LoginFrame();
+        login.setVisible(true);
     }
     
 }
