@@ -10,4 +10,4 @@ Pengerjaan bisa dilihat di branch masing-masing anggota : <br/>
 
 ### Referensi Desain
 
-[Figma](`https://www.figma.com/file/MNbcImokzkyGWfiDAgpk9O/UANGKU?node-id=0%3A1`)
+[Figma](https://www.figma.com/file/MNbcImokzkyGWfiDAgpk9O/UANGKU?node-id=0%3A1)
