@@ -32,6 +32,8 @@ public class MainFrame extends javax.swing.JFrame {
         homePanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        pengeluaranBtn = new javax.swing.JButton();
+        pemasukanBtn = new javax.swing.JButton();
         reportPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         planningPanel = new javax.swing.JPanel();
@@ -64,6 +66,31 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         jLabel3.setText("Nama");
 
+        pengeluaranBtn.setBackground(new java.awt.Color(255, 229, 153));
+        pengeluaranBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        pengeluaranBtn.setForeground(new java.awt.Color(38, 50, 56));
+        pengeluaranBtn.setText("Tambah Pengeluaran");
+        pengeluaranBtn.setActionCommand("Tambah Pengeluaran");
+        pengeluaranBtn.setBorder(null);
+        pengeluaranBtn.setBorderPainted(false);
+        pengeluaranBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pengeluaranBtnActionPerformed(evt);
+            }
+        });
+
+        pemasukanBtn.setBackground(new java.awt.Color(255, 229, 153));
+        pemasukanBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        pemasukanBtn.setForeground(new java.awt.Color(38, 50, 56));
+        pemasukanBtn.setText("Tambah Pemasukan");
+        pemasukanBtn.setBorder(null);
+        pemasukanBtn.setBorderPainted(false);
+        pemasukanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pemasukanBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
@@ -75,7 +102,16 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel3))
                     .addComponent(jLabel2))
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addContainerGap(439, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pengeluaranBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+                    .addContainerGap(350, Short.MAX_VALUE)
+                    .addComponent(pemasukanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(20, 20, 20)))
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +120,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(517, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
+                .addComponent(pengeluaranBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(394, Short.MAX_VALUE))
+            .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(homePanelLayout.createSequentialGroup()
+                    .addGap(126, 126, 126)
+                    .addComponent(pemasukanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(443, Short.MAX_VALUE)))
         );
 
         mainPanel.add(homePanel, "card2");
@@ -324,6 +367,18 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void pengeluaranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengeluaranBtnActionPerformed
+        // TODO add your handling code here:
+        PengeluaranFrame pengeluaran = new PengeluaranFrame();
+        pengeluaran.setVisible(true);
+    }//GEN-LAST:event_pengeluaranBtnActionPerformed
+
+    private void pemasukanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pemasukanBtnActionPerformed
+        // TODO add your handling code here:
+        PemasukanFrame pemasukan = new PemasukanFrame();
+        pemasukan.setVisible(true);
+    }//GEN-LAST:event_pemasukanBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -372,6 +427,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JButton pemasukanBtn;
+    private javax.swing.JButton pengeluaranBtn;
     private javax.swing.JButton planningBtn;
     private javax.swing.JPanel planningPanel;
     private javax.swing.JButton profileBtn;
