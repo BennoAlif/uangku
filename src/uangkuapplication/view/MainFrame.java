@@ -585,7 +585,7 @@ public class MainFrame extends javax.swing.JFrame {
         profileBtn.setBackground(new java.awt.Color(255, 229, 153));
         profileBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
         profileBtn.setForeground(new java.awt.Color(38, 50, 56));
-        profileBtn.setText("Edit profil");
+        profileBtn.setText("Ubah profil");
         profileBtn.setBorder(null);
         profileBtn.setBorderPainted(false);
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
