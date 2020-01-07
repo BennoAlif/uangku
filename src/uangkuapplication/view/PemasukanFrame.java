@@ -29,45 +29,46 @@ public class PemasukanFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         pemasukanTxt = new javax.swing.JTextField();
-        catatanTxt = new javax.swing.JTextField();
         batalBtn = new javax.swing.JButton();
         submitBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tanggalPicker = new com.github.lgooddatepicker.components.DatePicker();
         kategoriBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        catatanTxt = new javax.swing.JTextArea();
 
         setResizable(false);
 
         pemasukanTxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pemasukanTxt.setText("Rp. ");
 
-        batalBtn.setBackground(new java.awt.Color(235, 87, 87));
-        batalBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
-        batalBtn.setForeground(new java.awt.Color(255, 255, 255));
         batalBtn.setText("Batal");
+        batalBtn.setBackground(new java.awt.Color(235, 87, 87));
         batalBtn.setBorder(null);
         batalBtn.setBorderPainted(false);
+        batalBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        batalBtn.setForeground(new java.awt.Color(255, 255, 255));
         batalBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 batalBtnActionPerformed(evt);
             }
         });
 
-        submitBtn.setBackground(new java.awt.Color(255, 229, 153));
-        submitBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
-        submitBtn.setForeground(new java.awt.Color(38, 50, 56));
         submitBtn.setText("Selesai");
+        submitBtn.setBackground(new java.awt.Color(255, 229, 153));
         submitBtn.setBorder(null);
         submitBtn.setBorderPainted(false);
+        submitBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        submitBtn.setForeground(new java.awt.Color(38, 50, 56));
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         jLabel3.setText("Pemasukan");
+        jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
 
         jLabel2.setText("Catatan");
 
@@ -75,21 +76,25 @@ public class PemasukanFrame extends javax.swing.JFrame {
 
         kategoriBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori", "Hiburan", "Makan", "Main" }));
 
+        catatanTxt.setColumns(20);
+        catatanTxt.setRows(5);
+        jScrollPane1.setViewportView(catatanTxt);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(batalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                     .addComponent(submitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pemasukanTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(catatanTxt, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tanggalPicker, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addComponent(kategoriBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(kategoriBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,17 +106,17 @@ public class PemasukanFrame extends javax.swing.JFrame {
                 .addComponent(pemasukanTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(kategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(catatanTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tanggalPicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(batalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,7 +129,7 @@ public class PemasukanFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,10 +187,11 @@ public class PemasukanFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton batalBtn;
-    private javax.swing.JTextField catatanTxt;
+    private javax.swing.JTextArea catatanTxt;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> kategoriBox;
     private javax.swing.JTextField pemasukanTxt;
     private javax.swing.JButton submitBtn;

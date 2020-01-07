@@ -69,7 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
         pengeluaranBtn.setBackground(new java.awt.Color(255, 229, 153));
         pengeluaranBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
         pengeluaranBtn.setForeground(new java.awt.Color(38, 50, 56));
-        pengeluaranBtn.setText("Tambah Pemasukan");
+        pengeluaranBtn.setText("Tambah Pengeluaran");
         pengeluaranBtn.setActionCommand("Tambah Pengeluaran");
         pengeluaranBtn.setBorder(null);
         pengeluaranBtn.setBorderPainted(false);
@@ -310,7 +310,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
