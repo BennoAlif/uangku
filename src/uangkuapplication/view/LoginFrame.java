@@ -174,7 +174,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(38, 50, 56));
         jButton1.setText("Daftar");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setPreferredSize(new java.awt.Dimension(43, 19));
 
         jLabel7.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(38, 50, 56));

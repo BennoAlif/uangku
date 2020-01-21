@@ -42,32 +42,32 @@ public class PengeluaranFrame extends javax.swing.JFrame {
         pengeluaranTxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pengeluaranTxt.setText("Rp. ");
 
-        batalBtn.setText("Batal");
         batalBtn.setBackground(new java.awt.Color(235, 87, 87));
-        batalBtn.setBorder(null);
-        batalBtn.setBorderPainted(false);
         batalBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
         batalBtn.setForeground(new java.awt.Color(255, 255, 255));
+        batalBtn.setText("Batal");
+        batalBtn.setBorder(null);
+        batalBtn.setBorderPainted(false);
         batalBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 batalBtnActionPerformed(evt);
             }
         });
 
-        submitBtn.setText("Selesai");
         submitBtn.setBackground(new java.awt.Color(255, 229, 153));
-        submitBtn.setBorder(null);
-        submitBtn.setBorderPainted(false);
         submitBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
         submitBtn.setForeground(new java.awt.Color(38, 50, 56));
+        submitBtn.setText("Selesai");
+        submitBtn.setBorder(null);
+        submitBtn.setBorderPainted(false);
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Pengeluaran");
         jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        jLabel3.setText("Pengeluaran");
 
         jLabel2.setText("Catatan");
 

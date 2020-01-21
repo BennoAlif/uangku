@@ -97,7 +97,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setText("Nama");
 
         pengeluaranBtn.setBackground(new java.awt.Color(255, 229, 153));
-        pengeluaranBtn.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
+        pengeluaranBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
         pengeluaranBtn.setForeground(new java.awt.Color(38, 50, 56));
         pengeluaranBtn.setText("Tambah Pengeluaran");
         pengeluaranBtn.setBorder(null);
@@ -109,7 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         pemasukanBtn.setBackground(new java.awt.Color(255, 229, 153));
-        pemasukanBtn.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
+        pemasukanBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
         pemasukanBtn.setForeground(new java.awt.Color(246, 61, 94));
         pemasukanBtn.setText("Tambah Pemasukan");
         pemasukanBtn.setBorder(null);
@@ -499,7 +499,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         btnTambahRe.setBackground(new java.awt.Color(255, 229, 153));
-        btnTambahRe.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
+        btnTambahRe.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
         btnTambahRe.setForeground(new java.awt.Color(38, 50, 56));
         btnTambahRe.setText("Tambah Rencana/Tagihan");
         btnTambahRe.setBorder(null);
@@ -546,7 +546,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         homeBtn.setBackground(new java.awt.Color(255, 229, 153));
-        homeBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        homeBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
         homeBtn.setForeground(new java.awt.Color(38, 50, 56));
         homeBtn.setText("Beranda");
         homeBtn.setBorder(null);
@@ -558,7 +558,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         planningBtn.setBackground(new java.awt.Color(255, 229, 153));
-        planningBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        planningBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
         planningBtn.setForeground(new java.awt.Color(38, 50, 56));
         planningBtn.setText("Perencanaan");
         planningBtn.setBorder(null);
@@ -570,7 +570,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         reportBtn.setBackground(new java.awt.Color(255, 229, 153));
-        reportBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        reportBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
         reportBtn.setForeground(new java.awt.Color(38, 50, 56));
         reportBtn.setText("Laporan");
         reportBtn.setBorder(null);
@@ -582,7 +582,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         addCategoryBtn.setBackground(new java.awt.Color(255, 229, 153));
-        addCategoryBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        addCategoryBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
         addCategoryBtn.setForeground(new java.awt.Color(38, 50, 56));
         addCategoryBtn.setText("Tambah kategori");
         addCategoryBtn.setBorder(null);
@@ -594,7 +594,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         profileBtn.setBackground(new java.awt.Color(255, 229, 153));
-        profileBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        profileBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
         profileBtn.setForeground(new java.awt.Color(38, 50, 56));
         profileBtn.setText("Ubah profil");
         profileBtn.setBorder(null);
@@ -606,7 +606,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         logoutBtn.setBackground(new java.awt.Color(235, 87, 87));
-        logoutBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
+        logoutBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
         logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutBtn.setText("Keluar");
         logoutBtn.setBorder(null);
@@ -676,7 +676,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
