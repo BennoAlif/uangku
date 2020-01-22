@@ -37,48 +37,44 @@ public class AnggaranFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextField3 = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         btnSimpanAnggaran = new javax.swing.JButton();
         btnBatalAnggaran = new javax.swing.JButton();
+        tglAnggaran = new com.github.lgooddatepicker.components.DatePicker();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel1.setText("Tambah Anggaran/Tagihan");
+        jLabel1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
 
+        jLabel2.setText("Rp");
         jLabel2.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(235, 87, 87));
-        jLabel2.setText("Rp");
 
+        jTextField1.setBorder(null);
         jTextField1.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(235, 87, 87));
-        jTextField1.setBorder(null);
 
-        jComboBox1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel3.setText("Catatan");
+        jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
 
         jTextField2.setBorder(null);
 
-        jTextField3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jTextField3.setText("Hari Ini");
-        jTextField3.setBorder(null);
-
-        btnSimpanAnggaran.setBackground(new java.awt.Color(255, 229, 153));
         btnSimpanAnggaran.setText("Simpan");
+        btnSimpanAnggaran.setBackground(new java.awt.Color(255, 229, 153));
         btnSimpanAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimpanAnggaranActionPerformed(evt);
             }
         });
 
-        btnBatalAnggaran.setBackground(new java.awt.Color(235, 87, 87));
         btnBatalAnggaran.setText("Batal");
+        btnBatalAnggaran.setBackground(new java.awt.Color(235, 87, 87));
         btnBatalAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalAnggaranActionPerformed(evt);
@@ -90,31 +86,35 @@ public class AnggaranFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1))
-                    .addComponent(jSeparator1)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator2)
-                    .addComponent(jSeparator3)
-                    .addComponent(jTextField3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1))
+                            .addComponent(jSeparator1)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator2)
+                            .addComponent(jSeparator3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3))
+                                .addGap(0, 151, Short.MAX_VALUE))
+                            .addComponent(jSeparator4)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSimpanAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(btnBatalAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tglAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSimpanAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(btnBatalAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,8 +138,8 @@ public class AnggaranFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tglAnggaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(btnSimpanAnggaran)
@@ -222,6 +222,6 @@ public class AnggaranFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private com.github.lgooddatepicker.components.DatePicker tglAnggaran;
     // End of variables declaration//GEN-END:variables
 }
