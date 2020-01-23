@@ -18,7 +18,7 @@ public class Kategori {
     public Kategori(){
         
     }
-
+    
     public Kategori(String nama_kategori) {
         this.nama_kategori = nama_kategori;
     }
