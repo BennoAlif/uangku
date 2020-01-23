@@ -19,6 +19,7 @@ public class UangkuDatabase {
     private static Connection connection;
     private static KategoriDao kategoriDao;
     private static Transaksi transaksi;
+    private static RencanaDao rencanaDao;
     
     public static Connection getConnection() throws SQLException{
         if (connection == null) {
@@ -44,5 +45,12 @@ public class UangkuDatabase {
         }
         
         return transaksi;
+    }
+    public static RencanaDao getRencanaDao() throws SQLException{
+        if(rencanaDao == null){
+            rencanaDao = new RencanaDaoImpl(getConnection());
+        }
+        
+        return rencanaDao;
     }
 }
