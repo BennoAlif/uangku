@@ -6,7 +6,11 @@
 package uangkuapplication.main;
 
 import java.sql.SQLException;
+import java.util.List;
 import uangkuapplication.database.UangkuDatabase;
+import uangkuapplication.entity.Kategori;
+import uangkuapplication.error.KategoriException;
+import uangkuapplication.service.KategoriDao;
 import uangkuapplication.view.LoginFrame;
 
 /**
@@ -18,10 +22,13 @@ public class UangkuApplication {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
-        LoginFrame login = new LoginFrame();
-        login.setVisible(true);
-        UangkuDatabase.getConnection();
+    public static void main(String[] args) throws SQLException, KategoriException {
+//        LoginFrame login = new LoginFrame();
+//        login.setVisible(true);
+//        UangkuDatabase.getConnection();
+
+        KategoriDao dao = UangkuDatabase.getKategoriDao();
+        dao.deleteKategori(2);
     }
     
 }
