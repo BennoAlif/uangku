@@ -8,8 +8,8 @@ package uangkuapplication.database;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import uangkuapplication.impl.KategoriDaoImpl;
 import uangkuapplication.service.KategoriDao;
+import uangkuapplication.impl.*;
 
 /**
  *
@@ -18,6 +18,8 @@ import uangkuapplication.service.KategoriDao;
 public class UangkuDatabase {
     private static Connection connection;
     private static KategoriDao kategoriDao;
+    private static Transaksi transaksi;
+    
     public static Connection getConnection() throws SQLException{
         if (connection == null) {
             MysqlDataSource dataSource = new MysqlDataSource();
@@ -35,5 +37,11 @@ public class UangkuDatabase {
                 kategoriDao = new KategoriDaoImpl(getConnection());
             }
             return kategoriDao;
+    public static Transaksi getTransaksi() throws SQLException{
+        if(transaksi == null){
+            transaksi = new Transaksi(getConnection());
+        }
+        
+        return transaksi;
     }
 }
