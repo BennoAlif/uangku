@@ -8,7 +8,7 @@ package uangkuapplication.database;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import uangkuapplication.service.KategoriDao;
+import uangkuapplication.service.*;
 import uangkuapplication.impl.*;
 
 /**
@@ -37,6 +37,7 @@ public class UangkuDatabase {
                 kategoriDao = new KategoriDaoImpl(getConnection());
             }
             return kategoriDao;
+    }
     public static Transaksi getTransaksi() throws SQLException{
         if(transaksi == null){
             transaksi = new Transaksi(getConnection());
