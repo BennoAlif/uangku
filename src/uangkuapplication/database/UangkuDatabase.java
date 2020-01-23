@@ -8,6 +8,7 @@ package uangkuapplication.database;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import uangkuapplication.impl.*;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.sql.SQLException;
  */
 public class UangkuDatabase {
     private static Connection connection;
+    private static Transaksi transaksi;
     
     public static Connection getConnection() throws SQLException{
         if (connection == null) {
@@ -26,5 +28,13 @@ public class UangkuDatabase {
         }
         
         return connection;
+    }
+    
+    public static Transaksi getTransaksi() throws SQLException{
+        if(transaksi == null){
+            transaksi = new Transaksi(getConnection());
+        }
+        
+        return transaksi;
     }
 }
