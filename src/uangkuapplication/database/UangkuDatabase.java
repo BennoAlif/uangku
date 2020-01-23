@@ -38,6 +38,7 @@ public class UangkuDatabase {
             }
             return kategoriDao;
     }
+    
     public static Transaksi getTransaksi() throws SQLException{
         if(transaksi == null){
             transaksi = new Transaksi(getConnection());
