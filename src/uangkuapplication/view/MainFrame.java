@@ -61,7 +61,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnSimpanAng = new javax.swing.JButton();
+        btnBayarAng = new javax.swing.JButton();
         btnUbahAng = new javax.swing.JButton();
         btnHapusAng = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -436,12 +436,12 @@ public class MainFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnSimpanAng.setBackground(new java.awt.Color(255, 255, 255));
-        btnSimpanAng.setText("Simpan");
-        btnSimpanAng.setBorder(null);
-        btnSimpanAng.addActionListener(new java.awt.event.ActionListener() {
+        btnBayarAng.setBackground(new java.awt.Color(255, 255, 255));
+        btnBayarAng.setText("Bayar");
+        btnBayarAng.setBorder(null);
+        btnBayarAng.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanAngActionPerformed(evt);
+                btnBayarAngActionPerformed(evt);
             }
         });
 
@@ -470,7 +470,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnSimpanAng, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBayarAng, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnUbahAng, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -486,10 +486,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSimpanAng, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUbahAng, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHapusAng, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnHapusAng, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBayarAng, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUbahAng, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -497,7 +498,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel7.setText("Terbayar");
+        jLabel7.setText("Terbayarkan");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -531,8 +532,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         btnTambahRe.setBackground(new java.awt.Color(255, 229, 153));
@@ -801,9 +802,9 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUbahAngActionPerformed
 
-    private void btnSimpanAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAngActionPerformed
+    private void btnBayarAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarAngActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSimpanAngActionPerformed
+    }//GEN-LAST:event_btnBayarAngActionPerformed
 
     /**
      * @param args the command line arguments
@@ -842,8 +843,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCategoryBtn;
+    private javax.swing.JButton btnBayarAng;
     private javax.swing.JButton btnHapusAng;
-    private javax.swing.JButton btnSimpanAng;
     private javax.swing.JButton btnTambahRe;
     private javax.swing.JButton btnUbahAng;
     private javax.swing.JButton homeBtn;
