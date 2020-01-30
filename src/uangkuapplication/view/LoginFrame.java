@@ -4,13 +4,20 @@
  * and open the template in the editor.
  */
 package uangkuapplication.view;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uangkuapplication.impl.*;
+import uangkuapplication.entity.Login;
+import uangkuapplication.error.LoginException;
+import uangkuapplication.database.UangkuDatabase;
 
 /**
  *
  * @author Kyoto
  */
 public class LoginFrame extends javax.swing.JFrame {
-
+        
     /**
      * Creates new form LoginFrame
      */
@@ -39,12 +46,12 @@ public class LoginFrame extends javax.swing.JFrame {
         registerLabel = new javax.swing.JLabel();
         registerPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFullname = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
+        btnDaftar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -147,34 +154,39 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(38, 50, 56));
         jLabel2.setText("Nama :");
 
-        jTextField1.setForeground(new java.awt.Color(38, 50, 56));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
-        jTextField1.setCaretColor(new java.awt.Color(38, 50, 56));
-        jTextField1.setPreferredSize(new java.awt.Dimension(6, 24));
+        txtFullname.setForeground(new java.awt.Color(38, 50, 56));
+        txtFullname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
+        txtFullname.setCaretColor(new java.awt.Color(38, 50, 56));
+        txtFullname.setPreferredSize(new java.awt.Dimension(6, 24));
 
         jLabel4.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(38, 50, 56));
         jLabel4.setText("Nama user :");
 
-        jTextField3.setForeground(new java.awt.Color(38, 50, 56));
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
-        jTextField3.setCaretColor(new java.awt.Color(38, 50, 56));
-        jTextField3.setPreferredSize(new java.awt.Dimension(6, 24));
+        txtUsername.setForeground(new java.awt.Color(38, 50, 56));
+        txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
+        txtUsername.setCaretColor(new java.awt.Color(38, 50, 56));
+        txtUsername.setPreferredSize(new java.awt.Dimension(6, 24));
 
         jLabel6.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(38, 50, 56));
         jLabel6.setText("Kata sandi :");
 
-        jPasswordField1.setForeground(new java.awt.Color(38, 50, 56));
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
-        jPasswordField1.setCaretColor(new java.awt.Color(38, 50, 56));
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(6, 24));
+        txtPassword.setForeground(new java.awt.Color(38, 50, 56));
+        txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
+        txtPassword.setCaretColor(new java.awt.Color(38, 50, 56));
+        txtPassword.setPreferredSize(new java.awt.Dimension(6, 24));
 
-        jButton1.setBackground(new java.awt.Color(255, 229, 153));
-        jButton1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(38, 50, 56));
-        jButton1.setText("Daftar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDaftar.setBackground(new java.awt.Color(255, 229, 153));
+        btnDaftar.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        btnDaftar.setForeground(new java.awt.Color(38, 50, 56));
+        btnDaftar.setText("Daftar");
+        btnDaftar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDaftar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDaftarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(38, 50, 56));
@@ -200,10 +212,10 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addGroup(registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtFullname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDaftar, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(registerPanelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jLabel7)
@@ -217,17 +229,17 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGap(160, 160, 160)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDaftar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -306,11 +318,49 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
+        
+           
+        
+        LoginImpl login;
+        try {
+            login = new LoginImpl(UangkuDatabase.getConnection());
+
+            login.login(txtUsername.getText(), txtPassword.getPassword().toString());
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         MainFrame main = new MainFrame();
         
         main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
+        
+        
+            
+        
+        LoginImpl login;
+        Login loginInfo;
+        try {
+            login = new LoginImpl(UangkuDatabase.getConnection());
+            loginInfo= new Login();
+
+            // TODO add your handling code here:
+            loginInfo.setFullname(txtFullname.getText());
+            loginInfo.setUsername(txtUsername.getText());
+            loginInfo.setPassword(txtPassword.getPassword().toString());
+            login.register(loginInfo);
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+       
+    }//GEN-LAST:event_btnDaftarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,7 +403,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField PassPasswordField;
     private javax.swing.JLabel UnameLabel2;
     private javax.swing.JTextField UnameTextField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDaftar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -361,13 +411,13 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPanel main;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JPanel registerPanel;
+    private javax.swing.JTextField txtFullname;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
