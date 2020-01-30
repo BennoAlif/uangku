@@ -23,12 +23,11 @@ public class UangkuApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException, KategoriException {
-//        LoginFrame login = new LoginFrame();
-//        login.setVisible(true);
-//        UangkuDatabase.getConnection();
+        LoginFrame login = new LoginFrame();
+        login.setVisible(true);
 
-        KategoriDao dao = UangkuDatabase.getKategoriDao();
-        dao.deleteKategori(2);
+//        KategoriDao dao = UangkuDatabase.getKategoriDao();
+//        dao.deleteKategori(2);
     }
     
 }

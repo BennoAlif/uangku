@@ -5,6 +5,11 @@
  */
 package uangkuapplication.view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import javax.swing.SwingUtilities;
+import uangkuapplication.error.KategoriException;
+
 /**
  *
  * @author Kyoto
@@ -584,7 +589,7 @@ public class MainFrame extends javax.swing.JFrame {
         addCategoryBtn.setBackground(new java.awt.Color(255, 229, 153));
         addCategoryBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
         addCategoryBtn.setForeground(new java.awt.Color(38, 50, 56));
-        addCategoryBtn.setText("Tambah kategori");
+        addCategoryBtn.setText("Kategori");
         addCategoryBtn.setBorder(null);
         addCategoryBtn.setBorderPainted(false);
         addCategoryBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -722,8 +727,19 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryBtnActionPerformed
         // TODO add your handling code here:
-        KategoriFrame kategori = new KategoriFrame();
-        kategori.setVisible(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    KategoriFrame kategori = new KategoriFrame();
+                    kategori.loadDatabase();
+                    kategori.setVisible(true);
+                } catch (SQLException e) {
+                } catch (KategoriException ex) {
+                    java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }//GEN-LAST:event_addCategoryBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed

@@ -39,9 +39,13 @@ public class KategoriDaoImpl implements KategoriDao{
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
-            statement = connection.prepareStatement(insertKategori);
+            statement = connection.prepareStatement(insertKategori, statement.RETURN_GENERATED_KEYS);
             statement.setString(1, kategori.getNama_kategori());
             statement.executeUpdate();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                kategori.setId(result.getInt(1));
+            }
             connection.commit();
         } catch (SQLException e) {
             try {
