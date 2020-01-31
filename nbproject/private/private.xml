@@ -6,13 +6,17 @@
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/RencanaDaoImpl.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/service/RencanaDao.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/database/UangkuDatabase.java</file>
-            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Transaksi.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/service/ITransaksi.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/view/LoginFrame.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Rencana.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/view/AnggaranFrame.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/service/KategoriDao.java</file>
-            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Kategori.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/KategoriDaoImpl.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/view/MainFrame.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Transaksi.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Kategori.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/error/RencanaException.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/Transaksi.java</file>
         </group>
     </open-files>
 </project-private>
