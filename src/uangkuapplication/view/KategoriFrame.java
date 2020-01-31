@@ -12,12 +12,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import uangkuapplication.controller.KategoriController;
 import uangkuapplication.database.UangkuDatabase;
-import uangkuapplication.entity.Kategori;
+import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.KategoriListener;
 import uangkuapplication.model.KategoriModel;
 import uangkuapplication.model.TableKategoriModel;
-import uangkuapplication.service.KategoriDao;
+import uangkuapplication.service.IKategori;
 
 /**
  *
@@ -298,7 +298,7 @@ public class KategoriFrame extends javax.swing.JFrame implements KategoriListene
     }
 
     @Override
-    public void onInsert(Kategori kategori) {
+    public void onInsert(EntityKategori kategori) {
         kategoriModel.add(kategori);
     }
 
@@ -309,7 +309,7 @@ public class KategoriFrame extends javax.swing.JFrame implements KategoriListene
     }
 
     @Override
-    public void onUpdate(Kategori kategori) {
+    public void onUpdate(EntityKategori kategori) {
         int index = tableKategori.getSelectedRow();
         kategoriModel.set(index, kategori);
     }
@@ -317,7 +317,7 @@ public class KategoriFrame extends javax.swing.JFrame implements KategoriListene
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         try {
-            Kategori model = kategoriModel.get(tableKategori.getSelectedRow());
+            EntityKategori model = kategoriModel.get(tableKategori.getSelectedRow());
             txtIdKategori.setText(model.getId() + "");
             txtNamaKategori.setText(model.getNama_kategori());
         } catch (IndexOutOfBoundsException e) {
@@ -325,7 +325,7 @@ public class KategoriFrame extends javax.swing.JFrame implements KategoriListene
     }
     
     public void loadDatabase() throws SQLException, KategoriException{
-        KategoriDao dao = UangkuDatabase.getKategoriDao();
+        IKategori dao = UangkuDatabase.getKategori();
         kategoriModel.setList(dao.getAllKategori());
     }
 }

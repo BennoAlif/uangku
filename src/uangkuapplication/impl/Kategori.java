@@ -6,18 +6,16 @@
 package uangkuapplication.impl;
 
 import java.sql.Connection;
-<<<<<<< HEAD:src/uangkuapplication/impl/Kategori.java
 import java.sql.SQLException;
-=======
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
->>>>>>> e713b7e094c870799e9ca0ee5940280ad5b19169:src/uangkuapplication/impl/KategoriDaoImpl.java
 import java.util.List;
 import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.service.IKategori;
+import uangkuapplication.error.KategoriException;
 
 /**
  *
@@ -26,47 +24,19 @@ import uangkuapplication.service.IKategori;
 public class Kategori implements IKategori{
     
     private Connection connection;
-
-<<<<<<< HEAD:src/uangkuapplication/impl/Kategori.java
-    public Kategori(Connection connection) {
-=======
     private final String insertKategori = "INSERT INTO kategori (nama_kategori) VALUES (?)";
     private final String updateKategori = "UPDATE kategori SET nama_kategori=? WHERE id=?";
     private final String deleteKategori = "DELETE FROM kategori WHERE id=?";
     private final String getById = "SELECT * FROM kategori WHERE id=?";
     private final String getAll = "SELECT * FROM kategori";
     
-    public KategoriDaoImpl(Connection connection) {
->>>>>>> e713b7e094c870799e9ca0ee5940280ad5b19169:src/uangkuapplication/impl/KategoriDaoImpl.java
+    
+    public Kategori(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-<<<<<<< HEAD:src/uangkuapplication/impl/Kategori.java
-    public void insertKategori(EntityKategori kategori) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateKategori(EntityKategori kategori) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteKategori(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public EntityKategori getKategori(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<EntityKategori> getAllKategori() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-=======
-    public void insertKategori(Kategori kategori) throws KategoriException {
+    public void insertKategori(EntityKategori kategori) throws KategoriException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -99,7 +69,7 @@ public class Kategori implements IKategori{
     }
 
     @Override
-    public void updateKategori(Kategori kategori) throws KategoriException {
+    public void updateKategori(EntityKategori kategori) throws KategoriException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -158,7 +128,7 @@ public class Kategori implements IKategori{
     }
 
     @Override
-    public Kategori getKategori(int id) throws KategoriException {
+    public EntityKategori getKategori(int id) throws KategoriException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -166,10 +136,10 @@ public class Kategori implements IKategori{
             statement.setInt(1, id);
             
             ResultSet result = statement.executeQuery();
-            Kategori kategori = null;
+            EntityKategori kategori = null;
             
             if (result.next()) {
-                kategori = new Kategori();
+                kategori = new EntityKategori();
                 kategori.setId(result.getInt("id"));
                 kategori.setNama_kategori(result.getString("nama_kategori"));
             }else{
@@ -199,18 +169,18 @@ public class Kategori implements IKategori{
     }
 
     @Override
-    public List<Kategori> getAllKategori() throws KategoriException {
+    public List<EntityKategori> getAllKategori() throws KategoriException {
         Statement statement = null;
-        List<Kategori> list = new ArrayList<Kategori>();
+        List<EntityKategori> list = new ArrayList<EntityKategori>();
         try {
             connection.setAutoCommit(false);
             statement = connection.createStatement();
             
             ResultSet result = statement.executeQuery(getAll);
-            Kategori kategori = null;
+            EntityKategori kategori = null;
             
             while (result.next()) {
-                kategori = new Kategori();
+                kategori = new EntityKategori();
                 kategori.setId(result.getInt("id"));
                 kategori.setNama_kategori(result.getString("nama_kategori"));
                 list.add(kategori);
@@ -236,7 +206,6 @@ public class Kategori implements IKategori{
                 }
             }
         }
->>>>>>> e713b7e094c870799e9ca0ee5940280ad5b19169:src/uangkuapplication/impl/KategoriDaoImpl.java
     }
     
 }

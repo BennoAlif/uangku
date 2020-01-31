@@ -7,10 +7,10 @@ package uangkuapplication.model;
 
 import java.sql.SQLException;
 import uangkuapplication.database.UangkuDatabase;
-import uangkuapplication.entity.Kategori;
+import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.KategoriListener;
-import uangkuapplication.service.KategoriDao;
+import uangkuapplication.service.IKategori;
 
 /**
  *
@@ -54,13 +54,13 @@ public class KategoriModel {
         }
     }
     
-    protected void fireOnInsert(Kategori kategori){
+    protected void fireOnInsert(EntityKategori kategori){
         if (listener != null) {
             listener.onInsert(kategori);
         }
     }
     
-    protected void fireOnUpdate(Kategori kategori){
+    protected void fireOnUpdate(EntityKategori kategori){
         if (listener != null) {
             listener.onUpdate(kategori);
         }
@@ -73,8 +73,8 @@ public class KategoriModel {
     }
     
     public void insertKategori() throws SQLException, KategoriException{
-        KategoriDao dao = UangkuDatabase.getKategoriDao();
-        Kategori kategori = new Kategori();
+        IKategori dao = UangkuDatabase.getKategori();
+        EntityKategori kategori = new EntityKategori();
         kategori.setNama_kategori(nama_kategori);
         
         dao.insertKategori(kategori);
@@ -82,8 +82,8 @@ public class KategoriModel {
     }
     
     public void updateKategori() throws SQLException, KategoriException{
-        KategoriDao dao = UangkuDatabase.getKategoriDao();
-        Kategori kategori = new Kategori();
+        IKategori dao = UangkuDatabase.getKategori();
+        EntityKategori kategori = new EntityKategori();
         kategori.setId(id);
         kategori.setNama_kategori(nama_kategori);
         
@@ -92,7 +92,7 @@ public class KategoriModel {
     }
     
     public void deleteKategori() throws SQLException, KategoriException{
-        KategoriDao dao = UangkuDatabase.getKategoriDao();
+        IKategori dao = UangkuDatabase.getKategori();
         dao.deleteKategori(id);
         fireOnDelete();
     }

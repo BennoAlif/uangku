@@ -5,7 +5,7 @@
  */
 package uangkuapplication.event;
 
-import uangkuapplication.entity.Kategori;
+import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.model.KategoriModel;
 
 /**
@@ -14,7 +14,7 @@ import uangkuapplication.model.KategoriModel;
  */
 public interface KategoriListener {
     public void onChange(KategoriModel model);
-    public void onInsert(Kategori kategori);
+    public void onInsert(EntityKategori kategori);
     public void onDelete();
-    public void onUpdate(Kategori kategori);
+    public void onUpdate(EntityKategori kategori);
 }

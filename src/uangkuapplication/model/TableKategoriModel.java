@@ -8,7 +8,7 @@ package uangkuapplication.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import uangkuapplication.entity.Kategori;
+import uangkuapplication.entity.EntityKategori;
 
 /**
  *
@@ -16,9 +16,9 @@ import uangkuapplication.entity.Kategori;
  */
 public class TableKategoriModel extends AbstractTableModel {
 
-    private List<Kategori> list = new ArrayList<Kategori>();
+    private List<EntityKategori> list = new ArrayList<EntityKategori>();
 
-    public void setList(List<Kategori> list) {
+    public void setList(List<EntityKategori> list) {
         this.list = list;
     }
     
@@ -32,7 +32,7 @@ public class TableKategoriModel extends AbstractTableModel {
         return 2;
     }
 
-    public boolean add(Kategori e) {
+    public boolean add(EntityKategori e) {
         try {
             return list.add(e);
         } finally {
@@ -40,11 +40,11 @@ public class TableKategoriModel extends AbstractTableModel {
         }
     }
 
-    public Kategori get(int i) {
+    public EntityKategori get(int i) {
         return list.get(i);
     }
 
-    public Kategori set(int i, Kategori e) {
+    public EntityKategori set(int i, EntityKategori e) {
         try {
             return list.set(i, e);
         } finally {
@@ -52,7 +52,7 @@ public class TableKategoriModel extends AbstractTableModel {
         }
     }
 
-    public Kategori remove(int i) {
+    public EntityKategori remove(int i) {
         try {
             return list.remove(i);
         } finally{
