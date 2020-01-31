@@ -11,15 +11,20 @@ import java.util.Objects;
  *
  * @author Kyoto
  */
-public class Kategori {
+public class EntityKategori {
     private Integer id;
     private String nama_kategori;
     
-    public Kategori(){
+    public EntityKategori(){
         
     }
+<<<<<<< HEAD:src/uangkuapplication/entity/Kategori.java
     
     public Kategori(String nama_kategori) {
+=======
+
+    public EntityKategori(String nama_kategori) {
+>>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0:src/uangkuapplication/entity/EntityKategori.java
         this.nama_kategori = nama_kategori;
     }
 
@@ -58,7 +63,7 @@ public class Kategori {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Kategori other = (Kategori) obj;
+        final EntityKategori other = (EntityKategori) obj;
         if (!Objects.equals(this.nama_kategori, other.nama_kategori)) {
             return false;
         }

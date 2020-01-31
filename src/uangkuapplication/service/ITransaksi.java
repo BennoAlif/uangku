@@ -14,6 +14,6 @@ import uangkuapplication.entity.*;
  * @author Wildhevire
  */
 public interface ITransaksi {
-    public void insertTransaksi(Transaksi transaksi) throws SQLException;
-    public Transaksi getTransaksi(int id) throws SQLException;
+    public void insertTransaksi(EntityTransaksi transaksi) throws SQLException;
+    public EntityTransaksi getTransaksi(int id) throws SQLException;
 }
