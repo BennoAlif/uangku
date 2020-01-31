@@ -8,6 +8,7 @@ import java.util.prefs.Preferences;
 import java.sql.SQLException;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.view.LoginFrame;
+import uangkuapplication.view.MainFrame;
 
 /**
  *
@@ -19,18 +20,27 @@ public class UangkuApplication {
      * @param args the command line arguments
      */
     
-    public static class Prefs{
-        public Preferences instance;
-        public void saveLogin(){
-            instance = Preferences.userRoot().node(this.getClass().getName());
-
-        }
-    }
-    
+   
+    public static Preferences  prefs;
+    public static int UserID;
     public static void main(String[] args) throws SQLException {
-        Prefs userPrefs = new Prefs();
+        prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
+        
+        boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+        
         LoginFrame login = new LoginFrame();
-        login.setVisible(true);
+        MainFrame main = new MainFrame(prefs.get("UserFullName", ""));
+        
+        
+        if(isLoggedIn==false){
+            login.setVisible(true);
+            
+        }
+        else{
+            main.setVisible(true);
+            UserID = prefs.getInt("UserID", 0);
+        }
+        
         UangkuDatabase.getConnection();
     }
     

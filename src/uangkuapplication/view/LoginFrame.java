@@ -13,6 +13,7 @@ import uangkuapplication.impl.*;
 import uangkuapplication.entity.Login;
 import uangkuapplication.error.LoginException;
 import uangkuapplication.database.UangkuDatabase;
+import uangkuapplication.main.UangkuApplication;
 
 /**
  *
@@ -338,7 +339,10 @@ public class LoginFrame extends javax.swing.JFrame {
             //if(tx.getText().equals(rs.getString("username")) && txt_pass.getText().equals(rs.getString("password")))
             if(status != null){
                 MainFrame main = new MainFrame(status.getFullname());
-
+                
+                UangkuApplication.prefs.putBoolean("isLoggedIn", true);
+                UangkuApplication.prefs.put("UserFullName", status.getFullname());
+                UangkuApplication.prefs.putInt("UserID", status.getUid());
                 main.setVisible(true);
                 this.setVisible(false);
             }else{

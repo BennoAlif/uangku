@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package uangkuapplication.view;
-import java.util.prefs.Preferences;
+import uangkuapplication.main.UangkuApplication;
 
 /**
  *
@@ -732,6 +732,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
+        UangkuApplication.prefs.remove("UserFullName");
+        UangkuApplication.prefs.remove("isLoggedIn");
+        UangkuApplication.prefs.remove("UserID");
+        
         LoginFrame login = new LoginFrame();
         this.setVisible(false);
         
