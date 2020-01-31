@@ -7,6 +7,8 @@ package uangkuapplication.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import uangkuapplication.entity.Login;
@@ -21,7 +23,7 @@ public class LoginImpl implements LoginDao{
 
     private Connection connection;
     private final String registerQuery = "INSERT INTO pengguna (fullname,username,password) VALUES (?,?,?)";
-    private final String loginQuery = "SELECT uid FROM pengguna WHERE username=? AND password=?";
+    
     public LoginImpl(Connection connection) {
         this.connection = connection;
     }
@@ -51,13 +53,26 @@ public class LoginImpl implements LoginDao{
     }
 
     @Override
-    public void login(String username, String password) throws SQLException {
+    public Login login(String username, String password) throws SQLException {
+        String loginQuery = "SELECT * FROM pengguna WHERE username='"+username+"' AND password='"+password+"'";
         PreparedStatement statement = null;
+        ResultSet result = null;
+        Login logInfo = null;
         try {
             statement = connection.prepareStatement(loginQuery);
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.execute();
+            
+            result = statement.executeQuery();
+            
+            
+            //loop through result record and populate it to some object
+            while(result.next()){
+                logInfo = new Login();
+                logInfo.setUid(result.getInt("uid"));
+                logInfo.setFullname(result.getString("fullname"));
+                logInfo.setUsername(result.getString("username"));
+            }
+           
+            return logInfo;
             
           
             
@@ -70,6 +85,7 @@ public class LoginImpl implements LoginDao{
             }
             
         }
+        
     }
     
     @Override

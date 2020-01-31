@@ -18,7 +18,7 @@ import uangkuapplication.error.LoginException;
  */
 public interface LoginDao {
     public void register(Login login) throws SQLException;
-    public void login(String username, String password) throws SQLException;
+    public Login login(String username, String password) throws SQLException;
             
             
     public void insertLogin(Login Login) throws LoginException;

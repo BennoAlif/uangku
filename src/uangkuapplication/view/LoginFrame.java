@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package uangkuapplication.view;
+import javax.swing.JOptionPane;
+
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,8 +43,8 @@ public class LoginFrame extends javax.swing.JFrame {
         UnameLabel2 = new javax.swing.JLabel();
         PassLabel = new javax.swing.JLabel();
         LoginButton = new javax.swing.JButton();
-        UnameTextField = new javax.swing.JTextField();
-        PassPasswordField = new javax.swing.JPasswordField();
+        txtLoginName = new javax.swing.JTextField();
+        txtLoginPass = new javax.swing.JPasswordField();
         registerLabel = new javax.swing.JLabel();
         registerPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -89,15 +91,20 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        UnameTextField.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
-        UnameTextField.setForeground(new java.awt.Color(38, 50, 56));
-        UnameTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
-        UnameTextField.setPreferredSize(new java.awt.Dimension(2, 24));
+        txtLoginName.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
+        txtLoginName.setForeground(new java.awt.Color(38, 50, 56));
+        txtLoginName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
+        txtLoginName.setPreferredSize(new java.awt.Dimension(2, 24));
 
-        PassPasswordField.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
-        PassPasswordField.setForeground(new java.awt.Color(38, 50, 56));
-        PassPasswordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
-        PassPasswordField.setPreferredSize(new java.awt.Dimension(2, 24));
+        txtLoginPass.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
+        txtLoginPass.setForeground(new java.awt.Color(38, 50, 56));
+        txtLoginPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 50, 56)));
+        txtLoginPass.setPreferredSize(new java.awt.Dimension(2, 24));
+        txtLoginPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLoginPassActionPerformed(evt);
+            }
+        });
 
         registerLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         registerLabel.setForeground(new java.awt.Color(0, 102, 255));
@@ -118,9 +125,9 @@ public class LoginFrame extends javax.swing.JFrame {
                         .addGap(88, 88, 88)
                         .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(PassLabel)
-                            .addComponent(PassPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtLoginPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(UnameLabel2)
-                            .addComponent(UnameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                            .addComponent(txtLoginName, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                             .addComponent(LoginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(loginPanelLayout.createSequentialGroup()
                         .addGap(142, 142, 142)
@@ -133,11 +140,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGap(160, 160, 160)
                 .addComponent(UnameLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLoginName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(PassLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PassPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLoginPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -319,22 +326,33 @@ public class LoginFrame extends javax.swing.JFrame {
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
         
-           
         
+        
+                    
         LoginImpl login;
+        Login status = null;
         try {
             login = new LoginImpl(UangkuDatabase.getConnection());
+            status = login.login(txtLoginName.getText(), new String( txtLoginPass.getPassword()));  
+            
+            //if(tx.getText().equals(rs.getString("username")) && txt_pass.getText().equals(rs.getString("password")))
+            if(status != null){
+                MainFrame main = new MainFrame(status.getFullname());
 
-            login.login(txtUsername.getText(), txtPassword.getPassword().toString());
+                main.setVisible(true);
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "Username atau Password salah silakan coba lagi");
+            }
+           
+            
+            
         
         } catch (SQLException ex) {
-            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         
-        MainFrame main = new MainFrame();
-        
-        main.setVisible(true);
-        this.setVisible(false);
+       
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
@@ -351,7 +369,7 @@ public class LoginFrame extends javax.swing.JFrame {
             // TODO add your handling code here:
             loginInfo.setFullname(txtFullname.getText());
             loginInfo.setUsername(txtUsername.getText());
-            loginInfo.setPassword(txtPassword.getPassword().toString());
+            loginInfo.setPassword(txtPassword.getText());
             login.register(loginInfo);
         
         } catch (SQLException ex) {
@@ -361,6 +379,10 @@ public class LoginFrame extends javax.swing.JFrame {
             
        
     }//GEN-LAST:event_btnDaftarActionPerformed
+
+    private void txtLoginPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,9 +422,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginButton;
     private javax.swing.JLabel PassLabel;
-    private javax.swing.JPasswordField PassPasswordField;
     private javax.swing.JLabel UnameLabel2;
-    private javax.swing.JTextField UnameTextField;
     private javax.swing.JButton btnDaftar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -417,6 +437,8 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel registerLabel;
     private javax.swing.JPanel registerPanel;
     private javax.swing.JTextField txtFullname;
+    private javax.swing.JTextField txtLoginName;
+    private javax.swing.JPasswordField txtLoginPass;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
