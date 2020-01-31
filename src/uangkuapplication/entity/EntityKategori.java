@@ -11,15 +11,15 @@ import java.util.Objects;
  *
  * @author Kyoto
  */
-public class Kategori {
+public class EntityKategori {
     private Integer id;
     private String nama_kategori;
     
-    public Kategori(){
+    public EntityKategori(){
         
     }
 
-    public Kategori(String nama_kategori) {
+    public EntityKategori(String nama_kategori) {
         this.nama_kategori = nama_kategori;
     }
 
@@ -58,7 +58,7 @@ public class Kategori {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Kategori other = (Kategori) obj;
+        final EntityKategori other = (EntityKategori) obj;
         if (!Objects.equals(this.nama_kategori, other.nama_kategori)) {
             return false;
         }

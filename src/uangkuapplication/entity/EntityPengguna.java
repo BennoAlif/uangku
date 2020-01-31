@@ -11,17 +11,17 @@ import java.util.Objects;
  *
  * @author riski
  */
-public class Login {
+public class EntityPengguna {
 private Integer uid;
 private String fullname;
 private String username;
 private String password;
 
-public Login(){
+public EntityPengguna(){
     
 }
 
-    public Login(Integer uid, String fullname, String username, String password) {
+    public EntityPengguna(Integer uid, String fullname, String username, String password) {
         this.uid = uid;
         this.fullname = fullname;
         this.username = username;
@@ -81,7 +81,7 @@ public Login(){
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Login other = (Login) obj;
+        final EntityPengguna other = (EntityPengguna) obj;
         if (!Objects.equals(this.fullname, other.fullname)) {
             return false;
         }

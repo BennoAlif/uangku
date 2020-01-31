@@ -7,29 +7,29 @@ package uangkuapplication.impl;
 
 import java.sql.Connection;
 import java.util.List;
-import uangkuapplication.entity.Kategori;
+import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
-import uangkuapplication.service.KategoriDao;
+import uangkuapplication.service.IKategori;
 
 /**
  *
  * @author Kyoto
  */
-public class KategoriDaoImpl implements KategoriDao{
+public class Kategori implements IKategori{
     
     private Connection connection;
 
-    public KategoriDaoImpl(Connection connection) {
+    public Kategori(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public void insertKategori(Kategori kategori) throws KategoriException {
+    public void insertKategori(EntityKategori kategori) throws KategoriException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateKategori(Kategori kategori) throws KategoriException {
+    public void updateKategori(EntityKategori kategori) throws KategoriException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -39,12 +39,12 @@ public class KategoriDaoImpl implements KategoriDao{
     }
 
     @Override
-    public Kategori getKategori(int id) throws KategoriException {
+    public EntityKategori getKategori(int id) throws KategoriException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Kategori> getAllKategori() throws KategoriException {
+    public List<EntityKategori> getAllKategori() throws KategoriException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uangkuapplication.impl.*;
-import uangkuapplication.entity.Login;
+import uangkuapplication.entity.EntityPengguna;
 import uangkuapplication.error.LoginException;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.main.UangkuApplication;
@@ -330,10 +330,10 @@ public class LoginFrame extends javax.swing.JFrame {
         
         
                     
-        LoginImpl login;
-        Login status = null;
+        Pengguna login;
+        EntityPengguna status = null;
         try {
-            login = new LoginImpl(UangkuDatabase.getConnection());
+            login = new Pengguna(UangkuDatabase.getConnection());
             status = login.login(txtLoginName.getText(), new String( txtLoginPass.getPassword()));  
             
             //if(tx.getText().equals(rs.getString("username")) && txt_pass.getText().equals(rs.getString("password")))
@@ -364,16 +364,16 @@ public class LoginFrame extends javax.swing.JFrame {
         
             
         
-        LoginImpl login;
-        Login loginInfo;
+        Pengguna login;
+        EntityPengguna loginInfo;
         try {
-            login = new LoginImpl(UangkuDatabase.getConnection());
-            loginInfo= new Login();
+            login = new Pengguna(UangkuDatabase.getConnection());
+            loginInfo= new EntityPengguna();
 
             // TODO add your handling code here:
             loginInfo.setFullname(txtFullname.getText());
             loginInfo.setUsername(txtUsername.getText());
-            loginInfo.setPassword(txtPassword.getText());
+            loginInfo.setPassword(new String(txtPassword.getPassword()));
             login.register(loginInfo);
         
         } catch (SQLException ex) {

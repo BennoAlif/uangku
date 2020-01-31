@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author Wildhevire
  */
-public class Transaksi {
+public class EntityTransaksi {
     //properties
     private int id;
     private int uid;
@@ -26,11 +26,11 @@ public class Transaksi {
 
     
     //constructor
-    public Transaksi(){
+    public EntityTransaksi(){
         
     }
     
-    public Transaksi(int uid, int id_kategori, int nominal, Date tgl_transaksi, int uang_sekarang, String catatan, Jenis jenis_transaksi) {
+    public EntityTransaksi(int uid, int id_kategori, int nominal, Date tgl_transaksi, int uang_sekarang, String catatan, Jenis jenis_transaksi) {
         this.uid = uid;
         this.id_kategori = id_kategori;
         this.nominal = nominal;
@@ -130,7 +130,7 @@ public class Transaksi {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Transaksi other = (Transaksi) obj;
+        final EntityTransaksi other = (EntityTransaksi) obj;
         if (this.id != other.id) {
             return false;
         }

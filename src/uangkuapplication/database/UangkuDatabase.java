@@ -17,9 +17,9 @@ import uangkuapplication.impl.*;
  */
 public class UangkuDatabase {
     private static Connection connection;
-    private static KategoriDao kategoriDao;
+    private static IKategori kategori;
     private static Transaksi transaksi;
-    private static LoginDao loginDao;
+    private static IPengguna pengguna;
     
     public static Connection getConnection() throws SQLException{
         if (connection == null) {
@@ -33,11 +33,11 @@ public class UangkuDatabase {
         return connection;
     }
     
-    public static KategoriDao getKategoriDao() throws SQLException{
-            if (kategoriDao == null) {
-                kategoriDao = new KategoriDaoImpl(getConnection());
+    public static IKategori getKategori() throws SQLException{
+            if (kategori == null) {
+                kategori = new Kategori(getConnection());
             }
-            return kategoriDao;
+            return kategori;
     }
     public static Transaksi getTransaksi() throws SQLException{
         if(transaksi == null){
@@ -46,11 +46,11 @@ public class UangkuDatabase {
         
         return transaksi;
     }
-    public static LoginDao getLogin() throws SQLException{
-        if(loginDao == null){
-            loginDao = new LoginImpl(getConnection());
+    public static IPengguna getPengguna() throws SQLException{
+        if(pengguna == null){
+            pengguna = new Pengguna(getConnection());
         }
         
-        return loginDao;
+        return pengguna;
     }
 }

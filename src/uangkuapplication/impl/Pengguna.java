@@ -11,26 +11,26 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import uangkuapplication.entity.Login;
+import uangkuapplication.entity.EntityPengguna;
 import uangkuapplication.error.LoginException;
-import uangkuapplication.service.LoginDao;
+import uangkuapplication.service.IPengguna;
 
 /**
  *
  * @author riski
  */
-public class LoginImpl implements LoginDao{
+public class Pengguna implements IPengguna{
 
     private Connection connection;
     private final String registerQuery = "INSERT INTO pengguna (fullname,username,password) VALUES (?,?,?)";
     
-    public LoginImpl(Connection connection) {
+    public Pengguna(Connection connection) {
         this.connection = connection;
     }
 
        
     @Override
-    public void register(Login login) throws SQLException {
+    public void register(EntityPengguna login) throws SQLException {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(registerQuery);
@@ -53,11 +53,11 @@ public class LoginImpl implements LoginDao{
     }
 
     @Override
-    public Login login(String username, String password) throws SQLException {
+    public EntityPengguna login(String username, String password) throws SQLException {
         String loginQuery = "SELECT * FROM pengguna WHERE username='"+username+"' AND password='"+password+"'";
         PreparedStatement statement = null;
         ResultSet result = null;
-        Login logInfo = null;
+        EntityPengguna logInfo = null;
         try {
             statement = connection.prepareStatement(loginQuery);
             
@@ -66,7 +66,7 @@ public class LoginImpl implements LoginDao{
             
             //loop through result record and populate it to some object
             while(result.next()){
-                logInfo = new Login();
+                logInfo = new EntityPengguna();
                 logInfo.setUid(result.getInt("uid"));
                 logInfo.setFullname(result.getString("fullname"));
                 logInfo.setUsername(result.getString("username"));
@@ -88,36 +88,6 @@ public class LoginImpl implements LoginDao{
         
     }
     
-    @Override
-    public void insertLogin(Login Login) throws LoginException {
-       
-    }
-
-    @Override
-    public Login getLogin(int id) throws LoginException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Login getLogin(String email) throws LoginException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateLogin(Login Login) throws LoginException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delateLogin(Integer id) throws LoginException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Login> selectAllLogin() throws LoginException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
+        
     
 }

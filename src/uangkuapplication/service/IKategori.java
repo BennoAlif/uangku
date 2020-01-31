@@ -6,7 +6,7 @@
 package uangkuapplication.service;
 
 import java.util.List;
-import uangkuapplication.entity.Kategori;
+import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
 
 
@@ -14,10 +14,10 @@ import uangkuapplication.error.KategoriException;
  *
  * @author Kyoto
  */
-public interface KategoriDao {
-    public void insertKategori(Kategori kategori) throws KategoriException;
-    public void updateKategori(Kategori kategori) throws KategoriException;
+public interface IKategori {
+    public void insertKategori(EntityKategori kategori) throws KategoriException;
+    public void updateKategori(EntityKategori kategori) throws KategoriException;
     public void deleteKategori(int id) throws KategoriException;
-    public Kategori getKategori(int id) throws KategoriException;
-    public List<Kategori> getAllKategori() throws KategoriException;
+    public EntityKategori getKategori(int id) throws KategoriException;
+    public List<EntityKategori> getAllKategori() throws KategoriException;
 }
