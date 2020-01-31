@@ -15,8 +15,8 @@ import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.KategoriListener;
-import uangkuapplication.model.KategoriModel;
-import uangkuapplication.model.TableKategoriModel;
+import uangkuapplication.model.ModelKategori;
+import uangkuapplication.model.ModelTableKategori;
 import uangkuapplication.service.IKategori;
 
 /**
@@ -25,13 +25,13 @@ import uangkuapplication.service.IKategori;
  */
 public class KategoriFrame extends javax.swing.JFrame implements KategoriListener, ListSelectionListener{
 
-    private TableKategoriModel kategoriModel;
-    private KategoriModel model;
+    private ModelTableKategori kategoriModel;
+    private ModelKategori model;
     private KategoriController controller;
     
     public KategoriFrame() {
-        kategoriModel = new TableKategoriModel();
-        model = new KategoriModel();
+        kategoriModel = new ModelTableKategori();
+        model = new ModelKategori();
         model.setListener(this);
         controller = new KategoriController();
         controller.setModel(model);
@@ -292,7 +292,7 @@ public class KategoriFrame extends javax.swing.JFrame implements KategoriListene
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void onChange(KategoriModel model) {
+    public void onChange(ModelKategori model) {
         txtIdKategori.setText(model.getId() + "");
         txtNamaKategori.setText(model.getNama_kategori());
     }

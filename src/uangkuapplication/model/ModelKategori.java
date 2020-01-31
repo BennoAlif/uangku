@@ -16,7 +16,7 @@ import uangkuapplication.service.IKategori;
  *
  * @author Kyoto
  */
-public class KategoriModel {
+public class ModelKategori {
     private int id;
     private String nama_kategori;
 

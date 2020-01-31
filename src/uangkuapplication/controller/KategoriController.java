@@ -6,7 +6,7 @@
 package uangkuapplication.controller;
 
 import javax.swing.JOptionPane;
-import uangkuapplication.model.KategoriModel;
+import uangkuapplication.model.ModelKategori;
 import uangkuapplication.view.KategoriFrame;
 
 /**
@@ -14,9 +14,9 @@ import uangkuapplication.view.KategoriFrame;
  * @author Kyoto
  */
 public class KategoriController {
-    private KategoriModel model;
+    private ModelKategori model;
 
-    public void setModel(KategoriModel model) {
+    public void setModel(ModelKategori model) {
         this.model = model;
     }
     

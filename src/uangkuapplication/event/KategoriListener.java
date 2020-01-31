@@ -6,14 +6,14 @@
 package uangkuapplication.event;
 
 import uangkuapplication.entity.EntityKategori;
-import uangkuapplication.model.KategoriModel;
+import uangkuapplication.model.ModelKategori;
 
 /**
  *
  * @author Kyoto
  */
 public interface KategoriListener {
-    public void onChange(KategoriModel model);
+    public void onChange(ModelKategori model);
     public void onInsert(EntityKategori kategori);
     public void onDelete();
     public void onUpdate(EntityKategori kategori);

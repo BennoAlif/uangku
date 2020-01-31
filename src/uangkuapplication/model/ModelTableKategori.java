@@ -14,7 +14,7 @@ import uangkuapplication.entity.EntityKategori;
  *
  * @author Kyoto
  */
-public class TableKategoriModel extends AbstractTableModel {
+public class ModelTableKategori extends AbstractTableModel {
 
     private List<EntityKategori> list = new ArrayList<EntityKategori>();
 
