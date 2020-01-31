@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import uangkuapplication.impl.*;
 import uangkuapplication.entity.EntityPengguna;
-import uangkuapplication.error.LoginException;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.main.UangkuApplication;
 
@@ -323,26 +322,20 @@ public class LoginFrame extends javax.swing.JFrame {
         mainPanel.repaint();
         mainPanel.revalidate();
     }//GEN-LAST:event_jLabel8MouseClicked
-
-    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-                    
+    private void loginAction(){
         Pengguna login;
-        EntityPengguna status = null;
+        EntityPengguna pengguna = null;
         try {
             login = new Pengguna(UangkuDatabase.getConnection());
-            status = login.login(txtLoginName.getText(), new String( txtLoginPass.getPassword()));  
+            pengguna = login.login(txtLoginName.getText(), new String( txtLoginPass.getPassword()));  
             
             //if(tx.getText().equals(rs.getString("username")) && txt_pass.getText().equals(rs.getString("password")))
-            if(status != null){
-                MainFrame main = new MainFrame(status.getFullname());
+            if(pengguna != null){
+                MainFrame main = new MainFrame(pengguna.getFullname());
                 
                 UangkuApplication.prefs.putBoolean("isLoggedIn", true);
-                UangkuApplication.prefs.put("UserFullName", status.getFullname());
-                UangkuApplication.prefs.putInt("UserID", status.getUid());
+                UangkuApplication.prefs.put("UserFullName", pengguna.getFullname());
+                UangkuApplication.prefs.putInt("UserID", pengguna.getUid());
                 main.setVisible(true);
                 this.setVisible(false);
             }else{
@@ -357,31 +350,41 @@ public class LoginFrame extends javax.swing.JFrame {
         }
         
        
-    }//GEN-LAST:event_LoginButtonActionPerformed
-
-    private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
-        
-        
-            
-        
-        Pengguna login;
-        EntityPengguna loginInfo;
+    }
+    private void daftarAction(){
+         Pengguna login;
+        EntityPengguna pengguna;
         try {
             login = new Pengguna(UangkuDatabase.getConnection());
-            loginInfo= new EntityPengguna();
+            pengguna= new EntityPengguna();
 
             // TODO add your handling code here:
-            loginInfo.setFullname(txtFullname.getText());
-            loginInfo.setUsername(txtUsername.getText());
-            loginInfo.setPassword(new String(txtPassword.getPassword()));
-            login.register(loginInfo);
+            pengguna.setFullname(txtFullname.getText());
+            pengguna.setUsername(txtUsername.getText());
+            pengguna.setPassword(new String(txtPassword.getPassword()));
+            login.register(pengguna);
+            JOptionPane.showConfirmDialog(null, "Daftar Sukses", "Succes",0);
+            mainPanel.removeAll();
+            mainPanel.repaint();
+            mainPanel.revalidate();
+
+            mainPanel.add(loginPanel);
+            mainPanel.repaint();
+            mainPanel.revalidate();
+
         
         } catch (SQLException ex) {
-            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
             
             
-       
+    }
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        loginAction();
+    }//GEN-LAST:event_LoginButtonActionPerformed
+    private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
+        daftarAction();
+        
     }//GEN-LAST:event_btnDaftarActionPerformed
 
     private void txtLoginPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginPassActionPerformed
