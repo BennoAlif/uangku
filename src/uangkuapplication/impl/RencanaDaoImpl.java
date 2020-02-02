@@ -40,6 +40,8 @@ public class RencanaDaoImpl implements RencanaDao{
     public void insertRencana(Rencana rencana) throws RencanaException {
         PreparedStatement statement = null;
         try {
+            connection.setAutoCommit(false);
+            
             statement = connection.prepareStatement(insertRencana);
             statement.setInt(1, rencana.getUid());
             statement.setString(2, rencana.getNama());
@@ -49,9 +51,20 @@ public class RencanaDaoImpl implements RencanaDao{
             statement.setString(6, rencana.getCatatan());
             statement.setInt(7, rencana.getId_kategori());
             statement.executeUpdate();
+            
+            connection.commit();
+            
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
             throw new RencanaException(e.getMessage());
         }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
             if (statement!=null) {
                 try {
                     statement.close();
@@ -66,12 +79,25 @@ public class RencanaDaoImpl implements RencanaDao{
     public void deleteRencana(int id) throws RencanaException {
         PreparedStatement statement = null;
         try {
+            connection.setAutoCommit(false);
+            
             statement = connection.prepareStatement(deleteRencana);
             statement.setInt(1, id);
             statement.executeUpdate();
+            
+            connection.commit();
+            
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
             throw new RencanaException(e.getMessage());
         }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
             if (statement!=null) {
                 try {
                     statement.close();
@@ -86,6 +112,8 @@ public class RencanaDaoImpl implements RencanaDao{
     public void updateRencana(Rencana rencana) throws RencanaException {
         PreparedStatement statement = null;
         try {
+            connection.setAutoCommit(false);
+            
             statement = connection.prepareStatement(updateRencana);
             statement.setInt(1, rencana.getUid());
             statement.setString(2, rencana.getNama());
@@ -96,9 +124,20 @@ public class RencanaDaoImpl implements RencanaDao{
             statement.setInt(7, rencana.getId_kategori());
             statement.setInt(8, rencana.getId());
             statement.executeUpdate();
+            
+            connection.commit();
+            
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
             throw new RencanaException(e.getMessage());
         }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
             if (statement!=null) {
                 try {
                     statement.close();
@@ -113,11 +152,14 @@ public class RencanaDaoImpl implements RencanaDao{
     public Rencana getRencana(int id) throws RencanaException {
         PreparedStatement statement = null;
         try {
+            connection.setAutoCommit(false);
+            
             statement = connection.prepareStatement(getById);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
             Rencana rencana = null;
             
+                        
             if (result.next()) {
                 rencana = new Rencana();
                 rencana.setId(result.getInt("id"));
@@ -131,10 +173,19 @@ public class RencanaDaoImpl implements RencanaDao{
             }else{
                 throw new RencanaException("Rencana dengan id "+id+" tidak ditemukan");
             }
+            connection.commit();
             return rencana;
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
             throw new RencanaException(e.getMessage());
         }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
             if (statement!=null) {
                 try {
                     statement.close();
@@ -150,11 +201,14 @@ public class RencanaDaoImpl implements RencanaDao{
         Statement statement = null;
         List<Rencana> list = new ArrayList<Rencana>();
         try {
+            connection.setAutoCommit(false);
+            
             statement = connection.createStatement();
             
             ResultSet result = statement.executeQuery(selectAll);
             Rencana rencana = null;
             
+                        
             while (result.next()) {
                 rencana = new Rencana();
                 rencana.setId(result.getInt("id"));
@@ -167,10 +221,19 @@ public class RencanaDaoImpl implements RencanaDao{
                 rencana.setId_kategori(result.getInt("id_kategori"));
                 list.add(rencana);
             }
+            connection.commit();
             return list;
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
             throw new RencanaException(e.getMessage());
         }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
             if (statement!=null) {
                 try {
                     statement.close();
