@@ -15,8 +15,8 @@ import uangkuapplication.error.RencanaException;
  */
 public interface RencanaDao {
     
-    public void createRencana(Rencana rencana) throws RencanaException;
-    public void deleteRencana(Rencana rencana) throws RencanaException;
+    public void insertRencana(Rencana rencana) throws RencanaException;
+    public void deleteRencana(int id) throws RencanaException;
     public void updateRencana(Rencana rencana) throws RencanaException;
     public Rencana getRencana(int id) throws RencanaException;
     public List<Rencana> selectAllRencana() throws RencanaException;
