@@ -26,8 +26,8 @@ public class Transaksi implements ITransaksi {
     
     private Connection connection;
   
-    private final String insertPemasukanQuery = "INSERT INTO transaksi(uid,id_kategori,nominal, tgl_transaksi, uang_sekarang, catatan, jenis_transaksi ) VALUES (?,?,?,?,?,?,?)";
-    private final String updateQuery = "";
+    private final String insertTransaksi = "INSERT INTO transaksi(uid, id_kategori, nominal, tgl_transaksi, catatan, jenis_transaksi) VALUES (?,?,?,?,?,?)";
+    private final String insertPengeluaranQuery = ""; 
     public Transaksi(Connection connection) {
         this.connection = connection;
     }
@@ -40,14 +40,13 @@ public class Transaksi implements ITransaksi {
         
         try {
             connection.setAutoCommit(false);
-            statement = connection.prepareStatement(insertPemasukanQuery, statement.RETURN_GENERATED_KEYS);
+            statement = connection.prepareStatement(insertTransaksi, statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, transaksi.getUid());
             statement.setInt(2, transaksi.getId_kategori());
             statement.setInt(3, transaksi.getNominal());
-            statement.setInt(5, transaksi.getUang_sekarang());
             statement.setDate(4, transaksi.getTgl_transaksi());
-            statement.setString(6, transaksi.getCatatan());
-            statement.setString(7, "Masuk");
+            statement.setString(5, transaksi.getCatatan());
+            statement.setString(6, "Masuk");
 
             statement.executeUpdate();
             ResultSet result = statement.getGeneratedKeys();
@@ -74,16 +73,51 @@ public class Transaksi implements ITransaksi {
             }
         }
     }
-
-    @Override
-    public uangkuapplication.entity.EntityTransaksi getTransaksi(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public void insertPengeluaran(EntityTransaksi transaksi) throws SQLException {
+    PreparedStatement statement = null;
+        
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(insertTransaksi, statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, transaksi.getUid());
+            statement.setInt(2, transaksi.getId_kategori());
+            statement.setInt(3, transaksi.getNominal());
+            statement.setDate(4, transaksi.getTgl_transaksi());
+            statement.setString(5, transaksi.getCatatan());
+            statement.setString(6, "Keluar");
+
+            statement.executeUpdate();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                transaksi.setId(result.getInt(1));
+            }
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+    @Override
+    public EntityTransaksi getTransaksi(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
 
     @Override
     public List<EntityTransaksi> getTransaksi() throws SQLException {

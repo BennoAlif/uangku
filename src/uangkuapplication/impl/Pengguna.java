@@ -23,6 +23,8 @@ public class Pengguna implements IPengguna{
 
     private Connection connection;
     private final String registerQuery = "INSERT INTO pengguna (fullname,username,password) VALUES (?,?,?)";
+    private final String loginQuery = "SELECT * FROM pengguna WHERE username=? AND password=?";
+    private final String updateUang = "UPDATE pengguna SET uang=? WHERE uid=?";
     
     public Pengguna(Connection connection) {
         this.connection = connection;
@@ -54,13 +56,13 @@ public class Pengguna implements IPengguna{
 
     @Override
     public EntityPengguna login(String username, String password) throws SQLException {
-        String loginQuery = "SELECT * FROM pengguna WHERE username='"+username+"' AND password='"+password+"'";
         PreparedStatement statement = null;
         ResultSet result = null;
         EntityPengguna logInfo = null;
         try {
             statement = connection.prepareStatement(loginQuery);
-            
+            statement.setString(1, username);
+            statement.setString(2, password);
             result = statement.executeQuery();
             
             
@@ -86,6 +88,36 @@ public class Pengguna implements IPengguna{
             
         }
         
+    }
+
+    @Override
+    public void updateUang(int uid, int nominal) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(updateUang);
+            statement.setInt(1, uid);
+            statement.setInt(2, nominal);
+            statement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
     
         

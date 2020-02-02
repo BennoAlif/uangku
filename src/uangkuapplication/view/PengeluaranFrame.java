@@ -4,23 +4,63 @@
  * and open the template in the editor.
  */
 package uangkuapplication.view;
+import com.github.lgooddatepicker.components.DatePicker;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import uangkuapplication.controller.TransaksiController;
+import uangkuapplication.entity.EntityTransaksi;
+import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.main.UangkuApplication;
+import uangkuapplication.model.ModelTransaksi;
 
 /**
  *
  * @author Wildhevire
  */
-public class PengeluaranFrame extends javax.swing.JFrame {
+public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiListener {
+
+    private int idKategori = 0;
+    private TransaksiController controller;
+    private ModelTransaksi model;
+
+    
+    public PengeluaranFrame() {
+       
+        model = new ModelTransaksi();
+        model.setListener(this);
+        controller = new TransaksiController();
+        controller.setModel(model);
+        initComponents();
+        for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
+            boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
+        
+        
+    }
+    
+    public int getIdKategori() {
+        return idKategori;
+    }
+    public JComboBox<String> getBoxKategori() {
+        return boxKategori;
+    
+    }
+
+    public DatePicker getDatePicker() {
+        return datePicker;
+    }
+
+    public JTextField getTxtCatatan() {
+        return txtCatatan;
+    }
 
     /**
      * Creates new form PengeluaranFrame
      */
-    public PengeluaranFrame() {
-        initComponents();
-        for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
-            boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
-    
+    public JTextField getTxtNominal() {    
+        return txtNominal;
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +84,7 @@ public class PengeluaranFrame extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         btnSimpanAnggaran = new javax.swing.JButton();
         btnBatalAnggaran = new javax.swing.JButton();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        datePicker = new com.github.lgooddatepicker.components.DatePicker();
 
         setResizable(false);
 
@@ -63,6 +103,11 @@ public class PengeluaranFrame extends javax.swing.JFrame {
 
         boxKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
         boxKategori.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        boxKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxKategoriActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Catatan");
         jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
@@ -107,7 +152,7 @@ public class PengeluaranFrame extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jSeparator4)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(datePicker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
@@ -138,7 +183,7 @@ public class PengeluaranFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
@@ -165,6 +210,7 @@ public class PengeluaranFrame extends javax.swing.JFrame {
 
     private void btnSimpanAnggaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAnggaranActionPerformed
         // TODO add your handling code here:
+        controller.insertPengeluaran(this);
         this.setVisible(false);
     }//GEN-LAST:event_btnSimpanAnggaranActionPerformed
 
@@ -173,6 +219,13 @@ public class PengeluaranFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalAnggaranActionPerformed
 
+    private void boxKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxKategoriActionPerformed
+        // TODO add your handling code here:
+        idKategori = UangkuApplication.findKategoriID(boxKategori.getSelectedItem().toString());
+
+    }//GEN-LAST:event_boxKategoriActionPerformed
+
+   
     /**
      * @param args the command line arguments
      */
@@ -212,7 +265,7 @@ public class PengeluaranFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxKategori;
     private javax.swing.JButton btnBatalAnggaran;
     private javax.swing.JButton btnSimpanAnggaran;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private com.github.lgooddatepicker.components.DatePicker datePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -224,4 +277,26 @@ public class PengeluaranFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtCatatan;
     private javax.swing.JTextField txtNominal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(ModelTransaksi model) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL change");
+    }
+
+    @Override
+    public void onInsert(EntityTransaksi transaksi) {
+        //hitung perubahan di uang sekarang disini
+        javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
+    }
+
+
+    @Override
+    public void onDelete() {
+        javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL delete");
+    }
+
+    @Override
+    public void onUpdate(EntityTransaksi transaksi) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL update");
+    }
 }

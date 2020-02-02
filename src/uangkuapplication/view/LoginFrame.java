@@ -336,6 +336,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 UangkuApplication.prefs.putBoolean("isLoggedIn", true);
                 UangkuApplication.prefs.put("UserFullName", pengguna.getFullname());
                 UangkuApplication.prefs.putInt("UserID", pengguna.getUid());
+                UangkuApplication.prefs.putInt("Uang", pengguna.getUang());
                 main.setVisible(true);
                 this.setVisible(false);
             }else{
@@ -352,7 +353,7 @@ public class LoginFrame extends javax.swing.JFrame {
        
     }
     private void daftarAction(){
-         Pengguna login;
+        Pengguna login;
         EntityPengguna pengguna;
         try {
             login = new Pengguna(UangkuDatabase.getConnection());

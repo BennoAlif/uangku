@@ -12,9 +12,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import uangkuapplication.controller.TransaksiController;
 import uangkuapplication.model.ModelKategori;
 import uangkuapplication.database.UangkuDatabase;
+import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.error.KategoriException;
+import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.service.IKategori;
 import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.impl.Kategori;
@@ -24,17 +27,22 @@ import uangkuapplication.model.ModelTransaksi;
  *
  * @author Wildhevire
  */
-public class PemasukanFrame extends javax.swing.JFrame {
+public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListener{
 
     /**
      * Creates new form PemasukanFrame
      */
     private ModelKategori modelKategori;
     private ModelTransaksi modelTransaksi;
+    private TransaksiController controller;
     private int idKategori = 0;
     
     public PemasukanFrame(){
         initComponents();
+        modelTransaksi = new ModelTransaksi();
+        modelTransaksi.setListener(this);
+        controller = new TransaksiController();
+        controller.setModel(modelTransaksi);
         modelTransaksi = new ModelTransaksi();
         for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
             boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
@@ -117,6 +125,8 @@ public class PemasukanFrame extends javax.swing.JFrame {
             }
         });
 
+        datePicker.setText("Hari Ini");
+        datePicker.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         datePicker.setOpaque(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -198,19 +208,8 @@ public class PemasukanFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-      try {
-           // TODO add your handling code here:
-            java.util.Date date = new java.util.Date();
-            modelTransaksi.setUid(UangkuApplication.UserID);
-            modelTransaksi.setId_kategori(idKategori);
-            modelTransaksi.setNominal(Integer.parseInt(txtNominal.getText()));
-            modelTransaksi.setTgl_transaksi(new Date(datePicker.convert().getDateWithDefaultZone().getTime()));
-            modelTransaksi.setCatatan(txtCatatan.getText());
-            modelTransaksi.insertPemasukan();
-        } catch (SQLException ex) {
-            Logger.getLogger(PemasukanFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
+        controller.insertPemasukan(this);
         this.setVisible(false);
     }//GEN-LAST:event_btnSimpanActionPerformed
 
@@ -298,4 +297,25 @@ public class PemasukanFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtCatatan;
     private javax.swing.JTextField txtNominal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(ModelTransaksi model) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onInsert(EntityTransaksi transaksi) {
+        // insert perubahan uang disini
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onDelete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onUpdate(EntityTransaksi transaksi) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

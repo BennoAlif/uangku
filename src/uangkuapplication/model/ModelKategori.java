@@ -43,14 +43,6 @@ public class ModelKategori {
         this.id = id;
         fireOnChange();
     }
-//    public JComboBox<String> getKategoriBox() {
-//        IKategori dao = UangkuDatabase.getKategori();
-//        JComboBox<String> boxKategori = new JComboBox<> ();
-//        for(int i = 0; i<dao.getAllKategori().size();i++)
-//            boxKategori.addItem(dao.getAllKategori().get(i).getNama_kategori());
-//                
-//        return boxKategori;
-//    }
 
     public String getNama_kategori() {
         return nama_kategori;

@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityTransaksi;
+import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.service.ITransaksi;
 
 /**
@@ -19,8 +20,41 @@ public class ModelTransaksi {
     private int id_kategori;
     private int nominal;
     private Date tgl_transaksi;
-    private int uang_sekarang;
     private String catatan;
+    
+    
+    TransaksiListener listener;
+    
+    public TransaksiListener getListener() {
+        return listener;
+    }
+
+    public void setListener(TransaksiListener listener) {
+        this.listener = listener;
+    }
+    protected void fireOnChange(){
+        if (listener != null) {
+            listener.onChange(this);
+        }
+    }
+    
+    protected void fireOnInsert(EntityTransaksi transaksi){
+        if (listener != null) {
+            listener.onInsert(transaksi);
+        }
+    }
+    
+    protected void fireOnUpdate(EntityTransaksi transaksi){
+        if (listener != null) {
+            listener.onUpdate(transaksi);
+        }
+    }
+    
+    protected void fireOnDelete(){
+        if (listener != null) {
+            listener.onDelete();
+        }
+    }
     
     public void insertPemasukan()throws SQLException{
         ITransaksi dao = UangkuDatabase.getTransaksi();
@@ -30,8 +64,23 @@ public class ModelTransaksi {
         transaksi.setNominal(nominal);
         transaksi.setTgl_transaksi(tgl_transaksi);
         transaksi.setCatatan(catatan);
-        transaksi.setUang_sekarang(1000);
         dao.insertPemasukan(transaksi);
+        
+        fireOnInsert(transaksi);
+        
+    } 
+    public void insertPengeluaran()throws SQLException{
+        ITransaksi dao = UangkuDatabase.getTransaksi();
+        EntityTransaksi transaksi = new EntityTransaksi();
+        transaksi.setUid(uid);
+        transaksi.setId_kategori(id_kategori);
+        transaksi.setNominal(nominal);
+        transaksi.setTgl_transaksi(tgl_transaksi);
+        transaksi.setCatatan(catatan);
+        
+        dao.insertPengeluaran(transaksi);
+        
+        fireOnInsert(transaksi);
         
     }
 
@@ -56,7 +105,6 @@ public class ModelTransaksi {
     }
 
     public void setNominal(int nominal) {
-        this.uang_sekarang += this.nominal;
         this.nominal = nominal;
     }
 
@@ -67,14 +115,9 @@ public class ModelTransaksi {
     public void setTgl_transaksi(Date tgl_transaksi) {
         this.tgl_transaksi = tgl_transaksi;
     }
+    
 
-    public int getUang_sekarang() {
-        return uang_sekarang;
-    }
-
-    public void setUang_sekarang(int uang_sekarang) {
-        this.uang_sekarang += nominal;
-    }
+ 
 
     public String getCatatan() {
         return catatan;

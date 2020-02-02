@@ -31,6 +31,7 @@ public class UangkuApplication {
    
     public static Preferences  prefs;
     public static int UserID;
+    public static int Uang;
     public static List<EntityKategori> kategoriList;
     public static void main(String[] args) throws SQLException {
         prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
@@ -48,6 +49,7 @@ public class UangkuApplication {
         else{
             main.setVisible(true);
             UserID = prefs.getInt("UserID", 0);
+            Uang = prefs.getInt("Uang", 0);
         }
         
         kategoriList = UangkuDatabase.getKategori().getAllKategori();

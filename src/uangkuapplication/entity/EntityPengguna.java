@@ -16,10 +16,19 @@ private Integer uid;
 private String fullname;
 private String username;
 private String password;
+private Integer uang;
 
-public EntityPengguna(){
-    
-}
+    public Integer getUang() {
+        return uang;
+    }
+
+    public void setUang(Integer uang) {
+        this.uang = uang;
+    }
+
+    public EntityPengguna(){
+
+    }
 
     public EntityPengguna(Integer uid, String fullname, String username, String password) {
         this.uid = uid;
@@ -63,10 +72,11 @@ public EntityPengguna(){
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.uid);
-        hash = 37 * hash + Objects.hashCode(this.fullname);
-        hash = 37 * hash + Objects.hashCode(this.username);
-        hash = 37 * hash + Objects.hashCode(this.password);
+        hash = 47 * hash + Objects.hashCode(this.uid);
+        hash = 47 * hash + Objects.hashCode(this.fullname);
+        hash = 47 * hash + Objects.hashCode(this.username);
+        hash = 47 * hash + Objects.hashCode(this.password);
+        hash = 47 * hash + Objects.hashCode(this.uang);
         return hash;
     }
 
@@ -94,8 +104,13 @@ public EntityPengguna(){
         if (!Objects.equals(this.uid, other.uid)) {
             return false;
         }
+        if (!Objects.equals(this.uang, other.uang)) {
+            return false;
+        }
         return true;
     }
+
+    
 
 
 }
