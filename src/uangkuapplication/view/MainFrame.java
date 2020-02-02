@@ -225,11 +225,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-<<<<<<< HEAD
-                .addContainerGap(168, Short.MAX_VALUE))
-=======
                 .addContainerGap(170, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 229, 153));
@@ -246,22 +242,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-<<<<<<< HEAD
-                .addContainerGap(184, Short.MAX_VALUE))
-=======
                 .addContainerGap(186, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-<<<<<<< HEAD
-                .addContainerGap(168, Short.MAX_VALUE))
-=======
                 .addContainerGap(170, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
@@ -271,22 +259,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(homePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-                    .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
-                    .addComponent(jLabel2)
                     .addGroup(homePanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
-                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pemasukanBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-=======
-                    .addGroup(homePanelLayout.createSequentialGroup()
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
                         .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -323,11 +296,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
-                .addContainerGap(17, Short.MAX_VALUE))
-=======
                 .addContainerGap(23, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
 
         mainPanel.add(homePanel, "card2");
@@ -358,11 +327,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-<<<<<<< HEAD
-                .addContainerGap(168, Short.MAX_VALUE))
-=======
                 .addContainerGap(170, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 229, 153));
@@ -379,22 +344,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17)
-<<<<<<< HEAD
-                .addContainerGap(136, Short.MAX_VALUE))
-=======
                 .addContainerGap(138, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17)
-<<<<<<< HEAD
-                .addContainerGap(168, Short.MAX_VALUE))
-=======
                 .addContainerGap(170, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 229, 153));
@@ -411,22 +368,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel18)
-<<<<<<< HEAD
-                .addContainerGap(143, Short.MAX_VALUE))
-=======
                 .addContainerGap(145, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel18)
-<<<<<<< HEAD
-                .addContainerGap(168, Short.MAX_VALUE))
-=======
                 .addContainerGap(170, Short.MAX_VALUE))
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         );
 
         jLabel19.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N

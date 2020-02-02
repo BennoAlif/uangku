@@ -19,11 +19,7 @@ public class UangkuDatabase {
     private static Connection connection;
     private static IKategori kategori;
     private static Transaksi transaksi;
-<<<<<<< HEAD
-    private static RencanaDao rencanaDao;
-=======
     private static IPengguna pengguna;
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
     
     public static Connection getConnection() throws SQLException{
         if (connection == null) {
@@ -51,20 +47,11 @@ public class UangkuDatabase {
         
         return transaksi;
     }
-<<<<<<< HEAD
-    public static RencanaDao getRencanaDao() throws SQLException{
-        if(rencanaDao == null){
-            rencanaDao = new RencanaDaoImpl(getConnection());
-        }
-        
-        return rencanaDao;
-=======
     public static IPengguna getPengguna() throws SQLException{
         if(pengguna == null){
             pengguna = new Pengguna(getConnection());
         }
         
         return pengguna;
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
     }
 }

@@ -3,41 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/EntityKategori.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/RencanaDaoImpl.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/service/RencanaDao.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/database/UangkuDatabase.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/EntityPengguna.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/service/ITransaksi.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/view/LoginFrame.java</file>
-            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Rencana.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/view/AnggaranFrame.java</file>
-            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/service/KategoriDao.java</file>
-            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/KategoriDaoImpl.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Rencana.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/EntityTransaksi.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/view/MainFrame.java</file>
-            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Transaksi.java</file>
-            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/entity/Kategori.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/Kategori.java</file>
+            <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/Pengguna.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/error/RencanaException.java</file>
             <file>file:/E:/Kuliah/Java/Tubes/uangku/src/uangkuapplication/impl/Transaksi.java</file>
-=======
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/model/KategoriModel.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/model/TableKategoriModel.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/entity/EntityPengguna.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/entity/EntityKategori.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/impl/Transaksi.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/view/KategoriFrame.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/error/LoginException.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/impl/Kategori.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/main/UangkuApplication.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/service/IPengguna.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/database/UangkuDatabase.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/view/ProfilFrame.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/controller/KategoriController.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/view/MainFrame.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/service/IKategori.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/event/KategoriListener.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/impl/Pengguna.java</file>
-            <file>file:/C:/Users/Wildhevire/Projects/uangku/src/uangkuapplication/view/LoginFrame.java</file>
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0
         </group>
     </open-files>
 </project-private>

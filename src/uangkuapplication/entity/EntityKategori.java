@@ -18,13 +18,8 @@ public class EntityKategori {
     public EntityKategori(){
         
     }
-<<<<<<< HEAD:src/uangkuapplication/entity/Kategori.java
-    
-    public Kategori(String nama_kategori) {
-=======
 
     public EntityKategori(String nama_kategori) {
->>>>>>> 5d8175e987891e957ffbc2f3875ffc8ba362b6e0:src/uangkuapplication/entity/EntityKategori.java
         this.nama_kategori = nama_kategori;
     }
 
