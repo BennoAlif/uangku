@@ -6,6 +6,7 @@
 package uangkuapplication.service;
 
 import java.sql.SQLException;
+import java.util.List;
 import uangkuapplication.entity.*;
 
 
@@ -14,6 +15,9 @@ import uangkuapplication.entity.*;
  * @author Wildhevire
  */
 public interface ITransaksi {
-    public void insertTransaksi(EntityTransaksi transaksi) throws SQLException;
+    public void insertPemasukan(EntityTransaksi transaksi) throws SQLException;
+    public void insertPengeluaran(EntityTransaksi transaksi) throws SQLException;
+
+    public List<EntityTransaksi> getTransaksi() throws SQLException;
     public EntityTransaksi getTransaksi(int id) throws SQLException;
 }

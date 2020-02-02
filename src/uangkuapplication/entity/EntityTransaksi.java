@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package uangkuapplication.entity;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 /**
  *
@@ -19,10 +19,7 @@ public class EntityTransaksi {
     private Date tgl_transaksi;
     private int uang_sekarang;
     private String catatan;
-    enum Jenis{
-        masuk, keluar
-    }
-    private Jenis jenis_transaksi;
+    private String jenis_transaksi;
 
     
     //constructor
@@ -30,7 +27,7 @@ public class EntityTransaksi {
         
     }
     
-    public EntityTransaksi(int uid, int id_kategori, int nominal, Date tgl_transaksi, int uang_sekarang, String catatan, Jenis jenis_transaksi) {
+    public EntityTransaksi(int uid, int id_kategori, int nominal, Date tgl_transaksi, int uang_sekarang, String catatan, String jenis_transaksi) {
         this.uid = uid;
         this.id_kategori = id_kategori;
         this.nominal = nominal;
@@ -97,11 +94,11 @@ public class EntityTransaksi {
         this.catatan = catatan;
     }
 
-    public Jenis getJenis_transaksi() {
+    public String getJenis_transaksi() {
         return jenis_transaksi;
     }
 
-    public void setJenis_transaksi(Jenis jenis_transaksi) {
+    public void setJenis_transaksi(String jenis_transaksi) {
         this.jenis_transaksi = jenis_transaksi;
     }
 

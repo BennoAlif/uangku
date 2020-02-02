@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package uangkuapplication.view;
+import uangkuapplication.main.UangkuApplication;
 
 /**
  *
@@ -16,6 +17,9 @@ public class PengeluaranFrame extends javax.swing.JFrame {
      */
     public PengeluaranFrame() {
         initComponents();
+        for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
+            boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
+    
     }
 
     /**
@@ -28,91 +32,120 @@ public class PengeluaranFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        pengeluaranTxt = new javax.swing.JTextField();
-        batalBtn = new javax.swing.JButton();
-        submitBtn = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        categoriBox = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        catatanTxt = new javax.swing.JTextArea();
+        txtNominal = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        boxKategori = new javax.swing.JComboBox<>();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        txtCatatan = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        btnSimpanAnggaran = new javax.swing.JButton();
+        btnBatalAnggaran = new javax.swing.JButton();
+        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
 
         setResizable(false);
 
-        pengeluaranTxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        pengeluaranTxt.setText("Rp. ");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        batalBtn.setBackground(new java.awt.Color(235, 87, 87));
-        batalBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
-        batalBtn.setForeground(new java.awt.Color(255, 255, 255));
-        batalBtn.setText("Batal");
-        batalBtn.setBorder(null);
-        batalBtn.setBorderPainted(false);
-        batalBtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Tambah Pengeluaran");
+        jLabel1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+
+        jLabel2.setText("Rp");
+        jLabel2.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(235, 87, 87));
+
+        txtNominal.setBorder(null);
+        txtNominal.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
+        txtNominal.setForeground(new java.awt.Color(235, 87, 87));
+
+        boxKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
+        boxKategori.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+
+        jLabel3.setText("Catatan");
+        jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+
+        txtCatatan.setBorder(null);
+
+        btnSimpanAnggaran.setText("Simpan");
+        btnSimpanAnggaran.setBackground(new java.awt.Color(255, 229, 153));
+        btnSimpanAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                batalBtnActionPerformed(evt);
+                btnSimpanAnggaranActionPerformed(evt);
             }
         });
 
-        submitBtn.setBackground(new java.awt.Color(255, 229, 153));
-        submitBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
-        submitBtn.setForeground(new java.awt.Color(38, 50, 56));
-        submitBtn.setText("Selesai");
-        submitBtn.setBorder(null);
-        submitBtn.setBorderPainted(false);
-        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnBatalAnggaran.setText("Batal");
+        btnBatalAnggaran.setBackground(new java.awt.Color(235, 87, 87));
+        btnBatalAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnActionPerformed(evt);
+                btnBatalAnggaranActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
-        jLabel3.setText("Pengeluaran");
-
-        jLabel2.setText("Catatan");
-
-        categoriBox.setEditable(true);
-        categoriBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori", "Hiburan", "Makan", "Main" }));
-
-        catatanTxt.setColumns(20);
-        catatanTxt.setRows(5);
-        jScrollPane1.setViewportView(catatanTxt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(batalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                        .addComponent(submitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(pengeluaranTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(categoriBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(27, 27, 27))
+                    .addComponent(txtCatatan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNominal))
+                    .addComponent(jSeparator1)
+                    .addComponent(boxKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator4)
+                    .addComponent(datePicker1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSimpanAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(btnBatalAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNominal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(boxKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pengeluaranTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCatatan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(btnSimpanAnggaran)
                 .addGap(18, 18, 18)
-                .addComponent(categoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(batalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(btnBatalAnggaran)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,25 +156,22 @@ public class PengeluaranFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void batalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalBtnActionPerformed
+    private void btnSimpanAnggaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAnggaranActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+    }//GEN-LAST:event_btnSimpanAnggaranActionPerformed
 
-    }//GEN-LAST:event_batalBtnActionPerformed
-
-    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+    private void btnBatalAnggaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalAnggaranActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_submitBtnActionPerformed
+    }//GEN-LAST:event_btnBatalAnggaranActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,14 +209,19 @@ public class PengeluaranFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton batalBtn;
-    private javax.swing.JTextArea catatanTxt;
-    private javax.swing.JComboBox<String> categoriBox;
+    private javax.swing.JComboBox<String> boxKategori;
+    private javax.swing.JButton btnBatalAnggaran;
+    private javax.swing.JButton btnSimpanAnggaran;
+    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField pengeluaranTxt;
-    private javax.swing.JButton submitBtn;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTextField txtCatatan;
+    private javax.swing.JTextField txtNominal;
     // End of variables declaration//GEN-END:variables
 }

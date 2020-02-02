@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import uangkuapplication.entity.EntityKategori;
+import uangkuapplication.main.UangkuApplication;
 
 /**
  *

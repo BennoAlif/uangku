@@ -29,14 +29,14 @@ public class Kategori implements IKategori{
     private final String deleteKategori = "DELETE FROM kategori WHERE id=?";
     private final String getById = "SELECT * FROM kategori WHERE id=?";
     private final String getAll = "SELECT * FROM kategori";
-    
+    private final String getByName = "SELECT id FROM kategori WHERE name=?";
     
     public Kategori(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public void insertKategori(EntityKategori kategori) throws KategoriException {
+    public void insertKategori(EntityKategori kategori) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -53,7 +53,7 @@ public class Kategori implements IKategori{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new KategoriException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -69,7 +69,7 @@ public class Kategori implements IKategori{
     }
 
     @Override
-    public void updateKategori(EntityKategori kategori) throws KategoriException {
+    public void updateKategori(EntityKategori kategori) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -83,7 +83,7 @@ public class Kategori implements IKategori{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new KategoriException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -99,7 +99,7 @@ public class Kategori implements IKategori{
     }
 
     @Override
-    public void deleteKategori(int id) throws KategoriException {
+    public void deleteKategori(int id) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -112,7 +112,7 @@ public class Kategori implements IKategori{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new KategoriException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -128,7 +128,7 @@ public class Kategori implements IKategori{
     }
 
     @Override
-    public EntityKategori getKategori(int id) throws KategoriException {
+    public EntityKategori getKategori(int id) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -143,7 +143,7 @@ public class Kategori implements IKategori{
                 kategori.setId(result.getInt("id"));
                 kategori.setNama_kategori(result.getString("nama_kategori"));
             }else{
-                throw new KategoriException("Kategori dengan id " + id + " tidak ditemukan!");
+                throw new SQLException("Kategori dengan id " + id + " tidak ditemukan!");
             }
             connection.commit();
             return kategori;
@@ -153,7 +153,7 @@ public class Kategori implements IKategori{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new KategoriException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -169,7 +169,7 @@ public class Kategori implements IKategori{
     }
 
     @Override
-    public List<EntityKategori> getAllKategori() throws KategoriException {
+    public List<EntityKategori> getAllKategori() throws SQLException {
         Statement statement = null;
         List<EntityKategori> list = new ArrayList<EntityKategori>();
         try {
@@ -193,7 +193,46 @@ public class Kategori implements IKategori{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new KategoriException(e.getMessage());
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public int getIdKategori(String nama) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getByName);
+            statement.setString(1, nama);
+            
+            ResultSet result = statement.executeQuery();
+            int hasil;
+            
+            if (result.next()) {
+                hasil = result.getInt("id");
+            }else{
+                throw new SQLException("Kategori dengan nama " + nama + " tidak ditemukan!");
+            }
+            connection.commit();
+            return 0;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
