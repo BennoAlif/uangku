@@ -5,6 +5,10 @@
  */
 package uangkuapplication.view;
 
+import com.github.lgooddatepicker.components.DatePicker;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Kyoto
@@ -16,6 +20,23 @@ public class AnggaranFrame extends javax.swing.JFrame {
      */
     public AnggaranFrame() {
         initComponents();
+        
+    }
+
+    public JComboBox<String> getPilihKategori() {
+        return pilihKategori;
+    }
+
+    public DatePicker getTglRencana() {
+        return tglRencana;
+    }
+
+    public JTextField getTxtCatatan() {
+        return txtCatatan;
+    }
+
+    public JTextField getTxtNominal() {
+        return txtNominal;
     }
 
     /**
@@ -30,7 +51,7 @@ public class AnggaranFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNominal = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         pilihKategori = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
@@ -53,9 +74,9 @@ public class AnggaranFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(235, 87, 87));
 
-        jTextField1.setBorder(null);
-        jTextField1.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(235, 87, 87));
+        txtNominal.setBorder(null);
+        txtNominal.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
+        txtNominal.setForeground(new java.awt.Color(235, 87, 87));
 
         pilihKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Item 2", "Item 3", "Item 4" }));
         pilihKategori.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
@@ -101,7 +122,7 @@ public class AnggaranFrame extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1))
+                                .addComponent(txtNominal))
                             .addComponent(jSeparator1)
                             .addComponent(pilihKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSeparator2)
@@ -122,7 +143,7 @@ public class AnggaranFrame extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNominal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -217,9 +238,9 @@ public class AnggaranFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> pilihKategori;
     private com.github.lgooddatepicker.components.DatePicker tglRencana;
     private javax.swing.JTextField txtCatatan;
+    private javax.swing.JTextField txtNominal;
     // End of variables declaration//GEN-END:variables
 }
