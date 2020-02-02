@@ -6,6 +6,8 @@
 package uangkuapplication.view;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
@@ -15,6 +17,7 @@ import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.KategoriListener;
+import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.model.ModelKategori;
 import uangkuapplication.model.ModelTableKategori;
 import uangkuapplication.service.IKategori;
@@ -295,23 +298,40 @@ public class KategoriFrame extends javax.swing.JFrame implements KategoriListene
     public void onChange(ModelKategori model) {
         txtIdKategori.setText(model.getId() + "");
         txtNamaKategori.setText(model.getNama_kategori());
+        
     }
 
     @Override
     public void onInsert(EntityKategori kategori) {
         kategoriModel.add(kategori);
+        try {
+            UangkuApplication.kategoriList = UangkuDatabase.getKategori().getAllKategori();
+        } catch (SQLException ex) {
+            Logger.getLogger(KategoriFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
     public void onDelete() {
         int index = tableKategori.getSelectedRow();
         kategoriModel.remove(index);
+        try {
+            UangkuApplication.kategoriList = UangkuDatabase.getKategori().getAllKategori();
+        } catch (SQLException ex) {
+            Logger.getLogger(KategoriFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void onUpdate(EntityKategori kategori) {
         int index = tableKategori.getSelectedRow();
         kategoriModel.set(index, kategori);
+        try {
+            UangkuApplication.kategoriList = UangkuDatabase.getKategori().getAllKategori();
+        } catch (SQLException ex) {
+            Logger.getLogger(KategoriFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -320,6 +340,11 @@ public class KategoriFrame extends javax.swing.JFrame implements KategoriListene
             EntityKategori model = kategoriModel.get(tableKategori.getSelectedRow());
             txtIdKategori.setText(model.getId() + "");
             txtNamaKategori.setText(model.getNama_kategori());
+            try {
+                UangkuApplication.kategoriList = UangkuDatabase.getKategori().getAllKategori();
+            } catch (SQLException ex) {
+                Logger.getLogger(KategoriFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (IndexOutOfBoundsException e) {
         }
     }

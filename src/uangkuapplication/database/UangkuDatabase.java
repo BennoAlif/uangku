@@ -8,6 +8,7 @@ package uangkuapplication.database;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import uangkuapplication.error.KategoriException;
 import uangkuapplication.service.*;
 import uangkuapplication.impl.*;
 

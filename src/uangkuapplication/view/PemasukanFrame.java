@@ -5,18 +5,52 @@
  */
 package uangkuapplication.view;
 
+import com.github.lgooddatepicker.components.DatePicker;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import uangkuapplication.controller.TransaksiController;
+import uangkuapplication.model.ModelKategori;
+import uangkuapplication.database.UangkuDatabase;
+import uangkuapplication.entity.EntityTransaksi;
+import uangkuapplication.error.KategoriException;
+import uangkuapplication.event.TransaksiListener;
+import uangkuapplication.service.IKategori;
+import uangkuapplication.main.UangkuApplication;
+import uangkuapplication.impl.Kategori;
+import uangkuapplication.model.ModelTransaksi;
+
 /**
  *
  * @author Wildhevire
  */
-public class PemasukanFrame extends javax.swing.JFrame {
+public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListener{
 
     /**
      * Creates new form PemasukanFrame
      */
-    public PemasukanFrame() {
+    private ModelKategori modelKategori;
+    private ModelTransaksi modelTransaksi;
+    private TransaksiController controller;
+    private int idKategori = 0;
+    
+    public PemasukanFrame(){
         initComponents();
+        modelTransaksi = new ModelTransaksi();
+        modelTransaksi.setListener(this);
+        controller = new TransaksiController();
+        controller.setModel(modelTransaksi);
+        modelTransaksi = new ModelTransaksi();
+        for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
+            boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
     }
+    
+    
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,89 +62,134 @@ public class PemasukanFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        pemasukanTxt = new javax.swing.JTextField();
-        batalBtn = new javax.swing.JButton();
-        submitBtn = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        kategoriBox = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        catatanTxt = new javax.swing.JTextArea();
+        txtNominal = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        boxKategori = new javax.swing.JComboBox<>();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        txtCatatan = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        btnSimpan = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
+        datePicker = new com.github.lgooddatepicker.components.DatePicker();
 
         setResizable(false);
 
-        pemasukanTxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        pemasukanTxt.setText("Rp. ");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        batalBtn.setText("Batal");
-        batalBtn.setBackground(new java.awt.Color(235, 87, 87));
-        batalBtn.setBorder(null);
-        batalBtn.setBorderPainted(false);
-        batalBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
-        batalBtn.setForeground(new java.awt.Color(255, 255, 255));
-        batalBtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Tambah Pemasukan");
+        jLabel1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+
+        jLabel2.setText("Rp");
+        jLabel2.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 255, 51));
+
+        txtNominal.setBorder(null);
+        txtNominal.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
+        txtNominal.setForeground(new java.awt.Color(51, 255, 51));
+
+        boxKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
+        boxKategori.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        boxKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                batalBtnActionPerformed(evt);
+                boxKategoriActionPerformed(evt);
             }
         });
 
-        submitBtn.setText("Selesai");
-        submitBtn.setBackground(new java.awt.Color(255, 229, 153));
-        submitBtn.setBorder(null);
-        submitBtn.setBorderPainted(false);
-        submitBtn.setFont(new java.awt.Font("Lato", 0, 11)); // NOI18N
-        submitBtn.setForeground(new java.awt.Color(38, 50, 56));
-        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Catatan");
+        jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+
+        txtCatatan.setBorder(null);
+        txtCatatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnActionPerformed(evt);
+                txtCatatanActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Pemasukan");
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        btnSimpan.setText("Simpan");
+        btnSimpan.setBackground(new java.awt.Color(255, 229, 153));
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Catatan");
+        btnBatal.setText("Batal");
+        btnBatal.setBackground(new java.awt.Color(235, 87, 87));
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatalActionPerformed(evt);
+            }
+        });
 
-        kategoriBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kategori", "Hiburan", "Makan", "Main" }));
-
-        catatanTxt.setColumns(20);
-        catatanTxt.setRows(5);
-        jScrollPane1.setViewportView(catatanTxt);
+        datePicker.setText("Hari Ini");
+        datePicker.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        datePicker.setOpaque(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(batalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addComponent(submitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pemasukanTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kategoriBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(27, 27, 27))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCatatan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNominal))
+                    .addComponent(jSeparator1)
+                    .addComponent(boxKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator4)
+                    .addComponent(datePicker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(btnBatal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNominal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(boxKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pemasukanTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCatatan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(btnSimpan)
                 .addGap(18, 18, 18)
-                .addComponent(kategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(batalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(btnBatal)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,33 +200,53 @@ public class PemasukanFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-
-    }//GEN-LAST:event_submitBtnActionPerformed
-
-    private void batalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalBtnActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         
+        controller.insertPemasukan(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
-    }//GEN-LAST:event_batalBtnActionPerformed
+    public int getIdKategori() {
+        return idKategori;
+    }
+
+    public DatePicker getDatePicker() {
+        return datePicker;
+    }
+
+    public JTextField getTxtCatatan() {
+        return txtCatatan;
+    }
+
+    public JTextField getTxtNominal() {
+        return txtNominal;
+    }
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void txtCatatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatatanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCatatanActionPerformed
+
+    private void boxKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxKategoriActionPerformed
+        // TODO add your handling code here:
+        idKategori = UangkuApplication.findKategoriID(boxKategori.getSelectedItem().toString());
+    }//GEN-LAST:event_boxKategoriActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException, KategoriException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -174,20 +273,49 @@ public class PemasukanFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               
                 new PemasukanFrame().setVisible(true);
+               
             }
         });
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton batalBtn;
-    private javax.swing.JTextArea catatanTxt;
+    private javax.swing.JComboBox<String> boxKategori;
+    private javax.swing.JButton btnBatal;
+    private javax.swing.JButton btnSimpan;
+    private com.github.lgooddatepicker.components.DatePicker datePicker;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> kategoriBox;
-    private javax.swing.JTextField pemasukanTxt;
-    private javax.swing.JButton submitBtn;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTextField txtCatatan;
+    private javax.swing.JTextField txtNominal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(ModelTransaksi model) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onInsert(EntityTransaksi transaksi) {
+        // insert perubahan uang disini
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onDelete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onUpdate(EntityTransaksi transaksi) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

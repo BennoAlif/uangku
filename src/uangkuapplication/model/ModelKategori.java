@@ -6,11 +6,16 @@
 package uangkuapplication.model;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.KategoriListener;
 import uangkuapplication.service.IKategori;
+import uangkuapplication.view.PemasukanFrame;
+import uangkuapplication.main.UangkuApplication;
 
 /**
  *
@@ -88,6 +93,8 @@ public class ModelKategori {
         kategori.setNama_kategori(nama_kategori);
         
         dao.updateKategori(kategori);
+       
+        
         fireOnUpdate(kategori);
     }
     

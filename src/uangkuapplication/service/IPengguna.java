@@ -18,8 +18,10 @@ import uangkuapplication.error.LoginException;
  */
 public interface IPengguna {
     public void register(EntityPengguna login) throws SQLException;
+    
     public EntityPengguna login(String username, String password) throws SQLException;
-            
+    
+    public void updateUang(int uid, int nominal) throws SQLException;
             
     
 }

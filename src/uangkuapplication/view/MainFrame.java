@@ -789,7 +789,7 @@ public class MainFrame extends javax.swing.JFrame {
         UangkuApplication.prefs.remove("UserFullName");
         UangkuApplication.prefs.remove("isLoggedIn");
         UangkuApplication.prefs.remove("UserID");
-        
+        UangkuApplication.prefs.remove("Uang");
         LoginFrame login = new LoginFrame();
         this.setVisible(false);
         

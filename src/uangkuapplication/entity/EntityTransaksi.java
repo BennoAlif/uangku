@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package uangkuapplication.entity;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 /**
  *
@@ -17,12 +17,8 @@ public class EntityTransaksi {
     private int id_kategori;
     private int nominal;
     private Date tgl_transaksi;
-    private int uang_sekarang;
     private String catatan;
-    enum Jenis{
-        masuk, keluar
-    }
-    private Jenis jenis_transaksi;
+    private String jenis_transaksi;
 
     
     //constructor
@@ -30,12 +26,11 @@ public class EntityTransaksi {
         
     }
     
-    public EntityTransaksi(int uid, int id_kategori, int nominal, Date tgl_transaksi, int uang_sekarang, String catatan, Jenis jenis_transaksi) {
+    public EntityTransaksi(int uid, int id_kategori, int nominal, Date tgl_transaksi, int uang_sekarang, String catatan, String jenis_transaksi) {
         this.uid = uid;
         this.id_kategori = id_kategori;
         this.nominal = nominal;
         this.tgl_transaksi = tgl_transaksi;
-        this.uang_sekarang = uang_sekarang;
         this.catatan = catatan;
         this.jenis_transaksi = jenis_transaksi;
     }
@@ -81,13 +76,9 @@ public class EntityTransaksi {
         this.tgl_transaksi = tgl_transaksi;
     }
 
-    public int getUang_sekarang() {
-        return uang_sekarang;
-    }
 
-    public void setUang_sekarang(int uang_sekarang) {
-        this.uang_sekarang = uang_sekarang;
-    }
+
+ 
 
     public String getCatatan() {
         return catatan;
@@ -97,11 +88,11 @@ public class EntityTransaksi {
         this.catatan = catatan;
     }
 
-    public Jenis getJenis_transaksi() {
+    public String getJenis_transaksi() {
         return jenis_transaksi;
     }
 
-    public void setJenis_transaksi(Jenis jenis_transaksi) {
+    public void setJenis_transaksi(String jenis_transaksi) {
         this.jenis_transaksi = jenis_transaksi;
     }
 
@@ -113,7 +104,6 @@ public class EntityTransaksi {
         hash = 97 * hash + this.id_kategori;
         hash = 97 * hash + this.nominal;
         hash = 97 * hash + Objects.hashCode(this.tgl_transaksi);
-        hash = 97 * hash + this.uang_sekarang;
         hash = 97 * hash + Objects.hashCode(this.catatan);
         hash = 97 * hash + Objects.hashCode(this.jenis_transaksi);
         return hash;
@@ -143,9 +133,7 @@ public class EntityTransaksi {
         if (this.nominal != other.nominal) {
             return false;
         }
-        if (this.uang_sekarang != other.uang_sekarang) {
-            return false;
-        }
+
         if (!Objects.equals(this.catatan, other.catatan)) {
             return false;
         }
