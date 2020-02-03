@@ -67,35 +67,35 @@ public class AnggaranFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Tambah Anggaran/Tagihan");
         jLabel1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        jLabel1.setText("Tambah Anggaran/Tagihan");
 
-        jLabel2.setText("Rp");
         jLabel2.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(235, 87, 87));
+        jLabel2.setText("Rp");
 
-        txtNominal.setBorder(null);
         txtNominal.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
         txtNominal.setForeground(new java.awt.Color(235, 87, 87));
+        txtNominal.setBorder(null);
 
-        pilihKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Item 2", "Item 3", "Item 4" }));
         pilihKategori.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        pilihKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel3.setText("Catatan");
         jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
+        jLabel3.setText("Catatan");
 
         txtCatatan.setBorder(null);
 
-        btnSimpanAnggaran.setText("Simpan");
         btnSimpanAnggaran.setBackground(new java.awt.Color(255, 229, 153));
+        btnSimpanAnggaran.setText("Simpan");
         btnSimpanAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimpanAnggaranActionPerformed(evt);
             }
         });
 
-        btnBatalAnggaran.setText("Batal");
         btnBatalAnggaran.setBackground(new java.awt.Color(235, 87, 87));
+        btnBatalAnggaran.setText("Batal");
         btnBatalAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalAnggaranActionPerformed(evt);
@@ -156,9 +156,9 @@ public class AnggaranFrame extends javax.swing.JFrame {
                 .addComponent(txtCatatan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tglRencana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tglRencana, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(btnSimpanAnggaran)
