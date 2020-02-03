@@ -13,7 +13,10 @@ import java.sql.SQLException;
 import uangkuapplication.service.ITransaksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.error.KategoriException;
 
 
@@ -27,7 +30,7 @@ public class Transaksi implements ITransaksi {
     private Connection connection;
   
     private final String insertTransaksi = "INSERT INTO transaksi(uid, id_kategori, nominal, tgl_transaksi, catatan, jenis_transaksi) VALUES (?,?,?,?,?,?)";
-    private final String insertPengeluaranQuery = ""; 
+    private final String getAllTransaksi = "SELECT nominal, tgl_transaksi, jenis_transaksi FROM transaksi WHERE uid=?"; 
     public Transaksi(Connection connection) {
         this.connection = connection;
     }
@@ -75,7 +78,7 @@ public class Transaksi implements ITransaksi {
     }
     @Override
     public void insertPengeluaran(EntityTransaksi transaksi) throws SQLException {
-    PreparedStatement statement = null;
+        PreparedStatement statement = null;
         
         try {
             connection.setAutoCommit(false);
@@ -115,13 +118,90 @@ public class Transaksi implements ITransaksi {
     @Override
     public EntityTransaksi getTransaksi(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getById);
+            statement.setInt(1, id);
+            
+            ResultSet result = statement.executeQuery();
+            EntityTransaksi transaksi = null;
+            
+            if (result.next()) {
+                transaksi = new EntityTransaksi();
+                kategori.setId(result.getInt("id"));
+                kategori.setNama_kategori(result.getString("nama_kategori"));
+            }else{
+                throw new SQLException("Kategori dengan id " + id + " tidak ditemukan!");
+            }
+            connection.commit();
+            return transaksi;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        */
     }
 
    
 
     @Override
-    public List<EntityTransaksi> getTransaksi() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<EntityTransaksi> getAllTransaksi() throws SQLException
+    {
+        
+        Statement statement = null;
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            
+            ResultSet result = statement.executeQuery(getAllTransaksi);
+            EntityTransaksi transaksi = null;
+            
+            while (result.next()) {
+                transaksi = new EntityTransaksi();
+                transaksi.setNominal(result.getInt("nominal"));
+                transaksi.setTgl_transaksi(result.getDate("tgl_transaksi"));
+                transaksi.setJenis_transaksi(result.getString("jenis_transaksi"));
+                list.add(transaksi);
+            }
+            connection.commit();
+            return list;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
     
 }

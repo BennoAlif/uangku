@@ -33,6 +33,7 @@ public class UangkuApplication {
     public static int UserID;
     public static int Uang;
     public static List<EntityKategori> kategoriList;
+    
     public static void main(String[] args) throws SQLException {
         prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
         
@@ -55,18 +56,7 @@ public class UangkuApplication {
         kategoriList = UangkuDatabase.getKategori().getAllKategori();
         
         UangkuDatabase.getConnection();
-        
-//        java.util.Date date = new java.util.Date();
-//        
-//        EntityTransaksi transaksi = new EntityTransaksi();
-//        ITransaksi dao = UangkuDatabase.getTransaksi();
-//        transaksi.setId_kategori(5);
-//        transaksi.setUid(2);
-//        transaksi.setNominal(200);
-//        transaksi.setTgl_transaksi(new Date(date.getTime()));
-//        transaksi.setCatatan("dadada");
-//        transaksi.setUang_sekarang(2000);
-//        dao.insertPemasukan(transaksi);
+
     }
     
     public static int findKategoriID(String name){

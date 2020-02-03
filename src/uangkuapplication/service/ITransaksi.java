@@ -18,6 +18,6 @@ public interface ITransaksi {
     public void insertPemasukan(EntityTransaksi transaksi) throws SQLException;
     public void insertPengeluaran(EntityTransaksi transaksi) throws SQLException;
 
-    public List<EntityTransaksi> getTransaksi() throws SQLException;
+    public List<EntityTransaksi> getAllTransaksi() throws SQLException;
     public EntityTransaksi getTransaksi(int id) throws SQLException;
 }

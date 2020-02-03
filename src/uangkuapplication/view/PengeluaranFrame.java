@@ -13,6 +13,8 @@ import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.model.ModelTransaksi;
 
+import uangkuapplication.view.MainFrame;
+
 /**
  *
  * @author Wildhevire
@@ -286,6 +288,7 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     @Override
     public void onInsert(EntityTransaksi transaksi) {
         //hitung perubahan di uang sekarang disini
+        
         javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
     }
 

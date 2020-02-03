@@ -8,6 +8,7 @@ import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import uangkuapplication.error.KategoriException;
 
@@ -16,6 +17,18 @@ import uangkuapplication.error.KategoriException;
  * @author Kyoto
  */
 public class MainFrame extends javax.swing.JFrame {
+
+    public JLabel getTxtPemasukan() {
+        return txtPemasukan;
+    }
+
+    public JLabel getTxtPengeluaran() {
+        return txtPengeluaran;
+    }
+
+    public JLabel getTxtTotal() {
+        return txtTotal;
+    }
 
     /**
      * Creates new form MainFrame
@@ -45,10 +58,10 @@ public class MainFrame extends javax.swing.JFrame {
         pemasukanBtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        txtPemasukan = new javax.swing.JLabel();
+        txtPengeluaran = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -107,7 +120,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pengeluaranBtn.setBackground(new java.awt.Color(255, 229, 153));
         pengeluaranBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
-        pengeluaranBtn.setForeground(new java.awt.Color(38, 50, 56));
+        pengeluaranBtn.setForeground(new java.awt.Color(246, 62, 94));
         pengeluaranBtn.setText("Tambah Pengeluaran");
         pengeluaranBtn.setBorder(null);
         pengeluaranBtn.setBorderPainted(false);
@@ -119,7 +132,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pemasukanBtn.setBackground(new java.awt.Color(255, 229, 153));
         pemasukanBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
-        pemasukanBtn.setForeground(new java.awt.Color(246, 61, 94));
+        pemasukanBtn.setForeground(new java.awt.Color(38, 50, 56));
         pemasukanBtn.setText("Tambah Pemasukan");
         pemasukanBtn.setBorder(null);
         pemasukanBtn.setBorderPainted(false);
@@ -135,19 +148,19 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(38, 50, 56));
         jLabel8.setText("UANGKU");
 
-        jLabel11.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel11.setText("Rp 574000");
+        txtTotal.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(38, 50, 56));
+        txtTotal.setText("Rp 574000");
 
         jSeparator1.setBackground(new java.awt.Color(38, 50, 56));
 
-        jLabel13.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(47, 128, 237));
-        jLabel13.setText("600000");
+        txtPemasukan.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        txtPemasukan.setForeground(new java.awt.Color(47, 128, 237));
+        txtPemasukan.setText("600000");
 
-        jLabel15.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(246, 61, 94));
-        jLabel15.setText("26000");
+        txtPengeluaran.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        txtPengeluaran.setForeground(new java.awt.Color(246, 61, 94));
+        txtPengeluaran.setText("26000");
 
         jLabel14.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(38, 50, 56));
@@ -171,14 +184,14 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel15))
+                        .addComponent(txtPengeluaran))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 74, Short.MAX_VALUE)
-                        .addComponent(jLabel11))
+                        .addComponent(txtTotal))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel13)))
+                        .addComponent(txtPemasukan)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -188,16 +201,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(txtPemasukan)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
+                    .addComponent(txtPengeluaran)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(txtTotal)
                 .addContainerGap())
         );
 
@@ -826,11 +839,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -867,5 +877,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton reportBtn;
     private javax.swing.JPanel reportPanel;
     private javax.swing.JLabel txtNama;
+    private javax.swing.JLabel txtPemasukan;
+    private javax.swing.JLabel txtPengeluaran;
+    private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
 }

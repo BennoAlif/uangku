@@ -6,6 +6,8 @@
 package uangkuapplication.model;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.event.TransaksiListener;
@@ -82,6 +84,12 @@ public class ModelTransaksi {
         
         fireOnInsert(transaksi);
         
+    }
+    
+    public List<EntityTransaksi> getAllTransaksi() throws SQLException{
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        
+        return list;
     }
 
     public int getUid() {
