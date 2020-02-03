@@ -95,9 +95,12 @@ public class Pengguna implements IPengguna{
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
+            
             statement = connection.prepareStatement(updateUang);
-            statement.setInt(1, uid);
-            statement.setInt(2, nominal);
+            statement.setInt(1, 2);
+            statement.setInt(2, 2000);
+            
+            
             statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {

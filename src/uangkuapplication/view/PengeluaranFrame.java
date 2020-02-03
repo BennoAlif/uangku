@@ -288,7 +288,7 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     @Override
     public void onInsert(EntityTransaksi transaksi) {
         //hitung perubahan di uang sekarang disini
-        
+        UangkuApplication.Uang += Integer.parseInt(txtNominal.getText());
         javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
     }
 

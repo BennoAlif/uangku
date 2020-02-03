@@ -14,6 +14,7 @@ import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.service.IKategori;
 import uangkuapplication.service.ITransaksi;
+import uangkuapplication.impl.Pengguna;
 import uangkuapplication.view.LoginFrame;
 import uangkuapplication.view.MainFrame;
 import uangkuapplication.model.ModelTableKategori;
@@ -36,7 +37,7 @@ public class UangkuApplication {
     
     public static void main(String[] args) throws SQLException {
         prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
-        
+        Pengguna pengguna = new Pengguna(UangkuDatabase.getConnection());
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
         
         LoginFrame login = new LoginFrame();
@@ -54,9 +55,10 @@ public class UangkuApplication {
         }
         
         kategoriList = UangkuDatabase.getKategori().getAllKategori();
-        
+        pengguna.updateUang(20, 2000);
         UangkuDatabase.getConnection();
-
+        
+        
     }
     
     public static int findKategoriID(String name){

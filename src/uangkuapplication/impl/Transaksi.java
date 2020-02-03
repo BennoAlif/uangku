@@ -31,6 +31,7 @@ public class Transaksi implements ITransaksi {
   
     private final String insertTransaksi = "INSERT INTO transaksi(uid, id_kategori, nominal, tgl_transaksi, catatan, jenis_transaksi) VALUES (?,?,?,?,?,?)";
     private final String getAllTransaksi = "SELECT nominal, tgl_transaksi, jenis_transaksi FROM transaksi WHERE uid=?"; 
+    private final String getPrefTransaksi = "SELECT * FROM transaksi ORDER BY ";
     public Transaksi(Connection connection) {
         this.connection = connection;
     }
@@ -202,6 +203,16 @@ public class Transaksi implements ITransaksi {
                 }
             }
         }
+    }
+
+    @Override
+    public List<EntityTransaksi> getAllPemasukan() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<EntityTransaksi> getAllPengeluarkan() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

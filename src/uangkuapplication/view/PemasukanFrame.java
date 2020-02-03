@@ -306,6 +306,7 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     @Override
     public void onInsert(EntityTransaksi transaksi) {
         // insert perubahan uang disini
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

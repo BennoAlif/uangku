@@ -8,10 +8,12 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.service.ITransaksi;
+import uangkuapplication.service.IPengguna;
 
 /**
  *
@@ -23,6 +25,17 @@ public class ModelTransaksi {
     private int nominal;
     private Date tgl_transaksi;
     private String catatan;
+    private int uangSekarang;
+
+    public int getUangSekarang() {
+        return uangSekarang;
+    }
+
+    public void setUangSekarang() {
+        this.uangSekarang = 200;
+        this.uangSekarang += nominal;
+    }
+    
     
     
     TransaksiListener listener;
@@ -60,6 +73,7 @@ public class ModelTransaksi {
     
     public void insertPemasukan()throws SQLException{
         ITransaksi dao = UangkuDatabase.getTransaksi();
+        IPengguna daoPengguna = UangkuDatabase.getPengguna();
         EntityTransaksi transaksi = new EntityTransaksi();
         transaksi.setUid(uid);
         transaksi.setId_kategori(id_kategori);
@@ -67,6 +81,8 @@ public class ModelTransaksi {
         transaksi.setTgl_transaksi(tgl_transaksi);
         transaksi.setCatatan(catatan);
         dao.insertPemasukan(transaksi);
+        
+        daoPengguna.updateUang(uid, 10000);
         
         fireOnInsert(transaksi);
         

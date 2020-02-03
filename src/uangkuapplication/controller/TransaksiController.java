@@ -8,9 +8,11 @@ import java.sql.Date;
 import javax.swing.JOptionPane;
 import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.model.ModelTransaksi;
+import uangkuapplication.impl.Pengguna;
 import uangkuapplication.view.MainFrame;
 import uangkuapplication.view.PemasukanFrame;
 import uangkuapplication.view.PengeluaranFrame;
+
 
 
 /**
@@ -35,15 +37,17 @@ public class TransaksiController {
         model.setNominal(nominal);
         model.setTgl_transaksi(tanggal);
         model.setCatatan(catatan);
+        model.setUangSekarang();
         try {
            
-            model.insertPengeluaran();
+            model.insertPemasukan();
         } catch (Throwable ex) {
             JOptionPane.showMessageDialog(view, ex.getMessage());
         }
     }
     public void insertPengeluaran(PengeluaranFrame view){
         int idKategori = view.getIdKategori();
+        
         int nominal = Integer.parseInt(view.getTxtNominal().getText());
         Date tanggal = new Date(view.getDatePicker().convert().getDateWithDefaultZone().getTime());
         String catatan = view.getTxtCatatan().getText();
@@ -52,6 +56,7 @@ public class TransaksiController {
         model.setNominal(nominal);
         model.setTgl_transaksi(tanggal);
         model.setCatatan(catatan);
+        model.setUangSekarang();
         try {
            
             model.insertPengeluaran();
