@@ -17,4 +17,5 @@ public interface TransaksiListener {
     public void onInsert(EntityTransaksi transaksi);
     public void onDelete();
     public void onUpdate(EntityTransaksi transaksi);
+    
 }

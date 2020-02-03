@@ -25,7 +25,8 @@ public class Pengguna implements IPengguna{
     private final String registerQuery = "INSERT INTO pengguna (fullname,username,password) VALUES (?,?,?)";
     private final String loginQuery = "SELECT * FROM pengguna WHERE username=? AND password=?";
     private final String updateUang = "UPDATE pengguna SET uang=? WHERE uid=?";
-    
+    private final String getById = "SELECT uang FROM pengguna WHERE uid=?";
+    private final String getFullnamebyID = "SELECT fullname FROM pengguna WHERE uid=?";
     public Pengguna(Connection connection) {
         this.connection = connection;
     }
@@ -97,12 +98,92 @@ public class Pengguna implements IPengguna{
             connection.setAutoCommit(false);
             
             statement = connection.prepareStatement(updateUang);
-            statement.setInt(1, 2);
-            statement.setInt(2, 2000);
+            statement.setInt(1, nominal);
+            statement.setInt(2, uid);
             
             
             statement.executeUpdate();
             connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public int getUang(int uid) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getById);
+            statement.setInt(1, uid);
+            
+            ResultSet result = statement.executeQuery();
+            int uang;
+            
+            if (result.next()) {
+                uang = result.getInt("uang");
+                
+            }else{
+                throw new SQLException("Kategori dengan id " + uid + " tidak ditemukan!");
+            }
+            connection.commit();
+            return uang;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public String getFullname(int uid) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getFullnamebyID);
+            statement.setInt(1, uid);
+            
+            ResultSet result = statement.executeQuery();
+            String name;
+            
+            if (result.next()) {
+                name = result.getString("fullname");
+                
+            }else{
+                throw new SQLException("Nama dengan id " + uid + " tidak ditemukan!");
+            }
+            connection.commit();
+            return name;
+            
         } catch (SQLException e) {
             try {
                 connection.rollback();

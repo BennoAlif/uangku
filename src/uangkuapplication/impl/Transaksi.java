@@ -31,7 +31,7 @@ public class Transaksi implements ITransaksi {
   
     private final String insertTransaksi = "INSERT INTO transaksi(uid, id_kategori, nominal, tgl_transaksi, catatan, jenis_transaksi) VALUES (?,?,?,?,?,?)";
     private final String getAllTransaksi = "SELECT nominal, tgl_transaksi, jenis_transaksi FROM transaksi WHERE uid=?"; 
-    private final String getPrefTransaksi = "SELECT * FROM transaksi ORDER BY ";
+    private final String getAll = "SELECT * FROM transaksi WHERE jenis_transaksi=?";
     public Transaksi(Connection connection) {
         this.connection = connection;
     }
@@ -163,16 +163,17 @@ public class Transaksi implements ITransaksi {
    
 
     @Override
-    public List<EntityTransaksi> getAllTransaksi() throws SQLException
+    public List<EntityTransaksi> getAllTransaksi(int uid) throws SQLException
     {
         
-        Statement statement = null;
+        PreparedStatement statement = null;
         List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
         try {
             connection.setAutoCommit(false);
-            statement = connection.createStatement();
+            statement = connection.prepareStatement(getAllTransaksi);
+            statement.setInt(1, uid);
             
-            ResultSet result = statement.executeQuery(getAllTransaksi);
+            ResultSet result = statement.executeQuery();
             EntityTransaksi transaksi = null;
             
             while (result.next()) {
@@ -207,12 +208,86 @@ public class Transaksi implements ITransaksi {
 
     @Override
     public List<EntityTransaksi> getAllPemasukan() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement statement = null;
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getAll);
+            statement.setString(1, "Masuk");
+            
+            ResultSet result = statement.executeQuery();
+            EntityTransaksi transaksi = null;
+            
+            while (result.next()) {
+                transaksi = new EntityTransaksi();
+                transaksi.setNominal(result.getInt("nominal"));
+                transaksi.setTgl_transaksi(result.getDate("tgl_transaksi"));
+                transaksi.setJenis_transaksi(result.getString("jenis_transaksi"));
+                list.add(transaksi);
+            }
+            connection.commit();
+            return list;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
 
     @Override
     public List<EntityTransaksi> getAllPengeluarkan() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement statement = null;
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getAll);
+            statement.setString(1, "Keluar");
+            
+            ResultSet result = statement.executeQuery();
+            EntityTransaksi transaksi = null;
+            
+            while (result.next()) {
+                transaksi = new EntityTransaksi();
+                transaksi.setNominal(result.getInt("nominal"));
+                transaksi.setTgl_transaksi(result.getDate("tgl_transaksi"));
+                transaksi.setJenis_transaksi(result.getString("jenis_transaksi"));
+                list.add(transaksi);
+            }
+            connection.commit();
+            return list;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
     }
     
 }

@@ -24,7 +24,7 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     private int idKategori = 0;
     private TransaksiController controller;
     private ModelTransaksi model;
-
+    
     
     public PengeluaranFrame() {
        
@@ -288,8 +288,11 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     @Override
     public void onInsert(EntityTransaksi transaksi) {
         //hitung perubahan di uang sekarang disini
-        UangkuApplication.Uang += Integer.parseInt(txtNominal.getText());
-        javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
+        
+        //javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
     }
 
 

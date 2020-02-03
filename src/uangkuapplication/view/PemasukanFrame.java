@@ -36,9 +36,11 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     private ModelTransaksi modelTransaksi;
     private TransaksiController controller;
     private int idKategori = 0;
+    private MainFrame mainFrame;
     
     public PemasukanFrame(){
         initComponents();
+        mainFrame = MainFrame.getInstance(UangkuApplication.UserFullname);
         modelTransaksi = new ModelTransaksi();
         modelTransaksi.setListener(this);
         controller = new TransaksiController();
@@ -210,6 +212,7 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         
         controller.insertPemasukan(this);
+       
         this.setVisible(false);
     }//GEN-LAST:event_btnSimpanActionPerformed
 
@@ -305,9 +308,13 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
 
     @Override
     public void onInsert(EntityTransaksi transaksi) {
-        // insert perubahan uang disini
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        mainFrame.getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
+        mainFrame.getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
+        mainFrame.getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override

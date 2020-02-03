@@ -18,7 +18,7 @@ import uangkuapplication.impl.Pengguna;
 import uangkuapplication.view.LoginFrame;
 import uangkuapplication.view.MainFrame;
 import uangkuapplication.model.ModelTableKategori;
-
+import uangkuapplication.controller.TransaksiController;
 /**
  *
  * @author Kyoto
@@ -34,14 +34,14 @@ public class UangkuApplication {
     public static int UserID;
     public static int Uang;
     public static List<EntityKategori> kategoriList;
+    public static String UserFullname;
     
     public static void main(String[] args) throws SQLException {
-        prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
-        Pengguna pengguna = new Pengguna(UangkuDatabase.getConnection());
+        //prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
+        prefs = Preferences.userNodeForPackage(uangkuapplication.main.UangkuApplication.class);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
-        
+        Pengguna pengguna = new Pengguna(UangkuDatabase.getConnection());
         LoginFrame login = new LoginFrame();
-        MainFrame main = new MainFrame(prefs.get("UserFullName", ""));
         
         
         if(isLoggedIn==false){
@@ -49,14 +49,17 @@ public class UangkuApplication {
             
         }
         else{
-            main.setVisible(true);
-            UserID = prefs.getInt("UserID", 0);
-            Uang = prefs.getInt("Uang", 0);
+            
+            UserID = prefs.getInt("UserID",0);
+            //Uang = prefs.getInt("Uang", 0);
+            UserFullname = pengguna.getFullname(UserID);
+            Uang = pengguna.getUang(UserID);
+            MainFrame.getInstance(UserFullname).setVisible(true);
         }
         
         kategoriList = UangkuDatabase.getKategori().getAllKategori();
-        pengguna.updateUang(20, 2000);
         UangkuDatabase.getConnection();
+        
         
         
     }
