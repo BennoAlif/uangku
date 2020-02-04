@@ -151,6 +151,14 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         return instance;
     }
 
+    public JLabel getTxtMonth() {
+        return txtMonth;
+    }
+
+    public void setTxtMonth(JLabel txtMonth) {
+        this.txtMonth = txtMonth;
+    }
+
     public JLabel getTxtPemasukan() {
         return txtPemasukan;
     }
@@ -216,7 +224,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         TotalPanel = new javax.swing.JPanel();
         PengeluaranPanel = new javax.swing.JPanel();
         PemasukanPanel = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
+        txtMonth = new javax.swing.JLabel();
         planningPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -329,7 +337,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtPengeluaran))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 78, Short.MAX_VALUE)
+                        .addGap(0, 82, Short.MAX_VALUE)
                         .addComponent(txtTotal))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel12)
@@ -364,6 +372,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jLabel9.setForeground(new java.awt.Color(38, 50, 56));
         jLabel9.setText("Pengeluaran");
 
+        tablePengeluaran.setBackground(new java.awt.Color(255, 229, 153));
         tablePengeluaran.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -375,6 +384,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePengeluaran.setFocusable(false);
+        tablePengeluaran.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(tablePengeluaran);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -411,6 +422,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jLabel10.setForeground(new java.awt.Color(38, 50, 56));
         jLabel10.setText("Pemasukan");
 
+        tablePemasukan.setBackground(new java.awt.Color(255, 229, 153));
         tablePemasukan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -422,6 +434,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePemasukan.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane4.setViewportView(tablePemasukan);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -433,7 +446,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addGap(0, 176, Short.MAX_VALUE))
+                        .addGap(0, 172, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -458,7 +471,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                         .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,9 +526,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         PemasukanPanel.setPreferredSize(new java.awt.Dimension(270, 200));
         PemasukanPanel.setLayout(new javax.swing.BoxLayout(PemasukanPanel, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel19.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel19.setText("Januari, 2020");
+        txtMonth.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        txtMonth.setForeground(new java.awt.Color(38, 50, 56));
+        txtMonth.setText("Januari, 2020");
 
         javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
@@ -524,18 +537,16 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
             .addGroup(reportPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TotalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(reportPanelLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel19)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(TotalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(reportPanelLayout.createSequentialGroup()
                         .addComponent(PengeluaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PemasukanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(PemasukanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(txtMonth))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         reportPanelLayout.setVerticalGroup(
@@ -544,7 +555,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19)
+                .addComponent(txtMonth)
                 .addGap(23, 23, 23)
                 .addComponent(TotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -862,7 +873,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
         );
 
         pack();
@@ -897,12 +908,18 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         mainPanel.repaint();
         mainPanel.revalidate();
         
+        
         donutChartList.clear();
         donutChartKategoriListMasuk.clear();
         donutChartNominalListMasuk.clear();
         donutChartKategoriListKeluar.clear();
         donutChartNominalListKeluar.clear();        
         
+        areaChartList.clear();
+        dateAreaChartListMasuk.clear();
+        nominalAreaChartListMasuk.clear();
+        dateAreaChartListKeluar.clear();
+        nominalAreaChartListKeluar.clear();
         
         donutChartList = controller.getDonutChartData();
         areaChartList = controller.getAreaChartData();
@@ -928,7 +945,11 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         
         
         
-        
+        txtMonth.setText(StringMonth(
+                new java.util.Date(areaChartList.get(0).getTgl_transaksi().getTime()).getMonth()
+                )+ ", "+
+                areaChartList.get(0).getTgl_transaksi().toLocalDate().getYear()
+        );
  
         
         xChart = this;
@@ -959,6 +980,23 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         //TotalPanel.validate();
     }//GEN-LAST:event_reportBtnActionPerformed
 
+    String StringMonth(int m){
+        switch(m){
+            case 0 : return "Januari";
+            case 1 : return "Februari";
+            case 2 : return "Maret";
+            case 3 : return "April";
+            case 4 : return "Mei";
+            case 5 : return "Juni";
+            case 6 : return "Juli";
+            case 7 : return "Agustus";
+            case 8 : return "September";
+            case 9 : return "Oktober";
+            case 10 : return "November";
+            case 11 : return "Desember";
+        }
+        return "";
+    }
     private void addCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryBtnActionPerformed
         // TODO add your handling code here:
         SwingUtilities.invokeLater(new Runnable() {
@@ -1079,7 +1117,6 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1112,6 +1149,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private javax.swing.JTable tablePemasukan;
     private javax.swing.JTable tablePengeluaran;
     private javax.swing.JTable tblRencana;
+    private javax.swing.JLabel txtMonth;
     private javax.swing.JLabel txtNama;
     private javax.swing.JLabel txtPemasukan;
     private javax.swing.JLabel txtPengeluaran;
@@ -1147,25 +1185,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     @Override
     public PieChart getPemasukanChart() {
         // Create Chart
-        PieChart chart =
-            new PieChartBuilder().width(270).height(200).title("Pemasukan").build();
-        //chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSE);
-        //chart.getStyler().setLegendLayout(Styler.LegendLayout.Horizontal);
-
-        
-        //Customize Chart
-        chart.getStyler().setLegendVisible(false);
-        
-        chart.getStyler().setAnnotationType(AnnotationType.Label);
-        chart.getStyler().setAnnotationDistance(1.2);
-        chart.getStyler().setPlotBorderVisible(false);
-        chart.getStyler().setPlotBackgroundColor(color);
-        chart.getStyler().setChartBackgroundColor(color);
-        chart.getStyler().setPlotContentSize(.85);
-        chart.getStyler().setDefaultSeriesRenderStyle(PieSeriesRenderStyle.Donut);
-        //chart.getStyler().setCircular(false);
-
-        // Series
+        PieChart chart = createDonutChart();        // Series
 //        chart.addSeries("Makan", 10);
 //        chart.addSeries("Tidur", 22);
  //       chart.addSeries("Mandi", 21);
@@ -1184,23 +1204,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     @Override
     public PieChart getPengeluaranChart() {
         // Create Chart
-        PieChart chart =
-            new PieChartBuilder().width(270).height(200).title("Pengeluaran").build();
-        //chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSE);
-        //chart.getStyler().setLegendLayout(Styler.LegendLayout.Horizontal);
-
-        // Customize Chart color [255,229,153]
-        chart.getStyler().setLegendVisible(false);
+        PieChart chart = createDonutChart();
         
-        chart.getStyler().setAnnotationType(AnnotationType.Label);
-        chart.getStyler().setAnnotationDistance(1.2);
-        chart.getStyler().setPlotBorderVisible(false);
-        chart.getStyler().setPlotBackgroundColor(color);
-        chart.getStyler().setChartBackgroundColor(color);
-        chart.getStyler().setPlotContentSize(.85);
-        chart.getStyler().setDefaultSeriesRenderStyle(PieSeriesRenderStyle.Donut);
-        //chart.getStyler().setCircular(false);
-
         // Series
         //chart.addSeries("Makan", 9);
         //chart.addSeries("Tidur", 10);
@@ -1218,10 +1223,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     public XYChart getTotalChart() {
         
         // Create Chart
-        XYChart chart =populateTotalChart();
+        XYChart chart = createTotalChart();
 
         // Customize Chart
-        chart.getStyler().setLegendVisible(false);
 
         // Series
 //        List<Date> xData = new ArrayList<Date>();
@@ -1243,12 +1247,12 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     }
     
 
-    public XYChart populateTotalChart(){
+    public XYChart createTotalChart(){
         // Create Chart
         XYChart chart =
             new XYChartBuilder()
-                .width(800)
-                .height(600)
+                .width(559)
+                .height(200)
                 .title("Pemasukan dan Pengeluaran per Bulan")
                 .xAxisTitle("Tanggal")
                 .yAxisTitle("Jumlah")
@@ -1257,6 +1261,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         // Customize Chart
         //chart.getStyler().setLegendPosition(LegendPosition.InsideNE);
         chart.getStyler().setLegendVisible(false);
+        
         chart.getStyler().setAxisTitlesVisible(false);
         chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Area);
         chart.getStyler().setPlotBorderVisible(false);
@@ -1266,6 +1271,26 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         return chart;
     }
     
+    public PieChart createDonutChart(){
+        PieChart chart =
+            new PieChartBuilder().width(270).height(200).title("Pengeluaran").build();
+        //chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSE);
+        //chart.getStyler().setLegendLayout(Styler.LegendLayout.Horizontal);
+
+        // Customize Chart color [255,229,153]
+        chart.getStyler().setLegendVisible(false);
+        
+        chart.getStyler().setAnnotationType(AnnotationType.Label);
+        chart.getStyler().setAnnotationDistance(1.2);
+        chart.getStyler().setPlotBorderVisible(false);
+        chart.getStyler().setPlotBackgroundColor(color);
+        chart.getStyler().setChartBackgroundColor(color);
+        chart.getStyler().setPlotContentSize(.80);
+        
+        chart.getStyler().setDefaultSeriesRenderStyle(PieSeriesRenderStyle.Donut);
+        //chart.getStyler().setCircular(false);
+        return chart;
+    }
     
  
 
