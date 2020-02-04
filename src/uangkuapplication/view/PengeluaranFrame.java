@@ -5,15 +5,21 @@
  */
 package uangkuapplication.view;
 import com.github.lgooddatepicker.components.DatePicker;
+import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import uangkuapplication.controller.TransaksiController;
+import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityTransaksi;
+import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.main.UangkuApplication;
+import uangkuapplication.model.ModelTablePemasukan;
+import uangkuapplication.model.ModelTablePengeluaran;
 import uangkuapplication.model.ModelTransaksi;
+import uangkuapplication.service.ITransaksi;
 
 import uangkuapplication.view.MainFrame;
 
@@ -26,6 +32,7 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     private int idKategori = 0;
     private TransaksiController controller;
     private ModelTransaksi model;
+    public ModelTablePengeluaran modelTable;
     
     
     private PengeluaranFrame() {
@@ -34,6 +41,9 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         model.setListener(this);
         controller = new TransaksiController();
         controller.setModel(model);
+        modelTable = new ModelTablePengeluaran();
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTablePengeluaran().getSelectionModel().addListSelectionListener(this);
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTablePengeluaran().setModel(modelTable);
         initComponents();
         for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
             boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
@@ -319,5 +329,9 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     @Override
     public void valueChanged(ListSelectionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void loadDatabase() {
+       // ITransaksi dao = UangkuDatabase.getTransaksi();
+        modelTable.setList(controller.getAllPengeluaran());
     }
 }

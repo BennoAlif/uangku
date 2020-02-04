@@ -5,13 +5,13 @@
  */
 package uangkuapplication.view;
 import java.awt.Color;
-import java.awt.Component;
 import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -32,14 +32,13 @@ import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.PieChart;
 import org.knowm.xchart.PieChartBuilder;
 import org.knowm.xchart.PieSeries.PieSeriesRenderStyle;
-import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.style.PieStyler.AnnotationType;
-import org.knowm.xchart.style.Styler;
 
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
-import org.knowm.xchart.style.Styler.LegendPosition;
+import uangkuapplication.database.UangkuDatabase;
+import uangkuapplication.service.ITransaksi;
 
 import uangkuapplication.service.IXChart;
 /**
@@ -65,6 +64,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private XYChart totalChart;
     
     private static String name;
+
+ 
+    
     private MainFrame(String name) {
         initComponents();
         color = new Color(255,229,153);
@@ -76,6 +78,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         controller.setModel(model);
         
         
+        
+        
         //tablePemasukanModel = new ModelTablePemasukan();
         //tablePengeluaranModel = new ModelTablePengeluaran();
         
@@ -83,7 +87,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         //tablePengeluaran.getSelectionModel().addListSelectionListener(PengeluaranFrame.getInstance());
         
         
-        //tablePemasukan.setModel(tablePemasukanModel);
+        //tablePemasukan.setModel(PemasukanFrame.getInstance().modelTable);
         //tablePengeluaran.setModel(tablePengeluaranModel);
         
         
@@ -116,13 +120,14 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         //txtPemasukan.setText(totalPemasukan);
     }
     
+    
+    
    
     public static MainFrame getInstance(String name){
         if (instance == null)
         {
             instance = new MainFrame(name);
         }
-        
         return instance;
     }
 
@@ -968,11 +973,18 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+            public void run()  {
+                
                 new MainFrame(name).setVisible(true);
+                
+                
+                
+                
                 
            }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

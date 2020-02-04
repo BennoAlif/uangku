@@ -31,11 +31,11 @@ public class ModelTablePengeluaran extends AbstractTableModel {
     public Object getValueAt(int i, int i1) {
         switch(i1){
             case 0:
-                return null;
+                return list.get(i).getNominal();
             case 1:
-                return null;
+                return list.get(i).getNominal();
             case 2:
-                return null;
+                return list.get(i).getTgl_transaksi().toString();
             
                        
             default:

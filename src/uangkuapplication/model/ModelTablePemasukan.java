@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import uangkuapplication.entity.EntityTransaksi;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author Wildhevire
@@ -31,11 +32,12 @@ public class ModelTablePemasukan extends AbstractTableModel {
     public Object getValueAt(int i, int i1) {
         switch(i1){
             case 0:
-                return null;
+                return list.get(i).getNominal();
             case 1:
-                return null;
+                return list.get(i).getNominal();
             case 2:
-                return null;
+                return list.get(i).getTgl_transaksi().toString();
+                
             
                        
             default:
@@ -52,6 +54,7 @@ public class ModelTablePemasukan extends AbstractTableModel {
                 return "Nominal";
             case 2:
                 return "Tanggal";
+              
             
             default:
                 return null;
@@ -61,10 +64,13 @@ public class ModelTablePemasukan extends AbstractTableModel {
     
     public boolean add(EntityTransaksi e) {
         try {
+            JOptionPane.showMessageDialog(null, "KONTOL");
             return list.add(e);
+             
         } finally {
             fireTableRowsInserted(getRowCount()-1, getRowCount()-1);
         }
+       
     }
 
     public EntityTransaksi get(int i) {

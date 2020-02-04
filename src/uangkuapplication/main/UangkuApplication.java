@@ -8,6 +8,9 @@ import java.util.prefs.Preferences;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityKategori;
 import uangkuapplication.entity.EntityTransaksi;
@@ -19,6 +22,8 @@ import uangkuapplication.view.LoginFrame;
 import uangkuapplication.view.MainFrame;
 import uangkuapplication.model.ModelTableKategori;
 import uangkuapplication.controller.TransaksiController;
+import uangkuapplication.view.PemasukanFrame;
+import uangkuapplication.view.PengeluaranFrame;
 /**
  *
  * @author Kyoto
@@ -36,14 +41,13 @@ public class UangkuApplication {
     public static List<EntityKategori> kategoriList;
     public static String UserFullname;
     
+ 
     public static void main(String[] args) throws SQLException {
         //prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
         prefs = Preferences.userNodeForPackage(uangkuapplication.main.UangkuApplication.class);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
         Pengguna pengguna = new Pengguna(UangkuDatabase.getConnection());
         LoginFrame login = new LoginFrame();
-        
-        
         if(isLoggedIn==false){
             login.setVisible(true);
             
@@ -51,13 +55,21 @@ public class UangkuApplication {
         else{
             
             UserID = prefs.getInt("UserID",0);
+                    
             //Uang = prefs.getInt("Uang", 0);
             UserFullname = pengguna.getFullname(UserID);
             Uang = pengguna.getUang(UserID);
             MainFrame.getInstance(UserFullname).setVisible(true);
+          
         }
+        
+                
         kategoriList = UangkuDatabase.getKategori().getAllKategori();
+                
         UangkuDatabase.getConnection();
+                
+       
+        
         
         
         

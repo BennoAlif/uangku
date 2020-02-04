@@ -24,6 +24,8 @@ import uangkuapplication.service.IKategori;
 import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.impl.Kategori;
 import uangkuapplication.model.ModelTransaksi;
+import uangkuapplication.model.ModelTablePemasukan;
+import uangkuapplication.service.ITransaksi;
 
 /**
  *
@@ -40,17 +42,23 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     private TransaksiController controller;
     private int idKategori = 0;
     private MainFrame mainFrame;
+    public  ModelTablePemasukan modelTable;
     
     private PemasukanFrame(){
         initComponents();
+       
         mainFrame = MainFrame.getInstance(UangkuApplication.UserFullname);
         modelTransaksi = new ModelTransaksi();
         modelTransaksi.setListener(this);
         controller = new TransaksiController();
         controller.setModel(modelTransaksi);
         modelTransaksi = new ModelTransaksi();
+        modelTable = new ModelTablePemasukan();
+        mainFrame.getTablePemasukan().getSelectionModel().addListSelectionListener(this);
+        mainFrame.getTablePemasukan().setModel(modelTable);
         for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
             boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
+        
     }
     
     
@@ -281,11 +289,11 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
             java.util.logging.Logger.getLogger(PemasukanFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+                
                 new PemasukanFrame().setVisible(true);
                
             }
@@ -322,6 +330,8 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
        
+        //testing model delete if broken
+        //modelTable.add(transaksi);
         
         //MainFrame.getInstance(UangkuApplication.UserFullname).tablePemasukanModel.setList(controller.getAllPemasukan());
 
@@ -344,5 +354,10 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     @Override
     public void valueChanged(ListSelectionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void loadDatabase(){
+        //ITransaksi dao = UangkuDatabase.getTransaksi();
+        modelTable.setList(controller.getAllPemasukan());
     }
 }

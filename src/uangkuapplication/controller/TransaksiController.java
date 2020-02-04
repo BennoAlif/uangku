@@ -15,6 +15,7 @@ import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.model.ModelTransaksi;
 import uangkuapplication.impl.Pengguna;
+import uangkuapplication.model.ModelTablePemasukan;
 import uangkuapplication.view.MainFrame;
 import uangkuapplication.view.PemasukanFrame;
 import uangkuapplication.view.PengeluaranFrame;
@@ -29,7 +30,7 @@ import uangkuapplication.service.IPengguna;
  */
 public class TransaksiController {
     private ModelTransaksi model;
-
+    private ModelTablePemasukan masuk;
     public void setModel(ModelTransaksi model) {
         this.model = model;
     }
@@ -92,7 +93,7 @@ public class TransaksiController {
             Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+        //masuk.setList(list);
         return list;
     }
     
@@ -140,5 +141,6 @@ public class TransaksiController {
         }
         return uang;
     }
+    
     
 }
