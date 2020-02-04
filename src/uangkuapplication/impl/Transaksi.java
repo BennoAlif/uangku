@@ -34,7 +34,7 @@ public class Transaksi implements ITransaksi {
     private final String getAll = "SELECT * FROM transaksi WHERE jenis_transaksi=?";
     private final String getWithKategori = "SELECT * FROM transaksi INNER JOIN kategori ON transaksi.id_kategori = kategori.id_kategori WHERE jenis_transaksi=?";
     private final String donutChartQuery = "SELECT SUM(nominal) as nominal, kategori.nama_kategori, transaksi.jenis_transaksi FROM transaksi INNER JOIN kategori ON transaksi.id_kategori = kategori.id_kategori GROUP BY transaksi.id_kategori, transaksi.jenis_transaksi";
-    
+    private final String areaChartQuery = "SELECT SUM(nominal) AS nominal, tgl_transaksi, jenis_transaksi FROM transaksi GROUP BY tgl_transaksi, jenis_transaksi";
     
     public Transaksi(Connection connection) {
         this.connection = connection;
@@ -383,7 +383,7 @@ public class Transaksi implements ITransaksi {
 
     @Override
     public List<EntityTransaksi> getDonutChartData() throws SQLException {
-    PreparedStatement statement = null;
+        PreparedStatement statement = null;
         List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
         try {
             connection.setAutoCommit(false);
@@ -422,6 +422,51 @@ public class Transaksi implements ITransaksi {
             }
         }
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<EntityTransaksi> getAreaChartData() throws SQLException {
+        PreparedStatement statement = null;
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(areaChartQuery);
+            
+            
+            ResultSet result = statement.executeQuery();
+            EntityTransaksi transaksi = null;
+            
+            while (result.next()) {
+                transaksi = new EntityTransaksi();
+                transaksi.setNominal(result.getInt("nominal"));
+                transaksi.setTgl_transaksi(result.getDate("tgl_transaksi"));
+                transaksi.setJenis_transaksi(result.getString("jenis_transaksi"));
+
+                list.add(transaksi);
+            }
+            connection.commit();
+            return list;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -147,6 +147,13 @@ public class ModelTransaksi {
         list = dao.getDonutChartData();
         return list;
     }
+    public List<EntityTransaksi> getAreaChartData() throws SQLException{
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        ITransaksi dao = UangkuDatabase.getTransaksi();
+        list = dao.getAreaChartData();
+        return list;
+    }
+
     
     
 

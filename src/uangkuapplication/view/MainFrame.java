@@ -9,6 +9,8 @@ import java.sql.Date;
 import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -70,8 +72,11 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     
     private static String name;
     
-    private List<Date> dateList;
-    private List<Integer> nominalList;
+    private List<EntityTransaksi> areaChartList;
+    private List<Date> dateAreaChartListMasuk;
+    private List<Integer> nominalAreaChartListMasuk;
+    private List<Date> dateAreaChartListKeluar;
+    private List<Integer> nominalAreaChartListKeluar;
     
     private List<EntityTransaksi> donutChartList;
     private List<String> donutChartKategoriListMasuk;
@@ -92,7 +97,12 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
         controller = new TransaksiController();
         controller.setModel(model);
+        areaChartList = new ArrayList<EntityTransaksi>();
         donutChartList = new ArrayList<EntityTransaksi>();
+        dateAreaChartListMasuk = new ArrayList<Date>();
+        nominalAreaChartListMasuk = new ArrayList<Integer>();
+        dateAreaChartListKeluar = new ArrayList<Date>();
+        nominalAreaChartListKeluar = new ArrayList<Integer>();
         donutChartKategoriListMasuk = new ArrayList<String>();
         donutChartNominalListMasuk = new ArrayList<Integer>();
         donutChartKategoriListKeluar = new ArrayList<String>();
@@ -892,21 +902,33 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         donutChartNominalListMasuk.clear();
         donutChartKategoriListKeluar.clear();
         donutChartNominalListKeluar.clear();        
+        
+        
         donutChartList = controller.getDonutChartData();
+        areaChartList = controller.getAreaChartData();
+        
         for(int i = 0; i < donutChartList.size(); i++){
-            //System.out.println(donutChartList.get(i).getJenis_transaksi());
             if(donutChartList.get(i).getJenis_transaksi().equals("Masuk")){
-               //  System.out.println("Gol"+ i);
                 donutChartKategoriListMasuk.add(donutChartList.get(i).getKategori());
                 donutChartNominalListMasuk.add(donutChartList.get(i).getNominal());
             }else{
-                //System.out.println("Aut" + i);
                 donutChartKategoriListKeluar.add(donutChartList.get(i).getKategori());
                 donutChartNominalListKeluar.add(donutChartList.get(i).getNominal());
             }
         }
-        //System.out.println("Masuk" + donutChartKategoriListMasuk.size());
-        //System.out.println("Keluar" +donutChartKategoriListKeluar.size());
+        for(int i = 0; i < areaChartList.size(); i++){
+            if(areaChartList.get(i).getJenis_transaksi().equals("Masuk")){
+                dateAreaChartListMasuk.add(areaChartList.get(i).getTgl_transaksi());
+                nominalAreaChartListMasuk.add(areaChartList.get(i).getNominal());
+            }else{
+                dateAreaChartListKeluar.add(areaChartList.get(i).getTgl_transaksi());
+                nominalAreaChartListKeluar.add(areaChartList.get(i).getNominal());
+            }
+        }
+        
+        
+        
+        
  
         
         xChart = this;
@@ -1194,14 +1216,33 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
     @Override
     public XYChart getTotalChart() {
-        XYChart chart = populateTotalChart();
-        // Series
-        chart.addSeries("Pemasukan", new double[] {0, 3, 5, 7, 9}, new double[] {-3, 5, 9, 6, 5});
-        chart.addSeries("Pengeluaran", new double[] {0, 2, 4, 6, 9}, new double[] {-1, 6, 4, 0, 4});
         
+        // Create Chart
+        XYChart chart =populateTotalChart();
+
+        // Customize Chart
+        chart.getStyler().setLegendVisible(false);
+
+        // Series
+//        List<Date> xData = new ArrayList<Date>();
+//        List<Double> yData = new ArrayList<Double>();
+//
+//
+//        DateFormat sdf = new SimpleDateFormat("MM-dd");
+//        Date date = null;
+//        for (int i = 1; i <= 14; i++) {
+//
+//          xData.add(date);
+//          yData.add(Math.random() * i / -100000000);
+//        }
+
+        chart.addSeries("Pemasukan", dateAreaChartListMasuk, nominalAreaChartListMasuk);
+        chart.addSeries("Pengeluaran", dateAreaChartListKeluar, nominalAreaChartListKeluar);
+
         return chart;
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+
     public XYChart populateTotalChart(){
         // Create Chart
         XYChart chart =

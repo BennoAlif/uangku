@@ -187,6 +187,21 @@ public class TransaksiController {
         //masuk.setList(list);
         return list;
     }
+    public List<EntityTransaksi> getAreaChartData(){
+        
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+
+        try {
+            list = model.getAreaChartData();
+            
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //masuk.setList(list);
+        return list;
+    }
     
     
 }

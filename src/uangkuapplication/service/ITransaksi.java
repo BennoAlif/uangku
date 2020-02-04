@@ -27,5 +27,6 @@ public interface ITransaksi {
     public List<EntityTransaksi> getAllPemasukanWithKategori() throws SQLException;
     public List<EntityTransaksi> getAllPengeluarkanWithKategori() throws SQLException;
     public List<EntityTransaksi> getDonutChartData() throws SQLException;
+    public List<EntityTransaksi> getAreaChartData() throws SQLException;
 
 }
