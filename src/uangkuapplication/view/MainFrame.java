@@ -8,11 +8,7 @@ import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
-<<<<<<< HEAD
-import javax.swing.JTable;
-=======
 import javax.swing.JLabel;
->>>>>>> 897392beba5dc55100932e85161205bd9daa570d
 import javax.swing.SwingUtilities;
 import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.error.KategoriException;
@@ -56,14 +52,6 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
         controller.setModel(model);
         this.name = name;
         txtNama.setText(name);
-<<<<<<< HEAD
-        
-        
-    }
-
-    public JTable getTblRencana() {
-        return tblRencana;
-=======
         txtPemasukan.setText(String.valueOf(controller.getTotalPemasukan()));
         txtPengeluaran.setText(String.valueOf(controller.getTotalPengeluaran()));
         txtTotal.setText(String.valueOf(UangkuApplication.Uang));
@@ -78,7 +66,6 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
         }
         
         return instance;
->>>>>>> 897392beba5dc55100932e85161205bd9daa570d
     }
 
     /**
