@@ -56,7 +56,6 @@ public class UangkuApplication {
             Uang = pengguna.getUang(UserID);
             MainFrame.getInstance(UserFullname).setVisible(true);
         }
-        
         kategoriList = UangkuDatabase.getKategori().getAllKategori();
         UangkuDatabase.getConnection();
         

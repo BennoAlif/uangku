@@ -7,6 +7,8 @@ package uangkuapplication.view;
 import com.github.lgooddatepicker.components.DatePicker;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import uangkuapplication.controller.TransaksiController;
 import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.event.TransaksiListener;
@@ -19,14 +21,14 @@ import uangkuapplication.view.MainFrame;
  *
  * @author Wildhevire
  */
-public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiListener {
-
+public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiListener ,ListSelectionListener{
+    private static PengeluaranFrame instance;
     private int idKategori = 0;
     private TransaksiController controller;
     private ModelTransaksi model;
     
     
-    public PengeluaranFrame() {
+    private PengeluaranFrame() {
        
         model = new ModelTransaksi();
         model.setListener(this);
@@ -38,6 +40,13 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         
         
     }
+    public static PengeluaranFrame getInstance(){
+        if(instance == null){
+            instance = new PengeluaranFrame();
+        }
+        return instance;
+    }
+    
     
     public int getIdKategori() {
         return idKategori;
@@ -291,7 +300,8 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
-        
+        MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.setList(controller.getAllPengeluaran());
+        //MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.add(transaksi);
         //javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
     }
 
@@ -304,5 +314,10 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     @Override
     public void onUpdate(EntityTransaksi transaksi) {
         javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL update");
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

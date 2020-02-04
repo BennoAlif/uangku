@@ -4,61 +4,119 @@
  * and open the template in the editor.
  */
 package uangkuapplication.view;
+import java.awt.Color;
+import java.awt.Component;
 import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.model.ModelTransaksi;
 import uangkuapplication.controller.TransaksiController;
+import uangkuapplication.model.ModelTablePemasukan;
+import uangkuapplication.model.ModelTablePengeluaran;
 
+import org.knowm.xchart.XChartPanel;
+
+import org.knowm.xchart.PieChart;
+import org.knowm.xchart.PieChartBuilder;
+import org.knowm.xchart.PieSeries.PieSeriesRenderStyle;
+import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.style.PieStyler.AnnotationType;
+import org.knowm.xchart.style.Styler;
+
+import org.knowm.xchart.XYChart;
+import org.knowm.xchart.XYChartBuilder;
+import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
+import org.knowm.xchart.style.Styler.LegendPosition;
+
+import uangkuapplication.service.IXChart;
 /**
  *
  * @author Kyoto
  */
-public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
+public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XYChart>, TransaksiListener,ListSelectionListener {
     private static MainFrame instance = null;
-    public JLabel getTxtPemasukan() {
-        return txtPemasukan;
-    }
-
-    public JLabel getTxtPengeluaran() {
-        return txtPengeluaran;
-    }
-
-    public JLabel getTxtTotal() {
-        return txtTotal;
-    }
-
+    public ModelTablePemasukan tablePemasukanModel;
+    public ModelTablePengeluaran tablePengeluaranModel;
+    private Color color;
+    private Color[] colorSet;
     
     /**
      * Creates new form MainFrame
      */
     private TransaksiController controller;
     private ModelTransaksi model;
+    private IXChart<PieChart, XYChart> xChart;
+    private PieChart pemasukanChart;
     
+    private PieChart pengeluaranChart;
+    private XYChart totalChart;
     
     private static String name;
     private MainFrame(String name) {
         initComponents();
-        
+        color = new Color(255,229,153);
+        colorSet = new Color[] { new Color(51,255,51,153), new Color(235,87,87, 153)};
         model = new ModelTransaksi();
         model.setListener(this);
+
         controller = new TransaksiController();
         controller.setModel(model);
+        
+        
+        //tablePemasukanModel = new ModelTablePemasukan();
+        //tablePengeluaranModel = new ModelTablePengeluaran();
+        
+        //tablePemasukan.getSelectionModel().addListSelectionListener(PemasukanFrame.getInstance());
+        //tablePengeluaran.getSelectionModel().addListSelectionListener(PengeluaranFrame.getInstance());
+        
+        
+        //tablePemasukan.setModel(tablePemasukanModel);
+        //tablePengeluaran.setModel(tablePengeluaranModel);
+        
+        
+        
         this.name = name;
         txtNama.setText(name);
         txtPemasukan.setText(String.valueOf(controller.getTotalPemasukan()));
         txtPengeluaran.setText(String.valueOf(controller.getTotalPengeluaran()));
         txtTotal.setText(String.valueOf(UangkuApplication.Uang));
         
+       
+
+        xChart = this;
+        pemasukanChart = xChart.getPemasukanChart();
+        JPanel pemasukanChartPanel = new XChartPanel(pemasukanChart);
+        PemasukanPanel.add(pemasukanChartPanel);
+        PemasukanPanel.validate();
         
+        pengeluaranChart = xChart.getPengeluaranChart();
+        JPanel pengeluaranChartPanel = new XChartPanel(pengeluaranChart);
+        PengeluaranPanel.add(pengeluaranChartPanel);
+        PengeluaranPanel.validate();
+        
+        totalChart = xChart.getTotalChart();
+        JPanel totalChartPanel = new XChartPanel(totalChart);
+        TotalPanel.add(totalChartPanel);
+        TotalPanel.validate();
+                
+        //new SwingWrapper<PieChart>(pemasukanChart).displayChart();
         //txtPemasukan.setText(totalPemasukan);
     }
+    
+   
     public static MainFrame getInstance(String name){
         if (instance == null)
         {
@@ -68,6 +126,34 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
         return instance;
     }
 
+    public JLabel getTxtPemasukan() {
+        return txtPemasukan;
+    }
+
+    public JTable getTablePemasukan() {
+        return tablePemasukan;
+    }
+
+    public void setTablePemasukan(JTable tablePemasukan) {
+        this.tablePemasukan = tablePemasukan;
+    }
+
+    public void setTablePengeluaran(JTable tablePengeluaran) {
+        this.tablePengeluaran = tablePengeluaran;
+    }
+    
+
+    public JTable getTablePengeluaran() {
+        return tablePengeluaran;
+    }
+
+    public JLabel getTxtPengeluaran() {
+        return txtPengeluaran;
+    }
+
+    public JLabel getTxtTotal() {
+        return txtTotal;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,19 +181,16 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableKategori = new javax.swing.JTable();
+        tablePengeluaran = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableKategori1 = new javax.swing.JTable();
+        tablePemasukan = new javax.swing.JTable();
         reportPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
+        TotalPanel = new javax.swing.JPanel();
+        PengeluaranPanel = new javax.swing.JPanel();
+        PemasukanPanel = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         planningPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -256,7 +339,7 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
         jLabel9.setForeground(new java.awt.Color(38, 50, 56));
         jLabel9.setText("Pengeluaran");
 
-        tableKategori.setModel(new javax.swing.table.DefaultTableModel(
+        tablePengeluaran.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -267,7 +350,7 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tableKategori);
+        jScrollPane3.setViewportView(tablePengeluaran);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -303,7 +386,7 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
         jLabel10.setForeground(new java.awt.Color(38, 50, 56));
         jLabel10.setText("Pemasukan");
 
-        tableKategori1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePemasukan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -314,7 +397,7 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(tableKategori1);
+        jScrollPane4.setViewportView(tablePemasukan);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -393,77 +476,17 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
         jLabel4.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
         jLabel4.setText("Laporan keuangan");
 
-        jPanel8.setBackground(new java.awt.Color(255, 229, 153));
-        jPanel8.setPreferredSize(new java.awt.Dimension(559, 200));
+        TotalPanel.setBackground(new java.awt.Color(255, 229, 153));
+        TotalPanel.setPreferredSize(new java.awt.Dimension(559, 200));
+        TotalPanel.setLayout(new javax.swing.BoxLayout(TotalPanel, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel16.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel16.setText("Grafik pemasukan dan pengeluaran per bulan");
+        PengeluaranPanel.setBackground(new java.awt.Color(255, 229, 153));
+        PengeluaranPanel.setPreferredSize(new java.awt.Dimension(270, 200));
+        PengeluaranPanel.setLayout(new javax.swing.BoxLayout(PengeluaranPanel, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16)
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16)
-                .addContainerGap(170, Short.MAX_VALUE))
-        );
-
-        jPanel9.setBackground(new java.awt.Color(255, 229, 153));
-        jPanel9.setPreferredSize(new java.awt.Dimension(270, 200));
-
-        jLabel17.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel17.setText("Grafik pengeluaran");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel17)
-                .addContainerGap(138, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel17)
-                .addContainerGap(170, Short.MAX_VALUE))
-        );
-
-        jPanel10.setBackground(new java.awt.Color(255, 229, 153));
-        jPanel10.setPreferredSize(new java.awt.Dimension(270, 200));
-
-        jLabel18.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel18.setText("Grafik pemasukan");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel18)
-                .addContainerGap(145, Short.MAX_VALUE))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel18)
-                .addContainerGap(170, Short.MAX_VALUE))
-        );
+        PemasukanPanel.setBackground(new java.awt.Color(255, 229, 153));
+        PemasukanPanel.setPreferredSize(new java.awt.Dimension(270, 200));
+        PemasukanPanel.setLayout(new javax.swing.BoxLayout(PemasukanPanel, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel19.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(38, 50, 56));
@@ -476,7 +499,7 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
             .addGroup(reportPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TotalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -485,9 +508,9 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
                                 .addComponent(jLabel19)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PengeluaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(PemasukanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         reportPanelLayout.setVerticalGroup(
@@ -498,11 +521,11 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19)
                 .addGap(23, 23, 23)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TotalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PengeluaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PemasukanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -886,14 +909,13 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
 
     private void pengeluaranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengeluaranBtnActionPerformed
         // TODO add your handling code here:
-        PengeluaranFrame pengeluaran = new PengeluaranFrame();
-        pengeluaran.setVisible(true);
+        PengeluaranFrame.getInstance().setVisible(true);
     }//GEN-LAST:event_pengeluaranBtnActionPerformed
 
     private void pemasukanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pemasukanBtnActionPerformed
         // TODO add your handling code here:
-        PemasukanFrame pemasukan = new PemasukanFrame();
-        pemasukan.setVisible(true);
+
+        PemasukanFrame.getInstance().setVisible(true);
     }//GEN-LAST:event_pemasukanBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
@@ -954,6 +976,9 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PemasukanPanel;
+    private javax.swing.JPanel PengeluaranPanel;
+    private javax.swing.JPanel TotalPanel;
     private javax.swing.JButton addCategoryBtn;
     private javax.swing.JButton btnBayarAng;
     private javax.swing.JButton btnHapusAng;
@@ -965,9 +990,6 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -977,15 +999,12 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1001,8 +1020,8 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton reportBtn;
     private javax.swing.JPanel reportPanel;
-    private javax.swing.JTable tableKategori;
-    private javax.swing.JTable tableKategori1;
+    private javax.swing.JTable tablePemasukan;
+    private javax.swing.JTable tablePengeluaran;
     private javax.swing.JTable tblRencana;
     private javax.swing.JLabel txtNama;
     private javax.swing.JLabel txtPemasukan;
@@ -1011,17 +1030,23 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
     // End of variables declaration//GEN-END:variables
 
     @Override
+    public void valueChanged(ListSelectionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public void onChange(ModelTransaksi model) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void onInsert(EntityTransaksi transaksi) {
-        System.out.println("MainKONTOL"+controller.getTotalPemasukan());
-        txtPemasukan.setText("TESS" + controller.getTotalPemasukan());
-        txtPengeluaran.setText("Tess" + controller.getTotalPengeluaran());
+        if(transaksi.getJenis_transaksi() == "Masuk")
+            javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
+        else
+            javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pengeluaran");
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Kontol."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -1033,4 +1058,98 @@ public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
     public void onUpdate(EntityTransaksi transaksi) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public PieChart getPemasukanChart() {
+        // Create Chart
+        PieChart chart =
+            new PieChartBuilder().width(270).height(200).title("Pemasukan").build();
+        //chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSE);
+        //chart.getStyler().setLegendLayout(Styler.LegendLayout.Horizontal);
+
+        
+        //Customize Chart
+        chart.getStyler().setLegendVisible(false);
+        
+        chart.getStyler().setAnnotationType(AnnotationType.Label);
+        chart.getStyler().setAnnotationDistance(1.2);
+        chart.getStyler().setPlotBorderVisible(false);
+        chart.getStyler().setPlotBackgroundColor(color);
+        chart.getStyler().setChartBackgroundColor(color);
+        chart.getStyler().setPlotContentSize(.85);
+        chart.getStyler().setDefaultSeriesRenderStyle(PieSeriesRenderStyle.Donut);
+        //chart.getStyler().setCircular(false);
+
+        // Series
+        chart.addSeries("Makan", 10);
+        chart.addSeries("Tidur", 22);
+        chart.addSeries("Mandi", 21);
+       
+
+        return chart;
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public PieChart getPengeluaranChart() {
+        // Create Chart
+        PieChart chart =
+            new PieChartBuilder().width(270).height(200).title("Pengeluaran").build();
+        //chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSE);
+        //chart.getStyler().setLegendLayout(Styler.LegendLayout.Horizontal);
+
+        // Customize Chart color [255,229,153]
+        chart.getStyler().setLegendVisible(false);
+        
+        chart.getStyler().setAnnotationType(AnnotationType.Label);
+        chart.getStyler().setAnnotationDistance(1.2);
+        chart.getStyler().setPlotBorderVisible(false);
+        chart.getStyler().setPlotBackgroundColor(color);
+        chart.getStyler().setChartBackgroundColor(color);
+        chart.getStyler().setPlotContentSize(.85);
+        chart.getStyler().setDefaultSeriesRenderStyle(PieSeriesRenderStyle.Donut);
+        //chart.getStyler().setCircular(false);
+
+        // Series
+        chart.addSeries("Makan", 9);
+        chart.addSeries("Tidur", 10);
+        chart.addSeries("Mandi", 34);
+       
+
+        return chart;
+    }
+
+    @Override
+    public XYChart getTotalChart() {
+        // Create Chart
+        XYChart chart =
+            new XYChartBuilder()
+                .width(800)
+                .height(600)
+                .title("Pemasukan dan Pengeluaran per Bulan")
+                .xAxisTitle("Tanggal")
+                .yAxisTitle("Jumlah")
+                .build();
+
+        // Customize Chart
+        //chart.getStyler().setLegendPosition(LegendPosition.InsideNE);
+        chart.getStyler().setLegendVisible(false);
+        chart.getStyler().setAxisTitlesVisible(false);
+        chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Area);
+        chart.getStyler().setPlotBorderVisible(false);
+        chart.getStyler().setPlotBackgroundColor(color);
+        chart.getStyler().setChartBackgroundColor(color);
+        chart.getStyler().setSeriesColors(colorSet);
+        // Series
+        chart.addSeries("Pemasukan", new double[] {0, 3, 5, 7, 9}, new double[] {-3, 5, 9, 6, 5});
+        chart.addSeries("Pengeluaran", new double[] {0, 2, 4, 6, 9}, new double[] {-1, 6, 4, 0, 4});
+
+        return chart;
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
+
+    
 }

@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import uangkuapplication.controller.TransaksiController;
 import uangkuapplication.model.ModelKategori;
 import uangkuapplication.database.UangkuDatabase;
@@ -27,18 +29,19 @@ import uangkuapplication.model.ModelTransaksi;
  *
  * @author Wildhevire
  */
-public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListener{
+public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListener, ListSelectionListener{
 
     /**
      * Creates new form PemasukanFrame
      */
+    private static PemasukanFrame instance = null;
     private ModelKategori modelKategori;
     private ModelTransaksi modelTransaksi;
     private TransaksiController controller;
     private int idKategori = 0;
     private MainFrame mainFrame;
     
-    public PemasukanFrame(){
+    private PemasukanFrame(){
         initComponents();
         mainFrame = MainFrame.getInstance(UangkuApplication.UserFullname);
         modelTransaksi = new ModelTransaksi();
@@ -51,7 +54,13 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     }
     
     
-    
+    public static PemasukanFrame getInstance(){
+        if (instance == null){
+            instance = new PemasukanFrame();
+        }
+        return instance;
+        
+    }
    
 
     /**
@@ -309,11 +318,16 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     @Override
     public void onInsert(EntityTransaksi transaksi) {
         
-        mainFrame.getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
-        mainFrame.getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
-        mainFrame.getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
+       
         
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //MainFrame.getInstance(UangkuApplication.UserFullname).tablePemasukanModel.setList(controller.getAllPemasukan());
+
+        //MainFrame.getInstance(UangkuApplication.UserFullname).tablePemasukanModel.add(transaksi);
+
+//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
 
@@ -324,6 +338,11 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
 
     @Override
     public void onUpdate(EntityTransaksi transaksi) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

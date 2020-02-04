@@ -18,7 +18,7 @@ import uangkuapplication.main.UangkuApplication;
 public class ModelTableKategori extends AbstractTableModel {
 
     private List<EntityKategori> list = new ArrayList<EntityKategori>();
-
+    
     public void setList(List<EntityKategori> list) {
         this.list = list;
     }
@@ -66,7 +66,7 @@ public class ModelTableKategori extends AbstractTableModel {
         switch(i){
             case 0:
                 return "Id";
-            case 2:
+            case 1:
                 return "Nama Kategori";
             default:
                 return null;
