@@ -19,7 +19,7 @@ import uangkuapplication.service.RencanaDao;
  */
 public class ModelRencana {
     private int nominal, id;
-    private String nama;
+    private int id_kategori;
     private Date tglRencana;
     private String catatan;
     
@@ -52,15 +52,16 @@ public class ModelRencana {
         fireOnChange();
     }
 
-    public String getNama() {
-        return nama;
+    public int getId_kategori() {
+        return id_kategori;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setId_kategori(int id_kategori) {
+        this.id_kategori = id_kategori;
         fireOnChange();
     }
 
+    
     public Date getTglRencana() {
         return tglRencana;
     }
@@ -104,7 +105,7 @@ public class ModelRencana {
        
         RencanaDao rencana = UangkuDatabase.getRencana();
         EntityRencana ren = new EntityRencana();
-        ren.setNama(nama);
+        ren.setId_kategori(id_kategori);
         ren.setNominal(nominal);
         ren.setTgl_rencana(tglRencana);
         ren.setCatatan(catatan);
@@ -116,7 +117,7 @@ public class ModelRencana {
        
         RencanaDao rencana = UangkuDatabase.getRencana();
         EntityRencana ren = new EntityRencana();
-        ren.setNama(nama);
+        ren.setId_kategori(id_kategori);
         ren.setNominal(nominal);
         ren.setTgl_rencana(tglRencana);
         ren.setCatatan(catatan);

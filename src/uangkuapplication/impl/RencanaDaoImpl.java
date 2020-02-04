@@ -25,9 +25,9 @@ public class RencanaDaoImpl implements RencanaDao{
     
     private Connection connection;
     
-    private final String insertRencana = "INSERT INTO RENCANA (uid, nama, nominal, tgl_rencana, status, catatan, id_kategori) VALUES (?,?,?,?,?,?,?)";
+    private final String insertRencana = "INSERT INTO RENCANA (uid, id_kategori, nominal, tgl_rencana, status, catatan) VALUES (?,?,?,?,?,?)";
     private final String deleteRencana = "DELETE RENCANA WHERE id=?";
-    private final String updateRencana = "UPDATE RENCANA uid=?, nama=?, nominal=?, tgl_rencana=?, status=?, catatan=?, id_kategori=? WHERE id=?";
+    private final String updateRencana = "UPDATE RENCANA uid=?, id_kategori=?, nominal=?, tgl_rencana=?, status=?, catatan=? WHERE id=?";
     private final String getById = "SELECT * FROM RENCANA WHERE id=?";
     private final String selectAll = "SELECT * FROM RENCANA";
 
@@ -44,12 +44,11 @@ public class RencanaDaoImpl implements RencanaDao{
             
             statement = connection.prepareStatement(insertRencana);
             statement.setInt(1, rencana.getUid());
-            statement.setString(2, rencana.getNama());
+            statement.setInt(2, rencana.getId_kategori());
             statement.setInt(3, rencana.getNominal());
             statement.setDate(4, (Date) rencana.getTgl_rencana());
             statement.setString(5, rencana.getStatus());
             statement.setString(6, rencana.getCatatan());
-            statement.setInt(7, rencana.getId_kategori());
             statement.executeUpdate();
             
             connection.commit();
@@ -116,13 +115,12 @@ public class RencanaDaoImpl implements RencanaDao{
             
             statement = connection.prepareStatement(updateRencana);
             statement.setInt(1, rencana.getUid());
-            statement.setString(2, rencana.getNama());
+            statement.setInt(2, rencana.getId_kategori());
             statement.setInt(3, rencana.getNominal());
             statement.setDate(4, (Date) rencana.getTgl_rencana());
             statement.setString(5, rencana.getStatus());
             statement.setString(6, rencana.getCatatan());
-            statement.setInt(7, rencana.getId_kategori());
-            statement.setInt(8, rencana.getId());
+            statement.setInt(7, rencana.getId());
             statement.executeUpdate();
             
             connection.commit();
@@ -164,12 +162,11 @@ public class RencanaDaoImpl implements RencanaDao{
                 rencana = new EntityRencana();
                 rencana.setId(result.getInt("id"));
                 rencana.setUid(result.getInt("uid"));
-                rencana.setNama(result.getString("nama"));
+                rencana.setId_kategori(result.getInt("id_kategori"));
                 rencana.setNominal(result.getInt("nominal"));
                 rencana.setTgl_rencana(result.getDate("tgl_rencana"));
                 rencana.setStatus(result.getString("status"));
                 rencana.setCatatan(result.getString("catatan"));
-                rencana.setId_kategori(result.getInt("id_kategori"));
             }else{
                 throw new RencanaException("Rencana dengan id "+id+" tidak ditemukan");
             }
@@ -213,12 +210,11 @@ public class RencanaDaoImpl implements RencanaDao{
                 rencana = new EntityRencana();
                 rencana.setId(result.getInt("id"));
                 rencana.setUid(result.getInt("uid"));
-                rencana.setNama(result.getString("nama"));
+                rencana.setId_kategori(result.getInt("id_kategori"));
                 rencana.setNominal(result.getInt("nominal"));
                 rencana.setTgl_rencana(result.getDate("tgl_rencana"));
                 rencana.setStatus(result.getString("status"));
                 rencana.setCatatan(result.getString("catatan"));
-                rencana.setId_kategori(result.getInt("id_kategori"));
                 list.add(rencana);
             }
             connection.commit();

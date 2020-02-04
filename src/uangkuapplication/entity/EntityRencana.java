@@ -29,7 +29,6 @@ public class EntityRencana {
     public EntityRencana(Integer id, Integer uid, String nama, Integer nominal, Date tgl_rencana, String status, String catatan, Integer id_kategori) {
         this.id = id;
         this.uid = uid;
-        this.nama = nama;
         this.nominal = nominal;
         this.tgl_rencana = tgl_rencana;
         this.status = status;
@@ -55,15 +54,7 @@ public class EntityRencana {
         this.uid = uid;
     }
 
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public int getNominal() {
+        public int getNominal() {
         return nominal;
     }
 

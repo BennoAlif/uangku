@@ -8,6 +8,7 @@ package uangkuapplication.view;
 import com.github.lgooddatepicker.components.DatePicker;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import uangkuapplication.main.UangkuApplication;
 
 /**
  *
@@ -18,13 +19,18 @@ public class AnggaranFrame extends javax.swing.JFrame {
     /**
      * Creates new form AnggaranFrame
      */
+    private int idKategori = 0;
+    
     public AnggaranFrame() {
         initComponents();
         
+        for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
+            pilihKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
+        
     }
 
-    public JComboBox<String> getPilihKategori() {
-        return pilihKategori;
+    public int getIdKategori() {
+        return idKategori;
     }
 
     public DatePicker getTglRencana() {
@@ -62,77 +68,89 @@ public class AnggaranFrame extends javax.swing.JFrame {
         btnSimpanAnggaran = new javax.swing.JButton();
         btnBatalAnggaran = new javax.swing.JButton();
         tglRencana = new com.github.lgooddatepicker.components.DatePicker();
+        jLabel4 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel1.setText("Tambah Anggaran/Tagihan");
+        jLabel1.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
 
+        jLabel2.setText("Rp");
         jLabel2.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(235, 87, 87));
-        jLabel2.setText("Rp");
 
+        txtNominal.setBorder(null);
         txtNominal.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
         txtNominal.setForeground(new java.awt.Color(235, 87, 87));
-        txtNominal.setBorder(null);
 
+        pilihKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
         pilihKategori.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
-        pilihKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Item 2", "Item 3", "Item 4" }));
+        pilihKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilihKategoriActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel3.setText("Catatan");
+        jLabel3.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
 
         txtCatatan.setBorder(null);
 
-        btnSimpanAnggaran.setBackground(new java.awt.Color(255, 229, 153));
         btnSimpanAnggaran.setText("Simpan");
+        btnSimpanAnggaran.setBackground(new java.awt.Color(255, 229, 153));
         btnSimpanAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimpanAnggaranActionPerformed(evt);
             }
         });
 
-        btnBatalAnggaran.setBackground(new java.awt.Color(235, 87, 87));
         btnBatalAnggaran.setText("Batal");
+        btnBatalAnggaran.setBackground(new java.awt.Color(235, 87, 87));
         btnBatalAnggaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalAnggaranActionPerformed(evt);
             }
         });
 
+        jLabel4.setText("ID");
+
+        txtID.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tglRencana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCatatan, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSimpanAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(btnBatalAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNominal))
+                    .addComponent(jSeparator1)
+                    .addComponent(pilihKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator3)
+                    .addComponent(jSeparator4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tglRencana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCatatan, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNominal))
-                            .addComponent(jSeparator1)
-                            .addComponent(pilihKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator2)
-                            .addComponent(jSeparator3)
+                                .addGap(99, 99, 99)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnSimpanAnggaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnBatalAnggaran, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3))
-                                .addGap(0, 151, Short.MAX_VALUE))
-                            .addComponent(jSeparator4))))
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 116, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,7 +158,11 @@ public class AnggaranFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNominal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,7 +186,7 @@ public class AnggaranFrame extends javax.swing.JFrame {
                 .addComponent(btnSimpanAnggaran)
                 .addGap(18, 18, 18)
                 .addComponent(btnBatalAnggaran)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addGap(67, 67, 67))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,6 +213,11 @@ public class AnggaranFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_btnBatalAnggaranActionPerformed
+
+    private void pilihKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihKategoriActionPerformed
+        // TODO add your handling code here:
+        idKategori = UangkuApplication.findKategoriID(pilihKategori.getSelectedItem().toString());
+    }//GEN-LAST:event_pilihKategoriActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +260,7 @@ public class AnggaranFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -241,6 +269,7 @@ public class AnggaranFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> pilihKategori;
     private com.github.lgooddatepicker.components.DatePicker tglRencana;
     private javax.swing.JTextField txtCatatan;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNominal;
     // End of variables declaration//GEN-END:variables
 }
