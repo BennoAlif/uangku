@@ -40,14 +40,15 @@ public class UangkuApplication {
     public static int Uang;
     public static List<EntityKategori> kategoriList;
     public static String UserFullname;
-    
- 
+    private static PemasukanFrame masuk;
+    private static PengeluaranFrame keluar;
     public static void main(String[] args) throws SQLException {
         //prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
         prefs = Preferences.userNodeForPackage(uangkuapplication.main.UangkuApplication.class);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
         Pengguna pengguna = new Pengguna(UangkuDatabase.getConnection());
         LoginFrame login = new LoginFrame();
+        
         if(isLoggedIn==false){
             login.setVisible(true);
             
@@ -63,12 +64,14 @@ public class UangkuApplication {
           
         }
         
+        
                 
         kategoriList = UangkuDatabase.getKategori().getAllKategori();
                 
         UangkuDatabase.getConnection();
-                
-       
+        masuk = PemasukanFrame.getInstance();     
+        keluar = PengeluaranFrame.getInstance();
+          
         
         
         

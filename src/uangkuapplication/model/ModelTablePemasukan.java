@@ -64,7 +64,7 @@ public class ModelTablePemasukan extends AbstractTableModel {
     
     public boolean add(EntityTransaksi e) {
         try {
-            JOptionPane.showMessageDialog(null, "KONTOL");
+            
             return list.add(e);
              
         } finally {

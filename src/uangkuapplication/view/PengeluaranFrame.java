@@ -36,7 +36,7 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     
     
     private PengeluaranFrame() {
-       
+        initComponents();
         model = new ModelTransaksi();
         model.setListener(this);
         controller = new TransaksiController();
@@ -44,10 +44,10 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         modelTable = new ModelTablePengeluaran();
         MainFrame.getInstance(UangkuApplication.UserFullname).getTablePengeluaran().getSelectionModel().addListSelectionListener(this);
         MainFrame.getInstance(UangkuApplication.UserFullname).getTablePengeluaran().setModel(modelTable);
-        initComponents();
+        
         for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
             boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
-        
+        loadDatabase() ;
         
     }
     public static PengeluaranFrame getInstance(){
@@ -310,8 +310,8 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
-        MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.setList(controller.getAllPengeluaran());
-        //MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.add(transaksi);
+        modelTable.add(transaksi);
+    //MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.add(transaksi);
         //javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
     }
 

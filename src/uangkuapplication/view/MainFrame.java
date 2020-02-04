@@ -47,6 +47,8 @@ import uangkuapplication.service.IXChart;
  */
 public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XYChart>, TransaksiListener,ListSelectionListener {
     private static MainFrame instance = null;
+    
+    PemasukanFrame frameMasuk;
     public ModelTablePemasukan tablePemasukanModel;
     public ModelTablePengeluaran tablePengeluaranModel;
     private Color color;
@@ -69,6 +71,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     
     private MainFrame(String name) {
         initComponents();
+        
         color = new Color(255,229,153);
         colorSet = new Color[] { new Color(51,255,51,153), new Color(235,87,87, 153)};
         model = new ModelTransaksi();

@@ -17,6 +17,9 @@ import uangkuapplication.entity.EntityTransaksi;
 public class ModelTablePengeluaran extends AbstractTableModel {
     private List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
 
+    public void setList(List<EntityTransaksi> list) {
+        this.list = list;
+    }
     @Override
     public int getRowCount() {
         return list.size();
@@ -87,9 +90,7 @@ public class ModelTablePengeluaran extends AbstractTableModel {
         }
     }
     
-    public void setList(List<EntityTransaksi> list) {
-        this.list = list;
-    }
+    
     
     
     

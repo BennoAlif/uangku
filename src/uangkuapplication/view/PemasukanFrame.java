@@ -56,9 +56,9 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
         modelTable = new ModelTablePemasukan();
         mainFrame.getTablePemasukan().getSelectionModel().addListSelectionListener(this);
         mainFrame.getTablePemasukan().setModel(modelTable);
-        for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
+        for(int i = 0; i< UangkuApplication.kategoriList.size(); i++)
             boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
-        
+        loadDatabase();
     }
     
     
@@ -329,7 +329,7 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
-       
+        modelTable.add(transaksi);
         //testing model delete if broken
         //modelTable.add(transaksi);
         
