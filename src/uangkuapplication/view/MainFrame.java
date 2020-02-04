@@ -8,6 +8,7 @@ import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import uangkuapplication.error.KategoriException;
 
@@ -25,6 +26,12 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         this.name = name;
         txtNama.setText(name);
+        
+        
+    }
+
+    public JTable getTblRencana() {
+        return tblRencana;
     }
 
     /**

@@ -34,6 +34,36 @@ public class ModelTableRencana extends AbstractTableModel{
         return 4;
     }
 
+    public boolean add(Rencana e) {
+        try {
+            return list.add(e);
+        } finally {
+            fireTableRowsInserted(getRowCount()-1, getRowCount()-1);
+        }
+    }
+
+    public Rencana get(int i) {
+        return list.get(i);
+    }
+
+    public Rencana set(int i, Rencana e) {
+        try {
+            return list.set(i, e);
+        } finally {
+            fireTableRowsUpdated(i, i);
+        }
+    }
+
+    public Rencana remove(int i) {
+        try {
+            return list.remove(i);
+        } finally{
+            fireTableRowsDeleted(i, i);
+        }
+    }
+    
+    
+
     @Override
     public String getColumnName(int column) {
          //To change body of generated methods, choose Tools | Templates.
