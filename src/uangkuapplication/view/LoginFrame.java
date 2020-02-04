@@ -13,6 +13,7 @@ import uangkuapplication.impl.*;
 import uangkuapplication.entity.EntityPengguna;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.main.UangkuApplication;
+import uangkuapplication.view.MainFrame;
 
 /**
  *
@@ -325,23 +326,30 @@ public class LoginFrame extends javax.swing.JFrame {
     private void loginAction(){
         Pengguna login;
         EntityPengguna pengguna = null;
+        
+
         try {
             login = new Pengguna(UangkuDatabase.getConnection());
             pengguna = login.login(txtLoginName.getText(), new String( txtLoginPass.getPassword()));  
             
             //if(tx.getText().equals(rs.getString("username")) && txt_pass.getText().equals(rs.getString("password")))
             if(pengguna != null){
-                MainFrame main = new MainFrame(pengguna.getFullname());
+                
                 
                 UangkuApplication.prefs.putBoolean("isLoggedIn", true);
-                UangkuApplication.prefs.put("UserFullName", pengguna.getFullname());
                 UangkuApplication.prefs.putInt("UserID", pengguna.getUid());
-                UangkuApplication.prefs.putInt("Uang", pengguna.getUang());
-                main.setVisible(true);
+                //UangkuApplication.prefs.put("UserFullName", pengguna.getFullname());
+                System.out.println(MainFrame.getInstance(pengguna.getFullname()));
+                
+                //UangkuApplication.prefs.putInt("Uang", pengguna.getUang());
+                
+                MainFrame.getInstance(pengguna.getFullname()).setVisible(true);
+                
                 this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(null, "Username atau Password salah silakan coba lagi");
             }
+            System.out.println(pengguna.getFullname());
            
             
             

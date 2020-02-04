@@ -8,30 +8,77 @@ import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
+<<<<<<< HEAD
 import javax.swing.JTable;
+=======
+import javax.swing.JLabel;
+>>>>>>> 897392beba5dc55100932e85161205bd9daa570d
 import javax.swing.SwingUtilities;
+import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.error.KategoriException;
+import uangkuapplication.event.TransaksiListener;
+import uangkuapplication.model.ModelTransaksi;
+import uangkuapplication.controller.TransaksiController;
 
 /**
  *
  * @author Kyoto
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame implements TransaksiListener {
+    private static MainFrame instance = null;
+    public JLabel getTxtPemasukan() {
+        return txtPemasukan;
+    }
 
+    public JLabel getTxtPengeluaran() {
+        return txtPengeluaran;
+    }
+
+    public JLabel getTxtTotal() {
+        return txtTotal;
+    }
+
+    
     /**
      * Creates new form MainFrame
      */
+    private TransaksiController controller;
+    private ModelTransaksi model;
+    
+    
     private static String name;
-    public MainFrame(String name) {
+    private MainFrame(String name) {
         initComponents();
+        
+        model = new ModelTransaksi();
+        model.setListener(this);
+        controller = new TransaksiController();
+        controller.setModel(model);
         this.name = name;
         txtNama.setText(name);
+<<<<<<< HEAD
         
         
     }
 
     public JTable getTblRencana() {
         return tblRencana;
+=======
+        txtPemasukan.setText(String.valueOf(controller.getTotalPemasukan()));
+        txtPengeluaran.setText(String.valueOf(controller.getTotalPengeluaran()));
+        txtTotal.setText(String.valueOf(UangkuApplication.Uang));
+        
+        
+        //txtPemasukan.setText(totalPemasukan);
+    }
+    public static MainFrame getInstance(String name){
+        if (instance == null)
+        {
+            instance = new MainFrame(name);
+        }
+        
+        return instance;
+>>>>>>> 897392beba5dc55100932e85161205bd9daa570d
     }
 
     /**
@@ -52,16 +99,20 @@ public class MainFrame extends javax.swing.JFrame {
         pemasukanBtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        txtPemasukan = new javax.swing.JLabel();
+        txtPengeluaran = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableKategori = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableKategori1 = new javax.swing.JTable();
         reportPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -117,7 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pengeluaranBtn.setBackground(new java.awt.Color(255, 229, 153));
         pengeluaranBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
-        pengeluaranBtn.setForeground(new java.awt.Color(38, 50, 56));
+        pengeluaranBtn.setForeground(new java.awt.Color(246, 62, 94));
         pengeluaranBtn.setText("Tambah Pengeluaran");
         pengeluaranBtn.setBorder(null);
         pengeluaranBtn.setBorderPainted(false);
@@ -129,7 +180,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pemasukanBtn.setBackground(new java.awt.Color(255, 229, 153));
         pemasukanBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
-        pemasukanBtn.setForeground(new java.awt.Color(246, 61, 94));
+        pemasukanBtn.setForeground(new java.awt.Color(38, 50, 56));
         pemasukanBtn.setText("Tambah Pemasukan");
         pemasukanBtn.setBorder(null);
         pemasukanBtn.setBorderPainted(false);
@@ -145,19 +196,19 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(38, 50, 56));
         jLabel8.setText("UANGKU");
 
-        jLabel11.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel11.setText("Rp 574000");
+        txtTotal.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(38, 50, 56));
+        txtTotal.setText("Rp 574000");
 
         jSeparator1.setBackground(new java.awt.Color(38, 50, 56));
 
-        jLabel13.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(47, 128, 237));
-        jLabel13.setText("600000");
+        txtPemasukan.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        txtPemasukan.setForeground(new java.awt.Color(47, 128, 237));
+        txtPemasukan.setText("600000");
 
-        jLabel15.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(246, 61, 94));
-        jLabel15.setText("26000");
+        txtPengeluaran.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        txtPengeluaran.setForeground(new java.awt.Color(246, 61, 94));
+        txtPengeluaran.setText("26000");
 
         jLabel14.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(38, 50, 56));
@@ -181,14 +232,14 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel15))
+                        .addComponent(txtPengeluaran))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 74, Short.MAX_VALUE)
-                        .addComponent(jLabel11))
+                        .addGap(0, 78, Short.MAX_VALUE)
+                        .addComponent(txtTotal))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel13)))
+                        .addComponent(txtPemasukan)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -198,16 +249,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(txtPemasukan)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
+                    .addComponent(txtPengeluaran)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(txtTotal)
                 .addContainerGap())
         );
 
@@ -218,6 +269,19 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(38, 50, 56));
         jLabel9.setText("Pengeluaran");
 
+        tableKategori.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tableKategori);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -225,14 +289,24 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addContainerGap(36, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 229, 153));
@@ -242,21 +316,40 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(38, 50, 56));
         jLabel10.setText("Pemasukan");
 
+        tableKategori1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tableKategori1);
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(0, 176, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
@@ -303,7 +396,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         mainPanel.add(homePanel, "card2");
@@ -334,7 +427,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 229, 153));
@@ -351,14 +444,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 229, 153));
@@ -375,14 +468,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel18)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel18)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jLabel19.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
@@ -396,7 +489,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(reportPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -423,7 +516,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         mainPanel.add(reportPanel, "card3");
@@ -730,7 +823,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -868,6 +961,7 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame(name).setVisible(true);
+                
            }
         });
     }
@@ -882,11 +976,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -910,6 +1001,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable2;
     private javax.swing.JButton logoutBtn;
@@ -921,7 +1014,36 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton reportBtn;
     private javax.swing.JPanel reportPanel;
+    private javax.swing.JTable tableKategori;
+    private javax.swing.JTable tableKategori1;
     private javax.swing.JTable tblRencana;
     private javax.swing.JLabel txtNama;
+    private javax.swing.JLabel txtPemasukan;
+    private javax.swing.JLabel txtPengeluaran;
+    private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(ModelTransaksi model) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onInsert(EntityTransaksi transaksi) {
+        System.out.println("MainKONTOL"+controller.getTotalPemasukan());
+        txtPemasukan.setText("TESS" + controller.getTotalPemasukan());
+        txtPengeluaran.setText("Tess" + controller.getTotalPengeluaran());
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onDelete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onUpdate(EntityTransaksi transaksi) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

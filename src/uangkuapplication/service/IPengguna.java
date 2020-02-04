@@ -22,6 +22,8 @@ public interface IPengguna {
     public EntityPengguna login(String username, String password) throws SQLException;
     
     public void updateUang(int uid, int nominal) throws SQLException;
-            
+    
+    public int getUang(int uid) throws SQLException;
+    public String getFullname(int uid) throws SQLException;
     
 }

@@ -14,10 +14,11 @@ import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.error.KategoriException;
 import uangkuapplication.service.IKategori;
 import uangkuapplication.service.ITransaksi;
+import uangkuapplication.impl.Pengguna;
 import uangkuapplication.view.LoginFrame;
 import uangkuapplication.view.MainFrame;
 import uangkuapplication.model.ModelTableKategori;
-
+import uangkuapplication.controller.TransaksiController;
 /**
  *
  * @author Kyoto
@@ -33,13 +34,14 @@ public class UangkuApplication {
     public static int UserID;
     public static int Uang;
     public static List<EntityKategori> kategoriList;
+    public static String UserFullname;
+    
     public static void main(String[] args) throws SQLException {
-        prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
-        
+        //prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
+        prefs = Preferences.userNodeForPackage(uangkuapplication.main.UangkuApplication.class);
         boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
-        
+        Pengguna pengguna = new Pengguna(UangkuDatabase.getConnection());
         LoginFrame login = new LoginFrame();
-        MainFrame main = new MainFrame(prefs.get("UserFullName", ""));
         
         
         if(isLoggedIn==false){
@@ -47,26 +49,19 @@ public class UangkuApplication {
             
         }
         else{
-            main.setVisible(true);
-            UserID = prefs.getInt("UserID", 0);
-            Uang = prefs.getInt("Uang", 0);
+            
+            UserID = prefs.getInt("UserID",0);
+            //Uang = prefs.getInt("Uang", 0);
+            UserFullname = pengguna.getFullname(UserID);
+            Uang = pengguna.getUang(UserID);
+            MainFrame.getInstance(UserFullname).setVisible(true);
         }
         
         kategoriList = UangkuDatabase.getKategori().getAllKategori();
-        
         UangkuDatabase.getConnection();
         
-//        java.util.Date date = new java.util.Date();
-//        
-//        EntityTransaksi transaksi = new EntityTransaksi();
-//        ITransaksi dao = UangkuDatabase.getTransaksi();
-//        transaksi.setId_kategori(5);
-//        transaksi.setUid(2);
-//        transaksi.setNominal(200);
-//        transaksi.setTgl_transaksi(new Date(date.getTime()));
-//        transaksi.setCatatan("dadada");
-//        transaksi.setUang_sekarang(2000);
-//        dao.insertPemasukan(transaksi);
+        
+        
     }
     
     public static int findKategoriID(String name){
