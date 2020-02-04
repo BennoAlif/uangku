@@ -6,7 +6,7 @@
 package uangkuapplication.service;
 
 import java.util.List;
-import uangkuapplication.entity.Rencana;
+import uangkuapplication.entity.EntityRencana;
 import uangkuapplication.error.RencanaException;
 
 /**
@@ -15,9 +15,9 @@ import uangkuapplication.error.RencanaException;
  */
 public interface RencanaDao {
     
-    public void insertRencana(Rencana rencana) throws RencanaException;
+    public void insertRencana(EntityRencana rencana) throws RencanaException;
     public void deleteRencana(int id) throws RencanaException;
-    public void updateRencana(Rencana rencana) throws RencanaException;
-    public Rencana getRencana(int id) throws RencanaException;
-    public List<Rencana> selectAllRencana() throws RencanaException;
+    public void updateRencana(EntityRencana rencana) throws RencanaException;
+    public EntityRencana getRencana(int id) throws RencanaException;
+    public List<EntityRencana> selectAllRencana() throws RencanaException;
 }

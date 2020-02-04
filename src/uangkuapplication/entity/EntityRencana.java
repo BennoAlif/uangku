@@ -12,24 +12,23 @@ import java.util.Objects;
  *
  * @author Rizki Restu
  */
-public class Rencana {
-    private int id;
-    private int uid;
+public class EntityRencana {
+    private Integer id;
+    private Integer uid;
     private String nama;
-    private int nominal;
+    private Integer nominal;
     private Date tgl_rencana;
     private String status;
     private String catatan;
-    private int id_kategori;
+    private Integer id_kategori;
     
-    public Rencana(){
+    public EntityRencana(){
         
     }
     //constructor
-    public Rencana(int id, int uid, String nama, int nominal, Date tgl_rencana, String status, String catatan, int id_kategori) {
+    public EntityRencana(Integer id, Integer uid, String nama, Integer nominal, Date tgl_rencana, String status, String catatan, Integer id_kategori) {
         this.id = id;
         this.uid = uid;
-        this.nama = nama;
         this.nominal = nominal;
         this.tgl_rencana = tgl_rencana;
         this.status = status;
@@ -43,7 +42,7 @@ public class Rencana {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,23 +50,15 @@ public class Rencana {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public int getNominal() {
+        public int getNominal() {
         return nominal;
     }
 
-    public void setNominal(int nominal) {
+    public void setNominal(Integer nominal) {
         this.nominal = nominal;
     }
 
@@ -99,7 +90,7 @@ public class Rencana {
         return id_kategori;
     }
 
-    public void setId_kategori(int id_kategori) {
+    public void setId_kategori(Integer id_kategori) {
         this.id_kategori = id_kategori;
     }
 
@@ -128,7 +119,7 @@ public class Rencana {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Rencana other = (Rencana) obj;
+        final EntityRencana other = (EntityRencana) obj;
         if (this.id != other.id) {
             return false;
         }

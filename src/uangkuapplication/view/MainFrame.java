@@ -39,6 +39,7 @@ import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
 import uangkuapplication.database.UangkuDatabase;
+import uangkuapplication.model.ModelTableRencana;
 import uangkuapplication.service.ITransaksi;
 
 import uangkuapplication.service.IXChart;
@@ -52,6 +53,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     PemasukanFrame frameMasuk;
     public ModelTablePemasukan tablePemasukanModel;
     public ModelTablePengeluaran tablePengeluaranModel;
+    private ModelTableRencana modelTableRencana;
     private Color color;
     private Color[] colorSet;
     
@@ -95,6 +97,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         donutChartNominalListMasuk = new ArrayList<Integer>();
         donutChartKategoriListKeluar = new ArrayList<String>();
         donutChartNominalListKeluar = new ArrayList<Integer>();
+        
+        modelTableRencana = new ModelTableRencana();
+        tblRencana.setModel(modelTableRencana);
         
         
         
