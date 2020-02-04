@@ -5,13 +5,21 @@
  */
 package uangkuapplication.view;
 import com.github.lgooddatepicker.components.DatePicker;
+import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import uangkuapplication.controller.TransaksiController;
+import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.entity.EntityTransaksi;
+import uangkuapplication.error.KategoriException;
 import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.main.UangkuApplication;
+import uangkuapplication.model.ModelTablePemasukan;
+import uangkuapplication.model.ModelTablePengeluaran;
 import uangkuapplication.model.ModelTransaksi;
+import uangkuapplication.service.ITransaksi;
 
 import uangkuapplication.view.MainFrame;
 
@@ -19,25 +27,36 @@ import uangkuapplication.view.MainFrame;
  *
  * @author Wildhevire
  */
-public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiListener {
-
+public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiListener ,ListSelectionListener{
+    private static PengeluaranFrame instance;
     private int idKategori = 0;
     private TransaksiController controller;
     private ModelTransaksi model;
+    public ModelTablePengeluaran modelTable;
     
     
-    public PengeluaranFrame() {
+    private PengeluaranFrame() {
        
         model = new ModelTransaksi();
         model.setListener(this);
         controller = new TransaksiController();
         controller.setModel(model);
+        modelTable = new ModelTablePengeluaran();
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTablePengeluaran().getSelectionModel().addListSelectionListener(this);
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTablePengeluaran().setModel(modelTable);
         initComponents();
         for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
             boxKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
         
         
     }
+    public static PengeluaranFrame getInstance(){
+        if(instance == null){
+            instance = new PengeluaranFrame();
+        }
+        return instance;
+    }
+    
     
     public int getIdKategori() {
         return idKategori;
@@ -291,7 +310,8 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
-        
+        MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.setList(controller.getAllPengeluaran());
+        //MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.add(transaksi);
         //javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
     }
 
@@ -304,5 +324,14 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
     @Override
     public void onUpdate(EntityTransaksi transaksi) {
         javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL update");
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void loadDatabase() {
+       // ITransaksi dao = UangkuDatabase.getTransaksi();
+        modelTable.setList(controller.getAllPengeluaran());
     }
 }

@@ -14,7 +14,7 @@ import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.event.TransaksiListener;
 import uangkuapplication.service.ITransaksi;
 import uangkuapplication.service.IPengguna;
-
+import uangkuapplication.model.ModelTablePemasukan;
 /**
  *
  * @author Wildhevire
@@ -26,6 +26,7 @@ public class ModelTransaksi {
     private Date tgl_transaksi;
     private String catatan;
     private int uangSekarang;
+    private ModelTablePemasukan masuk;
 
     public int getUangSekarang() throws SQLException{
         
@@ -110,7 +111,8 @@ public class ModelTransaksi {
         List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
         ITransaksi dao = UangkuDatabase.getTransaksi();
         list = dao.getAllPemasukan();
-        return null;
+        
+        return list;
     }
     
     public List<EntityTransaksi> getAllPemasukan() throws SQLException{
