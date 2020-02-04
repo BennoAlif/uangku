@@ -8,7 +8,7 @@ package uangkuapplication.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import uangkuapplication.entity.Rencana;
+import uangkuapplication.entity.EntityRencana;
 
 /**
  *
@@ -16,9 +16,9 @@ import uangkuapplication.entity.Rencana;
  */
 public class ModelTableRencana extends AbstractTableModel{
     
-    private List<Rencana> list = new ArrayList<Rencana>();
+    private List<EntityRencana> list = new ArrayList<EntityRencana>();
 
-    public void setList(List<Rencana> list) {
+    public void setList(List<EntityRencana> list) {
         this.list = list;
     }
     
@@ -34,7 +34,7 @@ public class ModelTableRencana extends AbstractTableModel{
         return 4;
     }
 
-    public boolean add(Rencana e) {
+    public boolean add(EntityRencana e) {
         try {
             return list.add(e);
         } finally {
@@ -42,11 +42,11 @@ public class ModelTableRencana extends AbstractTableModel{
         }
     }
 
-    public Rencana get(int i) {
+    public EntityRencana get(int i) {
         return list.get(i);
     }
 
-    public Rencana set(int i, Rencana e) {
+    public EntityRencana set(int i, EntityRencana e) {
         try {
             return list.set(i, e);
         } finally {
@@ -54,7 +54,7 @@ public class ModelTableRencana extends AbstractTableModel{
         }
     }
 
-    public Rencana remove(int i) {
+    public EntityRencana remove(int i) {
         try {
             return list.remove(i);
         } finally{

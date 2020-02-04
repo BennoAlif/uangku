@@ -181,7 +181,7 @@ public class Kategori implements IKategori{
             
             while (result.next()) {
                 kategori = new EntityKategori();
-                kategori.setId(result.getInt("id"));
+                kategori.setId(result.getInt("id_kategori"));
                 kategori.setNama_kategori(result.getString("nama_kategori"));
                 list.add(kategori);
             }

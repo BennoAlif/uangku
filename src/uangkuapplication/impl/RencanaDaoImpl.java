@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import uangkuapplication.entity.Rencana;
+import uangkuapplication.entity.EntityRencana;
 import uangkuapplication.error.RencanaException;
 import uangkuapplication.service.RencanaDao;
 
@@ -37,7 +37,7 @@ public class RencanaDaoImpl implements RencanaDao{
     
    
     @Override
-    public void insertRencana(Rencana rencana) throws RencanaException {
+    public void insertRencana(EntityRencana rencana) throws RencanaException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -109,7 +109,7 @@ public class RencanaDaoImpl implements RencanaDao{
     }
 
     @Override
-    public void updateRencana(Rencana rencana) throws RencanaException {
+    public void updateRencana(EntityRencana rencana) throws RencanaException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -149,7 +149,7 @@ public class RencanaDaoImpl implements RencanaDao{
     }
 
     @Override
-    public Rencana getRencana(int id) throws RencanaException {
+    public EntityRencana getRencana(int id) throws RencanaException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -157,11 +157,11 @@ public class RencanaDaoImpl implements RencanaDao{
             statement = connection.prepareStatement(getById);
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
-            Rencana rencana = null;
+            EntityRencana rencana = null;
             
                         
             if (result.next()) {
-                rencana = new Rencana();
+                rencana = new EntityRencana();
                 rencana.setId(result.getInt("id"));
                 rencana.setUid(result.getInt("uid"));
                 rencana.setNama(result.getString("nama"));
@@ -197,20 +197,20 @@ public class RencanaDaoImpl implements RencanaDao{
     }
 
     @Override
-    public List<Rencana> selectAllRencana() throws RencanaException {
+    public List<EntityRencana> selectAllRencana() throws RencanaException {
         Statement statement = null;
-        List<Rencana> list = new ArrayList<Rencana>();
+        List<EntityRencana> list = new ArrayList<EntityRencana>();
         try {
             connection.setAutoCommit(false);
             
             statement = connection.createStatement();
             
             ResultSet result = statement.executeQuery(selectAll);
-            Rencana rencana = null;
+            EntityRencana rencana = null;
             
                         
             while (result.next()) {
-                rencana = new Rencana();
+                rencana = new EntityRencana();
                 rencana.setId(result.getInt("id"));
                 rencana.setUid(result.getInt("uid"));
                 rencana.setNama(result.getString("nama"));
