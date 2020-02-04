@@ -128,6 +128,25 @@ public class ModelTransaksi {
         list = dao.getAllPengeluarkan();
         return list;
     }
+    public List<EntityTransaksi> getAllPengeluaranKategori() throws SQLException{
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        ITransaksi dao = UangkuDatabase.getTransaksi();
+        list = dao.getAllPengeluarkanWithKategori();
+        return list;
+    }
+    public List<EntityTransaksi> getAllPemasukanKategori() throws SQLException{
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        ITransaksi dao = UangkuDatabase.getTransaksi();
+        list = dao.getAllPemasukanWithKategori();
+        return list;
+    }
+    
+    public List<EntityTransaksi> getDonutChartData() throws SQLException{
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+        ITransaksi dao = UangkuDatabase.getTransaksi();
+        list = dao.getDonutChartData();
+        return list;
+    }
     
     
 

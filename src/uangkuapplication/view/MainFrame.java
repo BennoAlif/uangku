@@ -5,6 +5,7 @@
  */
 package uangkuapplication.view;
 import java.awt.Color;
+import java.sql.Date;
 import uangkuapplication.main.UangkuApplication;
 
 import java.sql.SQLException;
@@ -66,9 +67,19 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private XYChart totalChart;
     
     private static String name;
-
- 
     
+    private List<Date> dateList;
+    private List<Integer> nominalList;
+    
+    private List<EntityTransaksi> donutChartList;
+    private List<String> donutChartKategoriListMasuk;
+    private List<Integer> donutChartNominalListMasuk;
+    private List<String> donutChartKategoriListKeluar;
+    private List<Integer> donutChartNominalListKeluar;
+    
+    JPanel pemasukanChartPanel;
+    JPanel pengeluaranChartPanel;
+    JPanel totalChartPanel;
     private MainFrame(String name) {
         initComponents();
         
@@ -79,7 +90,11 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
         controller = new TransaksiController();
         controller.setModel(model);
-        
+        donutChartList = new ArrayList<EntityTransaksi>();
+        donutChartKategoriListMasuk = new ArrayList<String>();
+        donutChartNominalListMasuk = new ArrayList<Integer>();
+        donutChartKategoriListKeluar = new ArrayList<String>();
+        donutChartNominalListKeluar = new ArrayList<Integer>();
         
         
         
@@ -103,22 +118,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         
        
 
-        xChart = this;
-        pemasukanChart = xChart.getPemasukanChart();
-        JPanel pemasukanChartPanel = new XChartPanel(pemasukanChart);
-        PemasukanPanel.add(pemasukanChartPanel);
-        PemasukanPanel.validate();
+             
+
         
-        pengeluaranChart = xChart.getPengeluaranChart();
-        JPanel pengeluaranChartPanel = new XChartPanel(pengeluaranChart);
-        PengeluaranPanel.add(pengeluaranChartPanel);
-        PengeluaranPanel.validate();
-        
-        totalChart = xChart.getTotalChart();
-        JPanel totalChartPanel = new XChartPanel(totalChart);
-        TotalPanel.add(totalChartPanel);
-        TotalPanel.validate();
-                
         //new SwingWrapper<PieChart>(pemasukanChart).displayChart();
         //txtPemasukan.setText(totalPemasukan);
     }
@@ -880,9 +882,54 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         mainPanel.repaint();
         mainPanel.revalidate();
         
+        donutChartList.clear();
+        donutChartKategoriListMasuk.clear();
+        donutChartNominalListMasuk.clear();
+        donutChartKategoriListKeluar.clear();
+        donutChartNominalListKeluar.clear();        
+        donutChartList = controller.getDonutChartData();
+        for(int i = 0; i < donutChartList.size(); i++){
+            //System.out.println(donutChartList.get(i).getJenis_transaksi());
+            if(donutChartList.get(i).getJenis_transaksi().equals("Masuk")){
+               //  System.out.println("Gol"+ i);
+                donutChartKategoriListMasuk.add(donutChartList.get(i).getKategori());
+                donutChartNominalListMasuk.add(donutChartList.get(i).getNominal());
+            }else{
+                //System.out.println("Aut" + i);
+                donutChartKategoriListKeluar.add(donutChartList.get(i).getKategori());
+                donutChartNominalListKeluar.add(donutChartList.get(i).getNominal());
+            }
+        }
+        //System.out.println("Masuk" + donutChartKategoriListMasuk.size());
+        //System.out.println("Keluar" +donutChartKategoriListKeluar.size());
+ 
+        
+        xChart = this;
+        pemasukanChart = xChart.getPemasukanChart();
+        pengeluaranChart = xChart.getPengeluaranChart();
+        pemasukanChartPanel = new XChartPanel(pemasukanChart);
+        PemasukanPanel.removeAll();
+        PemasukanPanel.add(pemasukanChartPanel);
+        PemasukanPanel.validate();
+        
+        
+        pengeluaranChartPanel = new XChartPanel(pengeluaranChart);
+        PengeluaranPanel.removeAll();
+        PengeluaranPanel.add(pengeluaranChartPanel);
+        PengeluaranPanel.revalidate();
+        
+        totalChart = xChart.getTotalChart();
+        totalChartPanel = new XChartPanel(totalChart);
+        TotalPanel.removeAll();
+        TotalPanel.add(totalChartPanel);
+        TotalPanel.validate();
+         
+      //PemasukanPanel.add(pemasukanChartPanel);
+      //PemasukanPanel.validate();
         mainPanel.add(reportPanel);
         mainPanel.repaint();
         mainPanel.revalidate();
+        //TotalPanel.validate();
     }//GEN-LAST:event_reportBtnActionPerformed
 
     private void addCategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryBtnActionPerformed
@@ -1056,12 +1103,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
     @Override
     public void onInsert(EntityTransaksi transaksi) {
-        if(transaksi.getJenis_transaksi() == "Masuk")
-            javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pemasukan");
-        else
-            javax.swing.JOptionPane.showMessageDialog(null, "Bisa KONTOL pengeluaran");
         
-        //throw new UnsupportedOperationException("Kontol."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Kontol."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -1096,10 +1139,15 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         //chart.getStyler().setCircular(false);
 
         // Series
-        chart.addSeries("Makan", 10);
-        chart.addSeries("Tidur", 22);
-        chart.addSeries("Mandi", 21);
-       
+//        chart.addSeries("Makan", 10);
+//        chart.addSeries("Tidur", 22);
+ //       chart.addSeries("Mandi", 21);
+// 
+
+
+        for(int i = 0; i<donutChartKategoriListMasuk.size(); i++){
+            chart.addSeries(donutChartKategoriListMasuk.get(i), donutChartNominalListMasuk.get(i));
+        }
 
         return chart;
 
@@ -1127,9 +1175,13 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         //chart.getStyler().setCircular(false);
 
         // Series
-        chart.addSeries("Makan", 9);
-        chart.addSeries("Tidur", 10);
-        chart.addSeries("Mandi", 34);
+        //chart.addSeries("Makan", 9);
+        //chart.addSeries("Tidur", 10);
+        //chart.addSeries("Mandi", 34);
+
+        for(int i = 0; i<donutChartKategoriListKeluar.size(); i++){
+            chart.addSeries(donutChartKategoriListKeluar.get(i), donutChartNominalListKeluar.get(i));
+        }
        
 
         return chart;
@@ -1137,6 +1189,15 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
     @Override
     public XYChart getTotalChart() {
+        XYChart chart = populateTotalChart();
+        // Series
+        chart.addSeries("Pemasukan", new double[] {0, 3, 5, 7, 9}, new double[] {-3, 5, 9, 6, 5});
+        chart.addSeries("Pengeluaran", new double[] {0, 2, 4, 6, 9}, new double[] {-1, 6, 4, 0, 4});
+        
+        return chart;
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public XYChart populateTotalChart(){
         // Create Chart
         XYChart chart =
             new XYChartBuilder()
@@ -1156,14 +1217,10 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         chart.getStyler().setPlotBackgroundColor(color);
         chart.getStyler().setChartBackgroundColor(color);
         chart.getStyler().setSeriesColors(colorSet);
-        // Series
-        chart.addSeries("Pemasukan", new double[] {0, 3, 5, 7, 9}, new double[] {-3, 5, 9, 6, 5});
-        chart.addSeries("Pengeluaran", new double[] {0, 2, 4, 6, 9}, new double[] {-1, 6, 4, 0, 4});
-
         return chart;
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    
  
 
     

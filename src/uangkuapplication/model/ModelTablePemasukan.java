@@ -32,7 +32,7 @@ public class ModelTablePemasukan extends AbstractTableModel {
     public Object getValueAt(int i, int i1) {
         switch(i1){
             case 0:
-                return list.get(i).getNominal();
+                return list.get(i).getKategori();
             case 1:
                 return list.get(i).getNominal();
             case 2:

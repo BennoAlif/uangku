@@ -5,6 +5,7 @@
  */
 package uangkuapplication.entity;
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 /**
  *
@@ -19,7 +20,19 @@ public class EntityTransaksi {
     private Date tgl_transaksi;
     private String catatan;
     private String jenis_transaksi;
+    private String kategori;
 
+    
+    
+    
+    
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
     
     //constructor
     public EntityTransaksi(){

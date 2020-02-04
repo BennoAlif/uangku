@@ -141,6 +141,52 @@ public class TransaksiController {
         }
         return uang;
     }
+    public List<EntityTransaksi> getAllPemasukanKategory(){
+        
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+
+        try {
+            list = model.getAllPemasukanKategori();
+            
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //masuk.setList(list);
+        return list;
+    }
+    public List<EntityTransaksi> getAllPengeluaranKategori(){
+        
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+
+        try {
+            list = model.getAllPengeluaranKategori();
+            
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //masuk.setList(list);
+        return list;
+    }
+    
+    public List<EntityTransaksi> getDonutChartData(){
+        
+        List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();
+
+        try {
+            list = model.getDonutChartData();
+            
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //masuk.setList(list);
+        return list;
+    }
     
     
 }

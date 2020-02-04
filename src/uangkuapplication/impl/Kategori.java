@@ -25,11 +25,11 @@ public class Kategori implements IKategori{
     
     private Connection connection;
     private final String insertKategori = "INSERT INTO kategori (nama_kategori) VALUES (?)";
-    private final String updateKategori = "UPDATE kategori SET nama_kategori=? WHERE id=?";
-    private final String deleteKategori = "DELETE FROM kategori WHERE id=?";
-    private final String getById = "SELECT * FROM kategori WHERE id=?";
+    private final String updateKategori = "UPDATE kategori SET nama_kategori=? WHERE id_kategori=?";
+    private final String deleteKategori = "DELETE FROM kategori WHERE id_kategori=?";
+    private final String getById = "SELECT * FROM kategori WHERE id_kategori=?";
     private final String getAll = "SELECT * FROM kategori";
-    private final String getByName = "SELECT id FROM kategori WHERE name=?";
+    private final String getByName = "SELECT id_kategori FROM kategori WHERE name=?";
     
     public Kategori(Connection connection) {
         this.connection = connection;
@@ -181,7 +181,7 @@ public class Kategori implements IKategori{
             
             while (result.next()) {
                 kategori = new EntityKategori();
-                kategori.setId(result.getInt("id"));
+                kategori.setId(result.getInt("id_kategori"));
                 kategori.setNama_kategori(result.getString("nama_kategori"));
                 list.add(kategori);
             }
