@@ -144,10 +144,7 @@ public class ModelRencana {
        
         IRencana rencana = UangkuDatabase.getRencana();
         EntityRencana ren = new EntityRencana();
-        ren.setId_kategori(id_kategori);
-        ren.setNominal(nominal);
-        ren.setTgl_rencana(tglRencana);
-        ren.setCatatan(catatan);
+        
         ren.setId(uid);
         
         rencana.updateRencana(ren);

@@ -27,8 +27,8 @@ public class Rencana implements IRencana{
     private Connection connection;
     
     private final String insertRencana = "INSERT INTO RENCANA (uid, id_kategori, nominal, tgl_rencana, status, catatan) VALUES (?,?,?,?,?,?)";
-    private final String deleteRencana = "UPDATE rencana SET status = 'Selesai' where id=?";
-    private final String updateRencana = "UPDATE RENCANA uid=?, id_kategori=?, nominal=?, tgl_rencana=?, status=?, catatan=? WHERE id=?";
+    private final String updateRencana = "UPDATE rencana SET status = 'Selesai' where id=?";
+    private final String deleteRencana = "DELETE FROM rencana WHERE id=?";
     private final String getById = "SELECT * FROM RENCANA WHERE id=?";
     private final String selectAll = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori";
     private final String selectKategori = "SELECT nama_kategori FROM kategori WHERE id_kategori = ?";
@@ -118,12 +118,7 @@ public class Rencana implements IRencana{
             
             statement = connection.prepareStatement(updateRencana);
             statement.setInt(1, rencana.getUid());
-            statement.setInt(2, rencana.getId_kategori());
-            statement.setInt(3, rencana.getNominal());
-            statement.setDate(4, (Date) rencana.getTgl_rencana());
-            statement.setString(5, rencana.getStatus());
-            statement.setString(6, rencana.getCatatan());
-            statement.setInt(7, rencana.getId());
+            
             statement.executeUpdate();
             
             connection.commit();

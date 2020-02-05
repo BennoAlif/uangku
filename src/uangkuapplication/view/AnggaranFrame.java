@@ -343,6 +343,7 @@ public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener
     @Override
     public void onUpdate(EntityRencana rencana) {
         
+        JOptionPane.showMessageDialog(null, "Bayar");
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
