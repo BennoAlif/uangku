@@ -338,18 +338,22 @@ public class LoginFrame extends javax.swing.JFrame {
                 
                 UangkuApplication.prefs.putBoolean("isLoggedIn", true);
                 UangkuApplication.prefs.putInt("UserID", pengguna.getUid());
+                UangkuApplication.UserID = pengguna.getUid();
                 //UangkuApplication.prefs.put("UserFullName", pengguna.getFullname());
-                System.out.println(MainFrame.getInstance(pengguna.getFullname()));
                 
                 //UangkuApplication.prefs.putInt("Uang", pengguna.getUang());
                 
                 MainFrame.getInstance(pengguna.getFullname()).setVisible(true);
-                
+                PemasukanFrame.getInstance();
+                PengeluaranFrame.getInstance();
+                AnggaranFrame.getInstance();
                 this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(null, "Username atau Password salah silakan coba lagi");
             }
-            System.out.println(pengguna.getFullname());
+            PemasukanFrame.getInstance().deleteInstance();
+            PengeluaranFrame.getInstance().deleteInstance();
+            AnggaranFrame.getInstance().deleteInstance();
            
             
             

@@ -57,6 +57,10 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         return instance;
     }
     
+    public void deleteInstance(){
+        instance = null;
+    }
+    
     
     public int getIdKategori() {
         return idKategori;
@@ -309,7 +313,7 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         //hitung perubahan di uang sekarang disini
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
-        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang()));
+        MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang(UangkuApplication.UserID)));
         transaksi.setKategori(boxKategori.getSelectedItem().toString());
 
 

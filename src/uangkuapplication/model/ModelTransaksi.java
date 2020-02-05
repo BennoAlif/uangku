@@ -28,10 +28,10 @@ public class ModelTransaksi {
     private int uangSekarang;
     private ModelTablePemasukan masuk;
 
-    public int getUangSekarang() throws SQLException{
+    public int getUangSekarang(int id) throws SQLException{
         
         IPengguna daoPengguna = UangkuDatabase.getPengguna();
-        uangSekarang = daoPengguna.getUang(uid);
+        uangSekarang = daoPengguna.getUang(id);
         return uangSekarang;
     }
 

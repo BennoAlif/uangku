@@ -66,6 +66,9 @@ public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener
         }
         return instance;
     }
+    public void deleteInstance(){
+        instance = null;
+    }
 
     public JTextField getTxtID() {
         return txtID;

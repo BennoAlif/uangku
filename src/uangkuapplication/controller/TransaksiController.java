@@ -50,7 +50,7 @@ public class TransaksiController {
         try {
            
             model.insertPemasukan();
-            UangkuApplication.Uang = model.getUangSekarang();
+            UangkuApplication.Uang = model.getUangSekarang(UangkuApplication.UserID);
         } catch (Throwable ex) {
             JOptionPane.showMessageDialog(view, ex.getMessage());
         }
@@ -73,7 +73,7 @@ public class TransaksiController {
         try {
            
             model.insertPengeluaran();
-            UangkuApplication.Uang = model.getUangSekarang();
+            UangkuApplication.Uang = model.getUangSekarang(UangkuApplication.UserID);
         } catch (Throwable ex) {
             JOptionPane.showMessageDialog(view, ex.getMessage());
         }
@@ -130,10 +130,10 @@ public class TransaksiController {
         return total;
     }
     
-    public int getUangSekarang(){
+    public int getUangSekarang(int id){
         int uang = 0;
         try {
-            uang = model.getUangSekarang();
+            uang = model.getUangSekarang(id);
             return uang;
         } catch (SQLException ex) {
             Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);

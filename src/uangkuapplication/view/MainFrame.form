@@ -160,7 +160,7 @@
                               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="20" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -552,7 +552,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="TotalPanel" alignment="1" max="32767" attributes="0"/>
+                              <Component id="TotalPanel" alignment="1" pref="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="PengeluaranPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -584,7 +584,7 @@
                               <Component id="PengeluaranPanel" min="-2" max="-2" attributes="0"/>
                               <Component id="PemasukanPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -671,7 +671,7 @@
                                       <Component id="btnTambahRe" alignment="0" min="-2" pref="291" max="-2" attributes="0"/>
                                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="268" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="209" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
                           </Group>
@@ -717,7 +717,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane1" pref="531" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="480" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -877,7 +877,7 @@
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane2" pref="531" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="480" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>

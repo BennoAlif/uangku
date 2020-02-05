@@ -136,7 +136,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         
         txtPemasukan.setText(String.valueOf(controller.getTotalPemasukan()));
         txtPengeluaran.setText(String.valueOf(controller.getTotalPengeluaran()));
-        txtTotal.setText(String.valueOf(UangkuApplication.Uang));
+        txtTotal.setText(String.valueOf(controller.getUangSekarang(UangkuApplication.UserID)));
        
 
              
@@ -1055,6 +1055,12 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         UangkuApplication.prefs.remove("Uang");
         LoginFrame login = new LoginFrame();
         this.setVisible(false);
+        instance = null;
+        PemasukanFrame.getInstance().deleteInstance();
+        PengeluaranFrame.getInstance().deleteInstance();
+        AnggaranFrame.getInstance().deleteInstance();
+        
+        
         
         login.setVisible(true);
         
@@ -1209,7 +1215,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     @Override
     public void onInsert(EntityTransaksi transaksi) {
         
-        throw new UnsupportedOperationException("Kontol."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not Supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

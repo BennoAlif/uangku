@@ -51,6 +51,7 @@ public class UangkuApplication {
         Pengguna pengguna = new Pengguna(UangkuDatabase.getConnection());
         LoginFrame login = new LoginFrame();
         
+            
         if(isLoggedIn==false){
             login.setVisible(true);
             
