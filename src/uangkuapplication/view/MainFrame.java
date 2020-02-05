@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
@@ -42,6 +43,7 @@ import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
 import uangkuapplication.database.UangkuDatabase;
 import uangkuapplication.model.ModelTableRencana;
+import uangkuapplication.model.ModelTableTerbayar;
 import uangkuapplication.service.ITransaksi;
 
 import uangkuapplication.service.IXChart;
@@ -52,9 +54,13 @@ import uangkuapplication.service.IXChart;
 public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XYChart>, TransaksiListener,ListSelectionListener {
     private static MainFrame instance = null;
     
+    
+    
     PemasukanFrame frameMasuk;
     public ModelTablePemasukan tablePemasukanModel;
     public ModelTablePengeluaran tablePengeluaranModel;
+    public ModelTableRencana tableRencanaModel;
+    public ModelTableTerbayar tableTerbayarModel;
     private ModelTableRencana modelTableRencana;
     private Color color;
     private Color[] colorSet;
@@ -109,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         donutChartNominalListKeluar = new ArrayList<Integer>();
         
         modelTableRencana = new ModelTableRencana();
-        tblRencana.setModel(modelTableRencana);
+        tableRencana.setModel(modelTableRencana);
         
         
         
@@ -127,10 +133,10 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         
         this.name = name;
         txtNama.setText(name);
+        
         txtPemasukan.setText(String.valueOf(controller.getTotalPemasukan()));
         txtPengeluaran.setText(String.valueOf(controller.getTotalPengeluaran()));
         txtTotal.setText(String.valueOf(UangkuApplication.Uang));
-        
        
 
              
@@ -179,6 +185,23 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     public JTable getTablePengeluaran() {
         return tablePengeluaran;
     }
+
+    public JTable getTableRencana() {
+        return tableRencana;
+    }
+
+    public void setTableRencana(JTable tableRencana) {
+        this.tableRencana = tableRencana;
+    }
+
+    public JTable getTableTerbayar() {
+        return tableTerbayar;
+    }
+
+    public void setTableTerbayar(JTable tableTerbayar) {
+        this.tableTerbayar = tableTerbayar;
+    }
+    
 
     public JLabel getTxtPengeluaran() {
         return txtPengeluaran;
@@ -230,14 +253,14 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRencana = new javax.swing.JTable();
+        tableRencana = new javax.swing.JTable();
         btnBayarAng = new javax.swing.JButton();
         btnUbahAng = new javax.swing.JButton();
         btnHapusAng = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableTerbayar = new javax.swing.JTable();
         btnTambahRe = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -578,7 +601,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jLabel6.setForeground(new java.awt.Color(38, 50, 56));
         jLabel6.setText("Rencana");
 
-        tblRencana.setModel(new javax.swing.table.DefaultTableModel(
+        tableRencana.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -589,7 +612,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 "Nama", "Jumlah", "Tanggal", "Keterangan"
             }
         ));
-        jScrollPane1.setViewportView(tblRencana);
+        jScrollPane1.setViewportView(tableRencana);
 
         btnBayarAng.setBackground(new java.awt.Color(255, 255, 255));
         btnBayarAng.setText("Bayar");
@@ -612,6 +635,11 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         btnHapusAng.setBackground(new java.awt.Color(255, 255, 255));
         btnHapusAng.setText("Hapus");
         btnHapusAng.setBorder(null);
+        btnHapusAng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusAngActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -655,7 +683,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jLabel7.setForeground(new java.awt.Color(38, 50, 56));
         jLabel7.setText("Terbayarkan");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableTerbayar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -666,7 +694,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 "Nama", "Jumlah", "Tanggal", "Keterangan"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tableTerbayar);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -924,6 +952,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         donutChartList = controller.getDonutChartData();
         areaChartList = controller.getAreaChartData();
         
+        if(!donutChartList.isEmpty())
         for(int i = 0; i < donutChartList.size(); i++){
             if(donutChartList.get(i).getJenis_transaksi().equals("Masuk")){
                 donutChartKategoriListMasuk.add(donutChartList.get(i).getKategori());
@@ -933,6 +962,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 donutChartNominalListKeluar.add(donutChartList.get(i).getNominal());
             }
         }
+        
+        if(!areaChartList.isEmpty()){
         for(int i = 0; i < areaChartList.size(); i++){
             if(areaChartList.get(i).getJenis_transaksi().equals("Masuk")){
                 dateAreaChartListMasuk.add(areaChartList.get(i).getTgl_transaksi());
@@ -942,15 +973,17 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 nominalAreaChartListKeluar.add(areaChartList.get(i).getNominal());
             }
         }
-        
-        
-        
         txtMonth.setText(StringMonth(
                 new java.util.Date(areaChartList.get(0).getTgl_transaksi().getTime()).getMonth()
                 )+ ", "+
                 areaChartList.get(0).getTgl_transaksi().toLocalDate().getYear()
         );
- 
+        }
+        
+        
+        
+        
+// 
         
         xChart = this;
         pemasukanChart = xChart.getPemasukanChart();
@@ -1046,9 +1079,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
     private void btnTambahReActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahReActionPerformed
         // TODO add your handling code here:
-        AnggaranFrame a = new AnggaranFrame();
-
-        a.setVisible(true);
+        AnggaranFrame.getInstance().setVisible(true);
     }//GEN-LAST:event_btnTambahReActionPerformed
 
     private void btnUbahAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahAngActionPerformed
@@ -1057,7 +1088,14 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
     private void btnBayarAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarAngActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnBayarAngActionPerformed
+
+    private void btnHapusAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusAngActionPerformed
+        // TODO add your handling code here:
+        AnggaranFrame.getInstance().controller.deleteRencana(AnggaranFrame.getInstance());
+        AnggaranFrame.getInstance().modelTableRencana.remove(tableRencana.getSelectedRow());
+    }//GEN-LAST:event_btnHapusAngActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1136,7 +1174,6 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton pemasukanBtn;
@@ -1148,7 +1185,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private javax.swing.JPanel reportPanel;
     private javax.swing.JTable tablePemasukan;
     private javax.swing.JTable tablePengeluaran;
-    private javax.swing.JTable tblRencana;
+    private javax.swing.JTable tableRencana;
+    private javax.swing.JTable tableTerbayar;
     private javax.swing.JLabel txtMonth;
     private javax.swing.JLabel txtNama;
     private javax.swing.JLabel txtPemasukan;
@@ -1158,7 +1196,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        JOptionPane.showMessageDialog(null, "Select");
+        throw new UnsupportedOperationException("Select Siapa."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -1239,10 +1279,10 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 //          xData.add(date);
 //          yData.add(Math.random() * i / -100000000);
 //        }
-
-        chart.addSeries("Pemasukan", dateAreaChartListMasuk, nominalAreaChartListMasuk);
-        chart.addSeries("Pengeluaran", dateAreaChartListKeluar, nominalAreaChartListKeluar);
-
+        if(dateAreaChartListMasuk.size() > 0 && dateAreaChartListKeluar.size() > 0){
+            chart.addSeries("Pemasukan", dateAreaChartListMasuk, nominalAreaChartListMasuk);
+            chart.addSeries("Pengeluaran", dateAreaChartListKeluar, nominalAreaChartListKeluar);
+        }
         return chart;
     }
     

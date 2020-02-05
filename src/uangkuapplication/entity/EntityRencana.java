@@ -21,6 +21,14 @@ public class EntityRencana {
     private String status;
     private String catatan;
     private Integer id_kategori;
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
     
     public EntityRencana(){
         
@@ -34,6 +42,7 @@ public class EntityRencana {
         this.status = status;
         this.catatan = catatan;
         this.id_kategori = id_kategori;
+        
     }
     
     

@@ -7,26 +7,64 @@ package uangkuapplication.view;
 
 import com.github.lgooddatepicker.components.DatePicker;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import uangkuapplication.controller.RencanaController;
+import uangkuapplication.entity.EntityRencana;
+import uangkuapplication.event.RencanaListener;
 import uangkuapplication.main.UangkuApplication;
+import uangkuapplication.model.ModelRencana;
+import uangkuapplication.model.ModelTableRencana;
+import uangkuapplication.model.ModelTableTerbayar;
 
 /**
  *
  * @author Kyoto
  */
-public class AnggaranFrame extends javax.swing.JFrame {
+public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener, ListSelectionListener {
 
     /**
      * Creates new form AnggaranFrame
      */
+    public int idRencana;
+    private static AnggaranFrame instance = null;
+    private ModelRencana modelRencana;
+    public RencanaController controller;
+    private MainFrame mainFrame;
+    public ModelTableRencana modelTableRencana;
+    private ModelTableTerbayar modelTableTerbayar;
+    
     private int idKategori = 0;
     
-    public AnggaranFrame() {
+    private AnggaranFrame() {
         initComponents();
+        
+        mainFrame = MainFrame.getInstance(UangkuApplication.UserFullname);
+        modelRencana = new ModelRencana();
+        modelRencana.setListener(this);
+        controller = new RencanaController();
+        controller.setModel(modelRencana);
+        modelTableRencana = new ModelTableRencana();
+        modelTableTerbayar = new ModelTableTerbayar();
+        mainFrame.getTableRencana().getSelectionModel().addListSelectionListener(this);
+        mainFrame.getTableTerbayar().getSelectionModel().addListSelectionListener(this);
+        mainFrame.getTableRencana().setModel(modelTableRencana);
+        mainFrame.getTableTerbayar().setModel(modelTableTerbayar);
+        
+        
         
         for(int i = 0; i<UangkuApplication.kategoriList.size(); i++)
             pilihKategori.addItem(UangkuApplication.kategoriList.get(i).getNama_kategori());
+        loadDatabase();
         
+    }
+    public static AnggaranFrame getInstance(){
+        if(instance == null){
+            instance = new AnggaranFrame();
+        }
+        return instance;
     }
 
     public JTextField getTxtID() {
@@ -211,6 +249,7 @@ public class AnggaranFrame extends javax.swing.JFrame {
 
     private void btnSimpanAnggaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAnggaranActionPerformed
         // TODO add your handling code here:
+        controller.insertRencana(this);
         this.setVisible(false);
     }//GEN-LAST:event_btnSimpanAnggaranActionPerformed
 
@@ -277,4 +316,56 @@ public class AnggaranFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNominal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(ModelRencana model) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onInsert(EntityRencana rencana) {
+        rencana.setNama(controller.getKategori(idKategori));
+        modelTableRencana.add(rencana);
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onDelete() {
+//        int index = mainFrame.getTableRencana().getSelectedRow();
+//        modelTableRencana.remove(index);
+        JOptionPane.showMessageDialog(null, "Deleted");
+        //throw new UnsupportedOperationException("Terbayar"); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onUpdate(EntityRencana rencana) {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        try{
+            EntityRencana rencana = modelTableRencana.get(mainFrame.getTableRencana().getSelectedRow());
+            idRencana = rencana.getId();
+        }
+        catch(IndexOutOfBoundsException ez){}
+        
+        
+        //JOptionPane.showMessageDialog(null, idRencana);
+    }
+    public void loadDatabase(){
+        modelTableRencana.setList(controller.getAllRencana());
+    }
+
+    @Override
+    public void onChange() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onBayar(EntityRencana rencana) {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

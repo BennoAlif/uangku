@@ -18,4 +18,7 @@ public interface RencanaListener {
     public void onInsert(EntityRencana rencana);
     public void onDelete();
     public void onUpdate(EntityRencana rencana);
+
+    public void onChange();
+    public void onBayar(EntityRencana rencana);
 }

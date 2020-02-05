@@ -12,10 +12,9 @@ import uangkuapplication.entity.EntityRencana;
 
 /**
  *
- * @author Rizki Restu
+ * @author Wildhevire
  */
-public class ModelTableRencana extends AbstractTableModel{
-    
+public class ModelTableTerbayar extends AbstractTableModel {
     private List<EntityRencana> list = new ArrayList<EntityRencana>();
 
     public void setList(List<EntityRencana> list) {
@@ -81,12 +80,11 @@ public class ModelTableRencana extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
-            case 0 : return list.get(rowIndex).getNama();
+            case 0 : return list.get(rowIndex).getId_kategori();
             case 1 : return list.get(rowIndex).getNominal();
             case 2 : return list.get(rowIndex).getTgl_rencana();
             case 3 : return list.get(rowIndex).getCatatan();
             default:return null;
         }
     }
-    
 }

@@ -22,6 +22,7 @@ import uangkuapplication.view.LoginFrame;
 import uangkuapplication.view.MainFrame;
 import uangkuapplication.model.ModelTableKategori;
 import uangkuapplication.controller.TransaksiController;
+import uangkuapplication.view.AnggaranFrame;
 import uangkuapplication.view.PemasukanFrame;
 import uangkuapplication.view.PengeluaranFrame;
 /**
@@ -42,6 +43,7 @@ public class UangkuApplication {
     public static String UserFullname;
     private static PemasukanFrame masuk;
     private static PengeluaranFrame keluar;
+    private static AnggaranFrame anggaran;
     public static void main(String[] args) throws SQLException {
         //prefs = Preferences.userRoot().node(UangkuApplication.class.getClass().getName());
         prefs = Preferences.userNodeForPackage(uangkuapplication.main.UangkuApplication.class);
@@ -71,6 +73,7 @@ public class UangkuApplication {
         UangkuDatabase.getConnection();
         masuk = PemasukanFrame.getInstance();     
         keluar = PengeluaranFrame.getInstance();
+        anggaran = AnggaranFrame.getInstance();
           
         
         

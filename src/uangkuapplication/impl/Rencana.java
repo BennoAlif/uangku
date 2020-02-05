@@ -15,29 +15,32 @@ import java.util.ArrayList;
 import java.util.List;
 import uangkuapplication.entity.EntityRencana;
 import uangkuapplication.error.RencanaException;
-import uangkuapplication.service.RencanaDao;
+import uangkuapplication.main.UangkuApplication;
+import uangkuapplication.service.IRencana;
 
 /**
  *
  * @author Rizki Restu
  */
-public class RencanaDaoImpl implements RencanaDao{
+public class Rencana implements IRencana{
     
     private Connection connection;
     
     private final String insertRencana = "INSERT INTO RENCANA (uid, id_kategori, nominal, tgl_rencana, status, catatan) VALUES (?,?,?,?,?,?)";
-    private final String deleteRencana = "DELETE RENCANA WHERE id=?";
+    private final String deleteRencana = "DELETE FROM RENCANA WHERE id=?";
     private final String updateRencana = "UPDATE RENCANA uid=?, id_kategori=?, nominal=?, tgl_rencana=?, status=?, catatan=? WHERE id=?";
     private final String getById = "SELECT * FROM RENCANA WHERE id=?";
-    private final String selectAll = "SELECT * FROM RENCANA";
-
-    public RencanaDaoImpl(Connection connection) {
+    private final String selectAll = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori";
+    private final String selectKategori = "SELECT nama_kategori FROM kategori WHERE id_kategori = ?";
+    
+    
+    public Rencana(Connection connection) {
         this.connection = connection;
     }
     
    
     @Override
-    public void insertRencana(EntityRencana rencana) throws RencanaException {
+    public void insertRencana(EntityRencana rencana) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -46,7 +49,7 @@ public class RencanaDaoImpl implements RencanaDao{
             statement.setInt(1, rencana.getUid());
             statement.setInt(2, rencana.getId_kategori());
             statement.setInt(3, rencana.getNominal());
-            statement.setDate(4, (Date) rencana.getTgl_rencana());
+            statement.setDate(4, (Date)rencana.getTgl_rencana());
             statement.setString(5, rencana.getStatus());
             statement.setString(6, rencana.getCatatan());
             statement.executeUpdate();
@@ -58,7 +61,7 @@ public class RencanaDaoImpl implements RencanaDao{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new RencanaException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -75,7 +78,7 @@ public class RencanaDaoImpl implements RencanaDao{
     }
 
     @Override
-    public void deleteRencana(int id) throws RencanaException {
+    public void deleteRencana(int id) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -91,7 +94,7 @@ public class RencanaDaoImpl implements RencanaDao{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new RencanaException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -108,7 +111,7 @@ public class RencanaDaoImpl implements RencanaDao{
     }
 
     @Override
-    public void updateRencana(EntityRencana rencana) throws RencanaException {
+    public void updateRencana(EntityRencana rencana) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -130,7 +133,7 @@ public class RencanaDaoImpl implements RencanaDao{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new RencanaException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -147,7 +150,7 @@ public class RencanaDaoImpl implements RencanaDao{
     }
 
     @Override
-    public EntityRencana getRencana(int id) throws RencanaException {
+    public EntityRencana getRencana(int id) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
@@ -168,7 +171,7 @@ public class RencanaDaoImpl implements RencanaDao{
                 rencana.setStatus(result.getString("status"));
                 rencana.setCatatan(result.getString("catatan"));
             }else{
-                throw new RencanaException("Rencana dengan id "+id+" tidak ditemukan");
+                throw new SQLException("Rencana dengan id "+id+" tidak ditemukan");
             }
             connection.commit();
             return rencana;
@@ -177,7 +180,7 @@ public class RencanaDaoImpl implements RencanaDao{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new RencanaException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -194,7 +197,7 @@ public class RencanaDaoImpl implements RencanaDao{
     }
 
     @Override
-    public List<EntityRencana> selectAllRencana() throws RencanaException {
+    public List<EntityRencana> selectAllRencana() throws SQLException {
         Statement statement = null;
         List<EntityRencana> list = new ArrayList<EntityRencana>();
         try {
@@ -215,6 +218,7 @@ public class RencanaDaoImpl implements RencanaDao{
                 rencana.setTgl_rencana(result.getDate("tgl_rencana"));
                 rencana.setStatus(result.getString("status"));
                 rencana.setCatatan(result.getString("catatan"));
+                rencana.setNama(result.getString("nama_kategori"));
                 list.add(rencana);
             }
             connection.commit();
@@ -224,7 +228,7 @@ public class RencanaDaoImpl implements RencanaDao{
                 connection.rollback();
             } catch (SQLException ex) {
             }
-            throw new RencanaException(e.getMessage());
+            throw new SQLException(e.getMessage());
         }finally{
             try {
                 connection.setAutoCommit(true);
@@ -238,6 +242,60 @@ public class RencanaDaoImpl implements RencanaDao{
             }
             
         }
+    }
+
+    @Override
+    public List<EntityRencana> selectAllTerbayarkan() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getKategori(int uid) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            
+            statement = connection.prepareStatement(selectKategori);
+            statement.setInt(1, uid);
+            ResultSet result = statement.executeQuery();
+            EntityRencana rencana = null;
+            String nama;
+                        
+            if (result.next()) {
+                  nama = result.getString("nama_kategori");
+//                rencana = new EntityRencana();
+//                rencana.setId(result.getInt("id"));
+//                rencana.setUid(result.getInt("uid"));
+//                rencana.setId_kategori(result.getInt("id_kategori"));
+//                rencana.setNominal(result.getInt("nominal"));
+//                rencana.setTgl_rencana(result.getDate("tgl_rencana"));
+//                rencana.setStatus(result.getString("status"));
+//                rencana.setCatatan(result.getString("catatan"));
+            }else{
+                throw new SQLException("Nama kategori tidak ditemukan");
+            }
+            connection.commit();
+            return nama;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement!=null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }    
+            }
+            
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -30,7 +30,6 @@ import uangkuapplication.service.IPengguna;
  */
 public class TransaksiController {
     private ModelTransaksi model;
-    private ModelTablePemasukan masuk;
     public void setModel(ModelTransaksi model) {
         this.model = model;
     }

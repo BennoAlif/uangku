@@ -31,10 +31,10 @@ public class Transaksi implements ITransaksi {
   
     private final String insertTransaksi = "INSERT INTO transaksi(uid, id_kategori, nominal, tgl_transaksi, catatan, jenis_transaksi) VALUES (?,?,?,?,?,?)";
     private final String getAllTransaksi = "SELECT nominal, tgl_transaksi, jenis_transaksi FROM transaksi WHERE uid=?"; 
-    private final String getAll = "SELECT * FROM transaksi WHERE jenis_transaksi=?";
-    private final String getWithKategori = "SELECT * FROM transaksi INNER JOIN kategori ON transaksi.id_kategori = kategori.id_kategori WHERE jenis_transaksi=?";
-    private final String donutChartQuery = "SELECT SUM(nominal) as nominal, kategori.nama_kategori, transaksi.jenis_transaksi FROM transaksi INNER JOIN kategori ON transaksi.id_kategori = kategori.id_kategori GROUP BY transaksi.id_kategori, transaksi.jenis_transaksi";
-    private final String areaChartQuery = "SELECT SUM(nominal) AS nominal, tgl_transaksi, jenis_transaksi FROM transaksi GROUP BY tgl_transaksi, jenis_transaksi";
+    private final String getAll = "SELECT * FROM transaksi WHERE  jenis_transaksi=? AND uid=?";
+    private final String getWithKategori = "SELECT * FROM transaksi INNER JOIN kategori ON transaksi.id_kategori = kategori.id_kategori WHERE jenis_transaksi=? AND uid=?";
+    private final String donutChartQuery = "SELECT SUM(nominal) as nominal, kategori.nama_kategori, transaksi.jenis_transaksi FROM transaksi INNER JOIN kategori ON transaksi.id_kategori = kategori.id_kategori WHERE uid=? GROUP BY transaksi.id_kategori, transaksi.jenis_transaksi";
+    private final String areaChartQuery = "SELECT SUM(nominal) AS nominal, tgl_transaksi, jenis_transaksi FROM transaksi WHERE uid=? GROUP BY tgl_transaksi, jenis_transaksi";
     
     public Transaksi(Connection connection) {
         this.connection = connection;
@@ -218,6 +218,7 @@ public class Transaksi implements ITransaksi {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(getAll);
             statement.setString(1, "Masuk");
+            statement.setInt(2, UangkuApplication.UserID);
             
             ResultSet result = statement.executeQuery();
             EntityTransaksi transaksi = null;
@@ -260,6 +261,7 @@ public class Transaksi implements ITransaksi {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(getAll);
             statement.setString(1, "Keluar");
+            statement.setInt(2, UangkuApplication.UserID);
             
             ResultSet result = statement.executeQuery();
             EntityTransaksi transaksi = null;
@@ -302,6 +304,7 @@ public class Transaksi implements ITransaksi {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(getWithKategori);
             statement.setString(1, "Masuk");
+            statement.setInt(2, UangkuApplication.UserID);
             
             ResultSet result = statement.executeQuery();
             EntityTransaksi transaksi = null;
@@ -345,6 +348,7 @@ public class Transaksi implements ITransaksi {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(getWithKategori);
             statement.setString(1, "Keluar");
+            statement.setInt(2, UangkuApplication.UserID);
             
             ResultSet result = statement.executeQuery();
             EntityTransaksi transaksi = null;
@@ -388,7 +392,7 @@ public class Transaksi implements ITransaksi {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(donutChartQuery);
-            
+            statement.setInt(1, UangkuApplication.UserID);
             
             ResultSet result = statement.executeQuery();
             EntityTransaksi transaksi = null;
@@ -431,7 +435,7 @@ public class Transaksi implements ITransaksi {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(areaChartQuery);
-            
+            statement.setInt(1, UangkuApplication.UserID);
             
             ResultSet result = statement.executeQuery();
             EntityTransaksi transaksi = null;
