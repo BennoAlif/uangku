@@ -106,6 +106,16 @@ public class ModelTransaksi {
         fireOnInsert(transaksi);
         
     }
+    public void insertPengeluaran(EntityTransaksi transaksi)throws SQLException{
+        ITransaksi dao = UangkuDatabase.getTransaksi();
+        IPengguna daoPengguna = UangkuDatabase.getPengguna();
+        int uang = daoPengguna.getUang(transaksi.getUid());
+        daoPengguna.updateUang(transaksi.getUid(), uang - transaksi.getNominal());
+        dao.insertPengeluaran(transaksi);
+        
+        fireOnInsert(transaksi);
+        
+    }
     
     public List<EntityTransaksi> getAllTransaksi() throws SQLException{
         List<EntityTransaksi> list = new ArrayList<EntityTransaksi>();

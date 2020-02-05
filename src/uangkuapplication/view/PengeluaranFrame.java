@@ -6,6 +6,8 @@
 package uangkuapplication.view;
 import com.github.lgooddatepicker.components.DatePicker;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
@@ -19,6 +21,7 @@ import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.model.ModelTablePemasukan;
 import uangkuapplication.model.ModelTablePengeluaran;
 import uangkuapplication.model.ModelTransaksi;
+import uangkuapplication.service.IKategori;
 import uangkuapplication.service.ITransaksi;
 
 import uangkuapplication.view.MainFrame;
@@ -30,7 +33,7 @@ import uangkuapplication.view.MainFrame;
 public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiListener ,ListSelectionListener{
     private static PengeluaranFrame instance;
     private int idKategori = 0;
-    private TransaksiController controller;
+    public TransaksiController controller;
     private ModelTransaksi model;
     public ModelTablePengeluaran modelTable;
     
@@ -314,8 +317,14 @@ public class PengeluaranFrame extends javax.swing.JFrame implements TransaksiLis
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPemasukan().setText(String.valueOf(controller.getTotalPemasukan()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtPengeluaran().setText(String.valueOf(controller.getTotalPengeluaran()));
         MainFrame.getInstance(UangkuApplication.UserFullname).getTxtTotal().setText(String.valueOf(controller.getUangSekarang(UangkuApplication.UserID)));
-        transaksi.setKategori(boxKategori.getSelectedItem().toString());
-
+        
+        try {
+            IKategori kategori = UangkuDatabase.getKategori();
+            transaksi.setKategori(kategori.getKategori(transaksi.getId_kategori()).getNama_kategori());
+        } catch (SQLException ex) {
+            Logger.getLogger(PengeluaranFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
         modelTable.add(transaksi);
     //MainFrame.getInstance(UangkuApplication.UserFullname).tablePengeluaranModel.add(transaksi);

@@ -140,7 +140,7 @@ public class Kategori implements IKategori{
             
             if (result.next()) {
                 kategori = new EntityKategori();
-                kategori.setId(result.getInt("id"));
+                kategori.setId(result.getInt("id_kategori"));
                 kategori.setNama_kategori(result.getString("nama_kategori"));
             }else{
                 throw new SQLException("Kategori dengan id " + id + " tidak ditemukan!");

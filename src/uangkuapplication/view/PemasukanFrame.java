@@ -39,7 +39,7 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
     private static PemasukanFrame instance = null;
     private ModelKategori modelKategori;
     private ModelTransaksi modelTransaksi;
-    private TransaksiController controller;
+    public TransaksiController controller;
     private int idKategori = 0;
     private MainFrame mainFrame;
     public  ModelTablePemasukan modelTable;

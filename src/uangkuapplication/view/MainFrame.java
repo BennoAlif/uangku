@@ -5,6 +5,9 @@
  */
 package uangkuapplication.view;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Date;
 import uangkuapplication.main.UangkuApplication;
 
@@ -1055,6 +1058,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         UangkuApplication.prefs.remove("Uang");
         LoginFrame login = new LoginFrame();
         this.setVisible(false);
+        
+        
         instance = null;
         PemasukanFrame.getInstance().deleteInstance();
         PengeluaranFrame.getInstance().deleteInstance();
@@ -1062,7 +1067,14 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         
         
         
+        
+        
+        
         login.setVisible(true);
+        
+        
+        
+        
         
     }//GEN-LAST:event_logoutBtnActionPerformed
 
@@ -1095,6 +1107,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private void btnBayarAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarAngActionPerformed
         // TODO add your handling code here:
         AnggaranFrame.getInstance().controller.updateRencana(AnggaranFrame.getInstance());
+        
+        
         AnggaranFrame.getInstance().modelTableRencana.remove(tableRencana.getSelectedRow());
         //AnggaranFrame.getInstance().modelTableTerbayar.add(tableRencana.getSelectedRow());
 
@@ -1234,7 +1248,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     @Override
     public PieChart getPemasukanChart() {
         // Create Chart
-        PieChart chart = createDonutChart();        // Series
+        PieChart chart = createDonutChart();
+        chart.setTitle("Pemasukan");
+        // Series
 //        chart.addSeries("Makan", 10);
 //        chart.addSeries("Tidur", 22);
  //       chart.addSeries("Mandi", 21);
@@ -1254,6 +1270,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     public PieChart getPengeluaranChart() {
         // Create Chart
         PieChart chart = createDonutChart();
+        chart.setTitle("Pengeluaran");
         
         // Series
         //chart.addSeries("Makan", 9);
@@ -1322,7 +1339,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     
     public PieChart createDonutChart(){
         PieChart chart =
-            new PieChartBuilder().width(270).height(200).title("Pengeluaran").build();
+            new PieChartBuilder().width(270).height(200).build();
         //chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSE);
         //chart.getStyler().setLegendLayout(Styler.LegendLayout.Horizontal);
 

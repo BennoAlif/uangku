@@ -373,6 +373,8 @@ public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener
     public void onBayar(EntityRencana rencana) {
         rencana.setNama(controller.getKategori(idKategori));
         modelTableTerbayar.add(rencana);
+        
+        PengeluaranFrame.getInstance().controller.insertPengeluaran(rencana);
         //JOptionPane.showMessageDialog(null, rencana.getNama());
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

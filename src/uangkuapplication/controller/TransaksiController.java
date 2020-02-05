@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import uangkuapplication.entity.EntityRencana;
 import uangkuapplication.entity.EntityTransaksi;
 import uangkuapplication.main.UangkuApplication;
 import uangkuapplication.model.ModelTransaksi;
@@ -200,6 +201,32 @@ public class TransaksiController {
         
         //masuk.setList(list);
         return list;
+    }
+    
+    EntityTransaksi RencanaToTransaksi(EntityRencana rencana){
+        EntityTransaksi transaksi = new EntityTransaksi();
+        transaksi.setId_kategori(rencana.getId_kategori());
+        transaksi.setUid(rencana.getUid());
+        transaksi.setNominal(rencana.getNominal());
+        transaksi.setTgl_transaksi((Date) rencana.getTgl_rencana());
+        System.out.println((Date) rencana.getTgl_rencana());
+        transaksi.setCatatan(rencana.getCatatan());
+        transaksi.setJenis_transaksi("Keluar");
+        return transaksi;
+    }
+    
+    public void insertPengeluaran(EntityRencana rencana){
+        EntityTransaksi transaksi = new EntityTransaksi();
+        transaksi = RencanaToTransaksi(rencana);
+        
+        try {
+           
+            model.insertPengeluaran(transaksi);
+            UangkuApplication.Uang = model.getUangSekarang(UangkuApplication.UserID);
+        } catch (Throwable ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
     }
     
     
