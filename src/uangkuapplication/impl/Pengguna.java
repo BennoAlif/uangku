@@ -27,6 +27,7 @@ public class Pengguna implements IPengguna{
     private final String updateUang = "UPDATE pengguna SET uang=? WHERE uid=?";
     private final String getById = "SELECT uang FROM pengguna WHERE uid=?";
     private final String getFullnamebyID = "SELECT fullname FROM pengguna WHERE uid=?";
+    private final String updateProfile = "UPDATE pengguna SET fullname=?, password=? WHERE uid=?";
     public Pengguna(Connection connection) {
         this.connection = connection;
     }
@@ -202,6 +203,42 @@ public class Pengguna implements IPengguna{
                 }
             }
         }
+    }
+
+    @Override
+    public void updateProfile(String fullname, String password,int uid) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            
+            statement = connection.prepareStatement(updateProfile);
+            statement.setString(1, fullname);
+            statement.setString(2, password);
+            statement.setInt(3, uid);
+            
+            
+            statement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
         

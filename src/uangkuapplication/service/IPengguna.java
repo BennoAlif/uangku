@@ -26,4 +26,6 @@ public interface IPengguna {
     public int getUang(int uid) throws SQLException;
     public String getFullname(int uid) throws SQLException;
     
+    public void updateProfile(String fullname, String password,int uid) throws SQLException;
+    
 }

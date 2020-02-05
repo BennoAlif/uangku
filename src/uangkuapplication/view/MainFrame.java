@@ -148,6 +148,14 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         //new SwingWrapper<PieChart>(pemasukanChart).displayChart();
         //txtPemasukan.setText(totalPemasukan);
     }
+
+    public JLabel getTxtNama() {
+        return txtNama;
+    }
+
+    public void setTxtNama(JLabel txtNama) {
+        this.txtNama = txtNama;
+    }
     
     
     
