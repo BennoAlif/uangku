@@ -108,11 +108,11 @@ public class PemasukanFrame extends javax.swing.JFrame implements TransaksiListe
 
         jLabel2.setText("Rp");
         jLabel2.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel2.setForeground(new java.awt.Color(39, 174, 96));
 
         txtNominal.setBorder(null);
         txtNominal.setFont(new java.awt.Font("Lato", 0, 40)); // NOI18N
-        txtNominal.setForeground(new java.awt.Color(51, 255, 51));
+        txtNominal.setForeground(new java.awt.Color(39, 174, 96));
 
         boxKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
         boxKategori.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N

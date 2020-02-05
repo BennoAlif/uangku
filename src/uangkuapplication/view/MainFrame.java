@@ -266,7 +266,6 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRencana = new javax.swing.JTable();
         btnBayarAng = new javax.swing.JButton();
-        btnUbahAng = new javax.swing.JButton();
         btnHapusAng = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -295,32 +294,32 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
         homePanel.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setText("Selamat datang,");
         jLabel2.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel2.setText("Selamat datang,");
 
+        txtNama.setText("Nama");
         txtNama.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         txtNama.setForeground(new java.awt.Color(38, 50, 56));
-        txtNama.setText("Nama");
 
-        pengeluaranBtn.setBackground(new java.awt.Color(255, 229, 153));
-        pengeluaranBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
-        pengeluaranBtn.setForeground(new java.awt.Color(246, 62, 94));
         pengeluaranBtn.setText("Tambah Pengeluaran");
+        pengeluaranBtn.setBackground(new java.awt.Color(255, 229, 153));
         pengeluaranBtn.setBorder(null);
         pengeluaranBtn.setBorderPainted(false);
+        pengeluaranBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
+        pengeluaranBtn.setForeground(new java.awt.Color(246, 62, 94));
         pengeluaranBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pengeluaranBtnActionPerformed(evt);
             }
         });
 
-        pemasukanBtn.setBackground(new java.awt.Color(255, 229, 153));
-        pemasukanBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
-        pemasukanBtn.setForeground(new java.awt.Color(38, 50, 56));
         pemasukanBtn.setText("Tambah Pemasukan");
+        pemasukanBtn.setBackground(new java.awt.Color(255, 229, 153));
         pemasukanBtn.setBorder(null);
         pemasukanBtn.setBorderPainted(false);
+        pemasukanBtn.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
+        pemasukanBtn.setForeground(new java.awt.Color(38, 50, 56));
         pemasukanBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pemasukanBtnActionPerformed(evt);
@@ -329,31 +328,31 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
         jPanel5.setBackground(new java.awt.Color(255, 229, 153));
 
+        jLabel8.setText("UANGKU");
         jLabel8.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel8.setText("UANGKU");
 
+        txtTotal.setText("Rp 574000");
         txtTotal.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(38, 50, 56));
-        txtTotal.setText("Rp 574000");
 
         jSeparator1.setBackground(new java.awt.Color(38, 50, 56));
 
         txtPemasukan.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        txtPemasukan.setForeground(new java.awt.Color(47, 128, 237));
+        txtPemasukan.setForeground(new java.awt.Color(39, 174, 96));
         txtPemasukan.setText("600000");
 
+        txtPengeluaran.setText("26000");
         txtPengeluaran.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         txtPengeluaran.setForeground(new java.awt.Color(246, 61, 94));
-        txtPengeluaran.setText("26000");
 
+        jLabel14.setText("Pengeluaran");
         jLabel14.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel14.setText("Pengeluaran");
 
+        jLabel12.setText("Pemasukan");
         jLabel12.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel12.setText("Pemasukan");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -402,9 +401,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jPanel6.setBackground(new java.awt.Color(255, 229, 153));
         jPanel6.setPreferredSize(new java.awt.Dimension(270, 200));
 
+        jLabel9.setText("Pengeluaran");
         jLabel9.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel9.setText("Pengeluaran");
 
         tablePengeluaran.setBackground(new java.awt.Color(255, 229, 153));
         tablePengeluaran.setModel(new javax.swing.table.DefaultTableModel(
@@ -441,7 +440,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                     .addContainerGap(36, Short.MAX_VALUE)
@@ -452,9 +451,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         jPanel7.setBackground(new java.awt.Color(255, 229, 153));
         jPanel7.setPreferredSize(new java.awt.Dimension(270, 200));
 
+        jLabel10.setText("Pemasukan");
         jLabel10.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel10.setText("Pemasukan");
 
         tablePemasukan.setBackground(new java.awt.Color(255, 229, 153));
         tablePemasukan.setModel(new javax.swing.table.DefaultTableModel(
@@ -491,7 +490,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
@@ -505,7 +504,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                         .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,15 +537,15 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanel.add(homePanel, "card2");
 
         reportPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
         jLabel4.setText("Laporan keuangan");
+        jLabel4.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
 
         TotalPanel.setBackground(new java.awt.Color(255, 229, 153));
         TotalPanel.setPreferredSize(new java.awt.Dimension(559, 200));
@@ -560,9 +559,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         PemasukanPanel.setPreferredSize(new java.awt.Dimension(270, 200));
         PemasukanPanel.setLayout(new javax.swing.BoxLayout(PemasukanPanel, javax.swing.BoxLayout.LINE_AXIS));
 
+        txtMonth.setText("Januari, 2020");
         txtMonth.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         txtMonth.setForeground(new java.awt.Color(38, 50, 56));
-        txtMonth.setText("Januari, 2020");
 
         javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
@@ -571,7 +570,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
             .addGroup(reportPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TotalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TotalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(reportPanelLayout.createSequentialGroup()
                         .addComponent(PengeluaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -596,21 +595,21 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PengeluaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PemasukanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanel.add(reportPanel, "card3");
 
         planningPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
         jLabel5.setText("Perencanaan anggaran");
+        jLabel5.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 229, 153));
 
+        jLabel6.setText("Rencana");
         jLabel6.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel6.setText("Rencana");
 
         tableRencana.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -625,8 +624,8 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         ));
         jScrollPane1.setViewportView(tableRencana);
 
-        btnBayarAng.setBackground(new java.awt.Color(255, 255, 255));
         btnBayarAng.setText("Bayar");
+        btnBayarAng.setBackground(new java.awt.Color(255, 255, 255));
         btnBayarAng.setBorder(null);
         btnBayarAng.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -634,18 +633,10 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
             }
         });
 
-        btnUbahAng.setBackground(new java.awt.Color(255, 255, 255));
-        btnUbahAng.setText("Ubah");
-        btnUbahAng.setBorder(null);
-        btnUbahAng.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUbahAngActionPerformed(evt);
-            }
-        });
-
-        btnHapusAng.setBackground(new java.awt.Color(255, 255, 255));
         btnHapusAng.setText("Hapus");
+        btnHapusAng.setBackground(new java.awt.Color(235, 87, 87));
         btnHapusAng.setBorder(null);
+        btnHapusAng.setForeground(new java.awt.Color(255, 255, 255));
         btnHapusAng.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHapusAngActionPerformed(evt);
@@ -659,15 +650,13 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnBayarAng, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnUbahAng, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnHapusAng, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -678,21 +667,19 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHapusAng, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBayarAng, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUbahAng, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBayarAng, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHapusAng, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 229, 153));
 
+        jLabel7.setText("Terbayarkan");
         jLabel7.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(38, 50, 56));
-        jLabel7.setText("Terbayarkan");
 
         tableTerbayar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -717,7 +704,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -726,15 +713,15 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
+        btnTambahRe.setText("Tambah Rencana/Tagihan");
         btnTambahRe.setBackground(new java.awt.Color(255, 229, 153));
+        btnTambahRe.setBorder(null);
         btnTambahRe.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
         btnTambahRe.setForeground(new java.awt.Color(38, 50, 56));
-        btnTambahRe.setText("Tambah Rencana/Tagihan");
-        btnTambahRe.setBorder(null);
         btnTambahRe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTambahReActionPerformed(evt);
@@ -753,7 +740,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                         .addGroup(planningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnTambahRe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 268, Short.MAX_VALUE))
+                        .addGap(0, 209, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -768,7 +755,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         mainPanel.add(planningPanel, "card4");
@@ -777,72 +764,72 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        homeBtn.setBackground(new java.awt.Color(255, 229, 153));
-        homeBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
-        homeBtn.setForeground(new java.awt.Color(38, 50, 56));
         homeBtn.setText("Beranda");
+        homeBtn.setBackground(new java.awt.Color(255, 229, 153));
         homeBtn.setBorder(null);
         homeBtn.setBorderPainted(false);
+        homeBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
+        homeBtn.setForeground(new java.awt.Color(38, 50, 56));
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeBtnActionPerformed(evt);
             }
         });
 
-        planningBtn.setBackground(new java.awt.Color(255, 229, 153));
-        planningBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
-        planningBtn.setForeground(new java.awt.Color(38, 50, 56));
         planningBtn.setText("Perencanaan");
+        planningBtn.setBackground(new java.awt.Color(255, 229, 153));
         planningBtn.setBorder(null);
         planningBtn.setBorderPainted(false);
+        planningBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
+        planningBtn.setForeground(new java.awt.Color(38, 50, 56));
         planningBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 planningBtnActionPerformed(evt);
             }
         });
 
-        reportBtn.setBackground(new java.awt.Color(255, 229, 153));
-        reportBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
-        reportBtn.setForeground(new java.awt.Color(38, 50, 56));
         reportBtn.setText("Laporan");
+        reportBtn.setBackground(new java.awt.Color(255, 229, 153));
         reportBtn.setBorder(null);
         reportBtn.setBorderPainted(false);
+        reportBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
+        reportBtn.setForeground(new java.awt.Color(38, 50, 56));
         reportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reportBtnActionPerformed(evt);
             }
         });
 
-        addCategoryBtn.setBackground(new java.awt.Color(255, 229, 153));
-        addCategoryBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
-        addCategoryBtn.setForeground(new java.awt.Color(38, 50, 56));
         addCategoryBtn.setText("Kategori");
+        addCategoryBtn.setBackground(new java.awt.Color(255, 229, 153));
         addCategoryBtn.setBorder(null);
         addCategoryBtn.setBorderPainted(false);
+        addCategoryBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
+        addCategoryBtn.setForeground(new java.awt.Color(38, 50, 56));
         addCategoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addCategoryBtnActionPerformed(evt);
             }
         });
 
-        profileBtn.setBackground(new java.awt.Color(255, 229, 153));
-        profileBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
-        profileBtn.setForeground(new java.awt.Color(38, 50, 56));
         profileBtn.setText("Ubah profil");
+        profileBtn.setBackground(new java.awt.Color(255, 229, 153));
         profileBtn.setBorder(null);
         profileBtn.setBorderPainted(false);
+        profileBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
+        profileBtn.setForeground(new java.awt.Color(38, 50, 56));
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileBtnActionPerformed(evt);
             }
         });
 
-        logoutBtn.setBackground(new java.awt.Color(235, 87, 87));
-        logoutBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
-        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutBtn.setText("Keluar");
+        logoutBtn.setBackground(new java.awt.Color(235, 87, 87));
         logoutBtn.setBorder(null);
         logoutBtn.setBorderPainted(false);
+        logoutBtn.setFont(new java.awt.Font("Lato", 1, 11)); // NOI18N
+        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutBtnActionPerformed(evt);
@@ -875,7 +862,7 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
                 .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1108,10 +1095,6 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
         AnggaranFrame.getInstance().setVisible(true);
     }//GEN-LAST:event_btnTambahReActionPerformed
 
-    private void btnUbahAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahAngActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUbahAngActionPerformed
-
     private void btnBayarAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarAngActionPerformed
         // TODO add your handling code here:
         AnggaranFrame.getInstance().controller.updateRencana(AnggaranFrame.getInstance());
@@ -1179,7 +1162,6 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private javax.swing.JButton btnBayarAng;
     private javax.swing.JButton btnHapusAng;
     private javax.swing.JButton btnTambahRe;
-    private javax.swing.JButton btnUbahAng;
     private javax.swing.JButton homeBtn;
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel jLabel1;

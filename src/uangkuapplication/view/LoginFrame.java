@@ -376,7 +376,7 @@ public class LoginFrame extends javax.swing.JFrame {
             pengguna.setUsername(txtUsername.getText());
             pengguna.setPassword(new String(txtPassword.getPassword()));
             login.register(pengguna);
-            JOptionPane.showConfirmDialog(null, "Daftar Sukses", "Succes",0);
+            JOptionPane.showMessageDialog(null, "Daftar Sukses");
             mainPanel.removeAll();
             mainPanel.repaint();
             mainPanel.revalidate();
