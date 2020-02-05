@@ -156,17 +156,17 @@ public class ModelRencana {
         fireOnDelete();
     }
     
-    public List<EntityRencana> selectAllRencana() throws SQLException{
+    public List<EntityRencana> selectAllRencana(int uid) throws SQLException{
         List<EntityRencana> list = new ArrayList<EntityRencana>();
         IRencana dao = UangkuDatabase.getRencana();
-        list = dao.selectAllRencana();
+        list = dao.selectAllRencana(uid);
         return list;
 
     }
-    public List<EntityRencana> selectAllTerbayar() throws SQLException{
+    public List<EntityRencana> selectAllTerbayar(int uid) throws SQLException{
         List<EntityRencana> list = new ArrayList<EntityRencana>();
         IRencana dao = UangkuDatabase.getRencana();
-        list = dao.selectAllTerbayarkan();
+        list = dao.selectAllTerbayarkan(uid);
         return list;
 
     }

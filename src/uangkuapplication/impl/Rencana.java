@@ -30,9 +30,9 @@ public class Rencana implements IRencana{
     private final String updateRencana = "UPDATE rencana SET status = 'Selesai' where id=?";
     private final String deleteRencana = "DELETE FROM rencana WHERE id=?";
     private final String getById = "SELECT * FROM RENCANA WHERE id=?";
-    private final String selectAll = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori WHERE status='Belum Bayar'";
+    private final String selectAll = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori WHERE status='Belum Bayar' AND uid=?";
     private final String selectKategori = "SELECT nama_kategori FROM kategori WHERE id_kategori = ?";
-    private final String selectAllTerbayar = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori WHERE status='Selesai'";
+    private final String selectAllTerbayar = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori WHERE status='Selesai' AND uid=?";
     
     
     public Rencana(Connection connection) {
@@ -192,19 +192,21 @@ public class Rencana implements IRencana{
         }
     }
 
+    
     @Override
-    public List<EntityRencana> selectAllRencana() throws SQLException {
-        Statement statement = null;
+    public List<EntityRencana> selectAllRencana(int uid) throws SQLException {
+        PreparedStatement statement = null;
         List<EntityRencana> list = new ArrayList<EntityRencana>();
         try {
             connection.setAutoCommit(false);
             
             
-            statement = connection.createStatement();
+            statement = connection.prepareStatement(selectAll);
+            statement.setInt(1, uid);
             
             
             
-            ResultSet result = statement.executeQuery(selectAll);
+            ResultSet result = statement.executeQuery();
             EntityRencana rencana = null;
             
                         
@@ -244,18 +246,19 @@ public class Rencana implements IRencana{
     }
 
     @Override
-    public List<EntityRencana> selectAllTerbayarkan() throws SQLException {
-        Statement statement = null;
+    public List<EntityRencana> selectAllTerbayarkan(int uid) throws SQLException {
+        PreparedStatement statement = null;
         List<EntityRencana> list = new ArrayList<EntityRencana>();
         try {
             connection.setAutoCommit(false);
             
             
-            statement = connection.createStatement();
+            statement = connection.prepareStatement(selectAllTerbayar);
+            statement.setInt(1, uid);
             
             
             
-            ResultSet result = statement.executeQuery(selectAllTerbayar);
+            ResultSet result = statement.executeQuery();
             EntityRencana rencana = null;
             
                         

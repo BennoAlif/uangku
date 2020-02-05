@@ -22,7 +22,7 @@ public interface IRencana {
     
     public String getKategori(int uid) throws SQLException;
     public EntityRencana getRencana(int id) throws SQLException;
-    public List<EntityRencana> selectAllRencana() throws SQLException;
+    public List<EntityRencana> selectAllRencana(int uid) throws SQLException;
     
-    public List<EntityRencana> selectAllTerbayarkan() throws SQLException;
+    public List<EntityRencana> selectAllTerbayarkan(int uid) throws SQLException;
 }

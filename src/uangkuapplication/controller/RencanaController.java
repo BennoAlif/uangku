@@ -110,7 +110,7 @@ public class RencanaController {
         List<EntityRencana> list = new ArrayList<EntityRencana>();
 
         try {
-            list = model.selectAllRencana();
+            list = model.selectAllRencana(UangkuApplication.UserID);
             
         
         } catch (SQLException ex) {
@@ -123,7 +123,7 @@ public class RencanaController {
         List<EntityRencana> list = new ArrayList<EntityRencana>();
 
         try {
-            list = model.selectAllTerbayar();
+            list = model.selectAllTerbayar(UangkuApplication.UserID);
             
         
         } catch (SQLException ex) {
