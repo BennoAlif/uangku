@@ -34,7 +34,7 @@ public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener
     public RencanaController controller;
     private MainFrame mainFrame;
     public ModelTableRencana modelTableRencana;
-    private ModelTableTerbayar modelTableTerbayar;
+    public ModelTableTerbayar modelTableTerbayar;
     
     private int idKategori = 0;
     
@@ -343,12 +343,13 @@ public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener
     @Override
     public void onUpdate(EntityRencana rencana) {
         
-        JOptionPane.showMessageDialog(null, "Bayar");
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
+        loadDatabase();
         try{
             EntityRencana rencana = modelTableRencana.get(mainFrame.getTableRencana().getSelectedRow());
             idRencana = rencana.getId();
@@ -360,6 +361,7 @@ public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener
     }
     public void loadDatabase(){
         modelTableRencana.setList(controller.getAllRencana());
+        modelTableTerbayar.setList(controller.getAllTerbayar());
     }
 
     @Override
@@ -369,7 +371,9 @@ public class AnggaranFrame extends javax.swing.JFrame implements RencanaListener
 
     @Override
     public void onBayar(EntityRencana rencana) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        rencana.setNama(controller.getKategori(idKategori));
+        modelTableTerbayar.add(rencana);
+        //JOptionPane.showMessageDialog(null, rencana.getNama());
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

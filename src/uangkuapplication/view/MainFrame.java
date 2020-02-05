@@ -1095,7 +1095,9 @@ public class MainFrame extends javax.swing.JFrame implements IXChart<PieChart,XY
     private void btnBayarAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarAngActionPerformed
         // TODO add your handling code here:
         AnggaranFrame.getInstance().controller.updateRencana(AnggaranFrame.getInstance());
-        
+        AnggaranFrame.getInstance().modelTableRencana.remove(tableRencana.getSelectedRow());
+        //AnggaranFrame.getInstance().modelTableTerbayar.add(tableRencana.getSelectedRow());
+
     }//GEN-LAST:event_btnBayarAngActionPerformed
 
     private void btnHapusAngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusAngActionPerformed

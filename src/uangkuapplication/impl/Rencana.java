@@ -30,8 +30,9 @@ public class Rencana implements IRencana{
     private final String updateRencana = "UPDATE rencana SET status = 'Selesai' where id=?";
     private final String deleteRencana = "DELETE FROM rencana WHERE id=?";
     private final String getById = "SELECT * FROM RENCANA WHERE id=?";
-    private final String selectAll = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori";
+    private final String selectAll = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori WHERE status='Belum Bayar'";
     private final String selectKategori = "SELECT nama_kategori FROM kategori WHERE id_kategori = ?";
+    private final String selectAllTerbayar = "SELECT * FROM rencana INNER JOIN kategori ON rencana.id_kategori = kategori.id_kategori WHERE status='Selesai'";
     
     
     public Rencana(Connection connection) {
@@ -111,13 +112,13 @@ public class Rencana implements IRencana{
     }
 
     @Override
-    public void updateRencana(EntityRencana rencana) throws SQLException {
+    public void updateRencana(int id) throws SQLException {
         PreparedStatement statement = null;
         try {
             connection.setAutoCommit(false);
             
             statement = connection.prepareStatement(updateRencana);
-            statement.setInt(1, rencana.getUid());
+            statement.setInt(1, id);
             
             statement.executeUpdate();
             
@@ -198,7 +199,10 @@ public class Rencana implements IRencana{
         try {
             connection.setAutoCommit(false);
             
+            
             statement = connection.createStatement();
+            
+            
             
             ResultSet result = statement.executeQuery(selectAll);
             EntityRencana rencana = null;
@@ -241,7 +245,55 @@ public class Rencana implements IRencana{
 
     @Override
     public List<EntityRencana> selectAllTerbayarkan() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Statement statement = null;
+        List<EntityRencana> list = new ArrayList<EntityRencana>();
+        try {
+            connection.setAutoCommit(false);
+            
+            
+            statement = connection.createStatement();
+            
+            
+            
+            ResultSet result = statement.executeQuery(selectAllTerbayar);
+            EntityRencana rencana = null;
+            
+                        
+            while (result.next()) {
+                rencana = new EntityRencana();
+                rencana.setId(result.getInt("id"));
+                rencana.setUid(result.getInt("uid"));
+                rencana.setId_kategori(result.getInt("id_kategori"));
+                rencana.setNominal(result.getInt("nominal"));
+                rencana.setTgl_rencana(result.getDate("tgl_rencana"));
+                rencana.setStatus(result.getString("status"));
+                rencana.setCatatan(result.getString("catatan"));
+                rencana.setNama(result.getString("nama_kategori"));
+                list.add(rencana);
+            }
+            connection.commit();
+            return list;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new SQLException(e.getMessage());
+        }finally{
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+            }
+            if (statement!=null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }    
+            }
+            
+        }
+
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

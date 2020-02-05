@@ -18,7 +18,7 @@ public interface IRencana {
     
     public void insertRencana(EntityRencana rencana) throws SQLException;
     public void deleteRencana(int id) throws SQLException;
-    public void updateRencana(EntityRencana rencana) throws SQLException;
+    public void updateRencana(int id) throws SQLException;
     
     public String getKategori(int uid) throws SQLException;
     public EntityRencana getRencana(int id) throws SQLException;

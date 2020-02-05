@@ -70,19 +70,11 @@ public class RencanaController {
         
     }
     public void updateRencana(AnggaranFrame view){
+        Integer id = view.idRencana;
+     
+        model.setUid(id);
         
-        Integer id = Integer.parseInt(view.getTxtID().getText());
-        int idKategori = view.getIdKategori();
-        int nominal = Integer.parseInt(view.getTxtNominal().getText());
-        String catatan = view.getTxtCatatan().getText();
-        Date tanggal = new Date(view.getTglRencana().convert().getDateWithDefaultZone().getTime());
-        
-        model.setUid(UangkuApplication.UserID);
-        model.setId_kategori(idKategori);
-        model.setNominal(nominal);
-        model.setTglRencana(tanggal);
-        model.setCatatan(catatan);
-        
+//        
         try {
            
             model.updateRencana();
@@ -119,6 +111,19 @@ public class RencanaController {
 
         try {
             list = model.selectAllRencana();
+            
+        
+        } catch (SQLException ex) {
+        }
+        
+        
+        return list;
+    }
+    public List<EntityRencana> getAllTerbayar(){
+        List<EntityRencana> list = new ArrayList<EntityRencana>();
+
+        try {
+            list = model.selectAllTerbayar();
             
         
         } catch (SQLException ex) {

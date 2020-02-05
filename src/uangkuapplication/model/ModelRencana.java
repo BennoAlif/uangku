@@ -141,14 +141,11 @@ public class ModelRencana {
         fireOnInsert(ren);
     }
     public void updateRencana() throws SQLException{
-       
-        IRencana rencana = UangkuDatabase.getRencana();
         EntityRencana ren = new EntityRencana();
-        
-        ren.setId(uid);
-        
-        rencana.updateRencana(ren);
-        fireOnUpdate(ren);
+        IRencana rencana = UangkuDatabase.getRencana();
+        rencana.updateRencana(uid);
+        ren = rencana.getRencana(uid);
+        fireOnBayar(ren);
     }
     
     
@@ -163,6 +160,13 @@ public class ModelRencana {
         List<EntityRencana> list = new ArrayList<EntityRencana>();
         IRencana dao = UangkuDatabase.getRencana();
         list = dao.selectAllRencana();
+        return list;
+
+    }
+    public List<EntityRencana> selectAllTerbayar() throws SQLException{
+        List<EntityRencana> list = new ArrayList<EntityRencana>();
+        IRencana dao = UangkuDatabase.getRencana();
+        list = dao.selectAllTerbayarkan();
         return list;
 
     }
